@@ -20,11 +20,15 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+    
+      # Upload to GCS
       - name: Cloud Storage Uploader
         # You may pin to the exact commit or the version.
         # uses: google-github-actions/upload-cloud-storage@c43ab88dab05a52b87417245e108fa54204a652f
         uses: google-github-actions/upload-cloud-storage@v0.2.0
         with:
           credentials: ${{ secrets.SERVICE_KEY }}
-          path: /README.md
+          path: /
           destination: lce-edu/content
