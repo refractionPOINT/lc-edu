@@ -28,5 +28,5 @@ jobs:
         uses: google-github-actions/upload-cloud-storage@main
         with:
           credentials: ${{ secrets.SERVICE_KEY }}
-          path: /README.md
+          path: $GITHUB_WORKSPACE/
           destination: lc-edu/content
