@@ -1,0 +1,102 @@
+<div class="fr-view">
+
+	<p dir="ltr">LimaCharlie provides a full-featured web application which allows the user to manage all aspects of the platform and can be used out-of-the-box for threat hunting and incident response. Every operation that can be performed in the web application can also be executed via the API, SDK &nbsp;or CLI.</p>
+
+	<p dir="ltr">Complete documentation can be <a href="https://doc.limacharlie.io/" rel="noopener noreferrer" target="_blank">found here</a>.</p>
+
+	<p dir="ltr">Swagger documentation for the API can be <a href="https://api.limacharlie.io/" rel="noopener noreferrer" target="_blank">found here</a>.</p>
+
+	<p dir="ltr">Instructions for the CLI <a href="https://doc.limacharlie.io/en/master/external_logs/#using-the-cli" rel="noopener noreferrer" target="_blank">are here</a>.</p>
+
+	<p dir="ltr"><span style="background-color: initial;">The SDK can be&nbsp;</span><a href="https://github.com/refractionPOINT/python-limacharlie/" rel="noopener noreferrer" target="_blank"><span style="background-color: initial;">found here</span></a><span style="background-color: initial;">.</span></p>
+
+	<h3>User Menu</h3>
+	<div class="hide"><img id="modal-s1" class="modal fr-fic fr-dii fr-bordered" src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/ed0/91a/855/Screen_Shot_2020-06-01_at_2.12.58_PM.png"></div>
+	<a href="#modal-s1" rel="modal:open"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/ed0/91a/855/Screen_Shot_2020-06-01_at_2.12.58_PM.png" style="width: 193px;" class="fr-fic fr-bordered fr-dii fr-fir"></a>
+
+	<p>In the upper left corner of the web application there is a hamburger icon that toggles a slide-out menu which provides access to the following.</p>
+
+	<p dir="ltr">Current User simply displays the identity of the current operator.</p>
+
+	<p dir="ltr">User Profile opens a modal which provides access to settings for the given account. &nbsp;From this view users can do the following:</p>
+
+	<ul>
+		<li dir="ltr">Generate an Access Token.</li>
+		<li dir="ltr">Get a copy of the current User ID.</li>
+		<li dir="ltr">Generate User API keys.</li>
+		<li dir="ltr">Toggle the support chat window.</li>
+	</ul>
+
+	<p>Navigate to the Main Dashboard from anywhere in the application.</p>
+
+	<p>Documentation is a direct link to the LimaCharlie documentation.</p>
+
+	<p>Dark Theme toggles the application between a light and dark theme.</p>
+
+	<p>Log Out signs the operator out of the application.</p>
+
+	<p>The root domain and version number are also listed near the bottom.</p>
+	<div class="wrap-collabsible">
+		<input id="collapsible-1" class="toggle" type="checkbox">
+		<label class="lbl-toggle" for="collapsible-1">Details</label>
+		<div class="collapsible-content">
+			<div class="content-inner">
+
+				<h4>Access Tokens</h4>
+				<div class="hide"><img id="modal-s2" class="modal fr-fic fr-dii fr-bordered" src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/635/e3c/491/Screen_Shot_2020-06-01_at_1.08.17_PM.png"></div>
+				<a href="#modal-s2" rel="modal:open"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/635/e3c/491/Screen_Shot_2020-06-01_at_1.08.17_PM.png" style="width: 113px; margin-left: 10px;" class="fr-fic fr-dii fr-fir fr-bordered"></a>The Resource Access Token and the REST endpoint can be used to programatically update resources you&#39;ve already created.
+
+				<p>
+					<br>
+				</p>
+
+				<p dir="ltr">The token is associated with your user ID since Resources are associated with users and not organizations. The token does not provide access to any other systems.</p>
+
+				<p dir="ltr">Clicking the &quot;Generate New Access Token&quot; button will generate a new token, rendering the old one invalid.</p>
+
+				<p dir="ltr">Required REST parameters are listed as follows.</p>
+
+				<p dir="ltr"><strong><em>uid:</em></strong> your user ID&nbsp;</p>
+
+				<p dir="ltr"><strong><em>access_token:</em></strong> your resource access token</p>
+
+				<p dir="ltr"><strong><em>resource_cat:</em></strong> the category of the resource, like &quot;lookup&quot; or &quot;detection&quot;&nbsp;</p>
+
+				<p dir="ltr"><strong><em>resource_name:</em></strong> the name of the resource</p>
+
+				<p dir="ltr"><strong><em>[REQUEST BODY]:</em></strong> the body of the POST should contain the data to push, the same when done through the web UI</p>
+
+				<h4>User API Keys</h4>
+				<div class="hide"><img id="modal-s3" class="modal fr-fic fr-dii fr-bordered" src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/69a/103/475/Screen_Shot_2020-06-01_at_2.05.40_PM.png"></div>
+				<a href="#modal-s3" rel="modal:open"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/69a/103/475/Screen_Shot_2020-06-01_at_2.05.40_PM.png" style="width: 109px;" class="fr-fic fr-bordered fr-fir fr-dii"></a>User API keys are used to generate JWT tokens for the REST API. In contrast to Organization API keys, the User API keys are associated with a specific user (you) and provide the exact same access you have across all organizations you have access to. This makes User API Keys very powerful but also riskier to manage. Therefore we recommend you use Organization API keys whenever possible.
+
+				<p>
+					<br>
+				</p>
+
+				<p dir="ltr">The User API keys can be used through all the same interfaces as the Organization API keys. The only different is how you get the JWT. Instead of giving an OID parameter to https://app.limacharlie.io/jwt, provide it with a UID parameter as specified below.</p>
+
+				<h4>Settings</h4>
+				<div class="hide"><img id="modal-s4" class="modal fr-fic fr-dii fr-bordered" src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/672/868/c9c/Screen_Shot_2020-06-01_at_2.05.51_PM.png"></div>
+				<a href="#modal-s4" rel="modal:open"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/672/868/c9c/Screen_Shot_2020-06-01_at_2.05.51_PM.png" style="width: 105px;" class="fr-fic fr-bordered fr-dii fr-fir"></a>The Settings tab allows the operator to toggle the visibility of the support chat icon in the lower right corner of the web application.
+
+				<p>
+					<br>
+				</p>
+
+				<p dir="ltr">
+					<br>
+				</p>
+
+				<p dir="ltr">
+					<br>
+				</p>
+
+				<p dir="ltr">
+					<br>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+

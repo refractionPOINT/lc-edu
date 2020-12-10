@@ -1,0 +1,24 @@
+<p>LimaCharlie is a powerful set of information security focused capabilities and supporting infrastructure built around a lightweight, cross-platform agent. LimaCharlie provides all of the components required for modern information security operations through a web application or via the API/SDK/CLI. LimaCharlie can be used as a stand-alone threat hunting and incident response platform or be used as a foundation on which to build proprietary security products.&nbsp;</p>
+
+<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/d80/a69/064/worldMap_google_.png" class="fr-fic fr-fir fr-dii" style="width: 323px;">The LimaCharlie global infrastructure is built on the Google Cloud Platform (GCP) and currently has computing resources available in the USA, Canada, Europe, India and the United Kingdom. Choosing a geographical location ensures data will always be processed in this location and never moved outside. New data centres can be spun up <a href="https://cloud.google.com/about/locations" rel="noopener noreferrer" target="_blank">anywhere GCP is available</a> upon customer request.</p>
+
+<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/af1/22f/522/1588984750222.jpg" class="fr-fic fr-dii fr-fil" style="width: 313px;"></p>
+
+<p>LimaCharlie employs a multi-tenant architecture. Every cluster is built across multiple zones to maintain high-availability. Clusters are available in multiple regions to deal with any legal requirements and all access to these clusters is transparent. The LimaCharlie Cloud is deployed using Kubernetes and can be horizontally scaled to any size to meet demand dynamically.&nbsp;</p>
+
+<p>Connectivity between agents and the clusters is done point-to-point and is secured using pinned SSL certificates. This enables easy deployments and the seamless transition of assets between offices and networks.
+	<br>
+	<br><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/41d/078/9f5/1588984750675.jpg" class="fr-fic fr-dii fr-fir" style="width: 409px;"></p>
+
+<p>Each cluster has its own transport keys and each organization has its own command keys. All keys are encrypted in storage and runtime access to the envelope keys is limited to server containers. All sensitive output configurations are encrypted per organization.</p>
+
+<p>Several components work together to provide a set of capabilities that can be tailored to meet the needs of individual users. LimaCharlie is modelled after other cloud service providers, such as Amazon Web Services (AWS) or the Google Cloud Platform (GCP), but designed for the needs of information security operations.</p>
+
+<p>At the bottom of this security stack is a lightweight, cross-platform agent that is installed on the endpoints. The agent (also referred to as a sensor) sends endpoint telemetry back to the cloud where it is processed by the LimaCharlie Detection &amp; Response (D&amp;R) Engine. If a detection occurs the response will be triggered and the given action will be sent back to the endpoint.</p>
+
+<p>On top of the agent are a whole host of increasingly powerful tools and services the major components of the stack are as follows (each of which will be explained in detail later in this course).</p>
+<div class="fr-view">
+
+	<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/321/8aa/696/inverted-triangle-of-edr.png" style="width: 611px;" class="fr-fic fr-dib"></p>
+</div>
+
