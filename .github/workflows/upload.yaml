@@ -24,11 +24,9 @@ jobs:
       - uses: actions/checkout@v2
     
       # Upload to GCS
-      - name: Cloud Storage Uploader
-        # You may pin to the exact commit or the version.
-        # uses: google-github-actions/upload-cloud-storage@c43ab88dab05a52b87417245e108fa54204a652f
+      - id: upload-file
         uses: google-github-actions/upload-cloud-storage@main
         with:
           credentials: ${{ secrets.SERVICE_KEY }}
           path: /
-          destination: lce-edu/content
+          destination: lc-edu/
