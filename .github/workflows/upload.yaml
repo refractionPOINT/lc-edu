@@ -22,11 +22,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - id: list
+        run: ls -lah $GITHUB_WORKSPACE
     
       # Upload to GCS
       - id: upload-file
         uses: google-github-actions/upload-cloud-storage@main
         with:
           credentials: ${{ secrets.SERVICE_KEY }}
-          path: $GITHUB_WORKSPACE/
+          path: $GITHUB_WORKSPACE/README.md
           destination: lc-edu/content
