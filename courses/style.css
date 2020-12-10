@@ -1,0 +1,27 @@
+/************ Common ************/
+
+body {
+    font-family: 'Roboto Mono', monospace !important;
+    line-height: 1.1rem !important;
+    font-size: 12px !important;
+}
+
+.container {
+    max-width: 670px;
+    margin: auto;
+}
+
+.gist {
+    padding-top: 10px;
+}
+
+.gist .gist-meta {
+    display: none;
+}
+
+/************ Custom ************/
+
+.img-bool {
+    max-width: 250px;
+    padding: 10px;
+}
