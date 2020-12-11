@@ -5,7 +5,62 @@
     <body>
         <div class="container">
 
+            <p>Now that we know our rule is generally sound, we need to test it against some events.</p>
 
+            <p>Our test plan will take the following approach:</p>
+
+            <ol>
+                <li>Test a positive (a <code>.cpl</code> loading outside of <code>windows</code>).</li>
+
+                <li>Test a negative for the major criteria: 
+                    <ol>
+                        <li>Test a non-<code>.cpl</code> loading outside of windows does not match.</li>
+                        <li>Test a <code>.cpl</code> loading within <code>windows</code> does not match.</li>
+                    </ol>
+                </li>
+
+                <li>Test on historical data.</li>
+            </ol>
+
+            <p>With this plan, #1 and #2 lend themselves well to <a href="http://softwaretestingfundamentals.com/unit-testing/" target="_blank">unit tests</a> while the #3 can be done more holistically by just using Replay to run historical events through the rule and evaluate if there are any <a href="https://en.wikipedia.org/wiki/False_positives_and_false_negatives" target="_blank">false positives</a>.</p>
+
+            <p>This may be over-kill for you, or for certain rules which are very simple, we leave that evaluation to you. For the sake of this code lab, we will do a light version to demonstrate how to do tests.</p>
+
+            <h3>Testing a Single Event</h3>
+
+            <p>To tests #1 and #2, let's just create some synthetic events. It's always better to use real-world samples, but we'll leave that up to you.</p>
+
+            <p>Take the event sample we had in the "Draft Rule" section and copy it to two new files we will name <code>positive.json</code>, <code>negative-1.json</code> and <code>negative-2.json</code>.
+            
+            <p>Modify the <code>positive.json</code> file by renaming the <code>FILE_PATH</code> at the bottom from <code>"C:\\Windows\\System32\\setupcln.dll"</code> to <code>"C:\\temp\\System32\\setupcln.cpl"</code> so that the event now describes a <code>.cpl</code> loading in the <code>temp</code> directory, which we should detect.</p>
+            
+            <p>Then modify the <code>negative-1.json</code> file by changing the same <code>.dll</code> to <code>.cpl</code>. This should NOT match because the path is still in the <code>windows</code> directory.
+            
+            <p>Then modify the <code>negative-2.json</code> file by changing the <code>windows</code> directory to <code>temp</code>. This should still NOT match because it's not a <code>.cpl</code>.</p>
+            
+            <p>Now we can run our 3 samples against the rule using Replay,</p>
+            
+            <p><code>limacharlie-replay --rule-content T1196.rule --events positive.json</code> should output a result indicating the event matched (by actioning the <code>report</code>) like:</p>
+
+            <script src="https://gist.github.com/tekgrunt/96d9d41ca507829ab0f6363734ea6193.js"></script>
+
+            <p><code>limacharlie-replay --rule-content T1196.rule --events negative-1.json</code> should output a result indicating the event did NOT match like:</p>
+
+            <script src="https://gist.github.com/tekgrunt/a2559c26af1fcca9604ed2b854d89025.js"></script>
+
+            <p><code>limacharlie-replay --rule-content T1196.rule --events negative-2.json</code> be the same as <code>negative-1.json</code>.</p>
+
+            <h3>Testing Historical Data</h3>
+
+            <p>The final test is to run the rule against historical data. If you are not using an organization on the free tier, note that the Replay API is billed on usage, in the following step we will run against all historical data from the organization, so if your organization is not on the free tier and it is large, there may be non-trivial costs associated.</p>
+            
+            <p>Running our rule against the last week of data is simple:</p>
+            
+            <p><code>limacharlie-replay --rule-content T1196.rule --entire-org --last-seconds 604800</code></p>
+            
+            <p>No matches should look like that:</p>
+
+            <script src="https://gist.github.com/tekgrunt/a164013451f8ae18aaf6ccaf781ec5ef.js"></script>
 
         </div>
     </body>
