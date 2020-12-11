@@ -2,8 +2,9 @@
 
 body {
     font-family: 'Roboto Mono', monospace !important;
-    line-height: 1.1rem !important;
-    font-size: 12px !important;
+    line-height: 1.4rem !important;
+    font-size: 1.2 !important;
+    color: a7b8c7;
 }
 
 .container {
