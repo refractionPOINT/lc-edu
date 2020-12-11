@@ -1,0 +1,55 @@
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../../style.css">
+    </head>
+    <body>
+        <div class="container">
+
+            <p>To draft our rule, open your prefered text editor and save the rule to a file, we'll call it <code>T1196.rule</code>. The format of a rule is <a href="https://en.wikipedia.org/wiki/YAML" target="_blank">YAML</a>, if you are not familiar with it you're best spending a few minutes getting familiar. It is not too complex.</p>
+
+            <ul>
+                <li>For our rules based on the <a href="https://attack.mitre.org/techniques/T1196/" target="_blank">T1196</a> technique, we need to apply the following constraints:</li>
+                <li>It only applies to Windows.</li>
+                <li>The event is a module (DLL for example on Windows) loading.</li>
+                <li>The module loading ends with <code>.cpl</code> (control panel extension).</li>
+                <li>The module is loading from outside of the <code>C:\windows\</code> directory.</li>
+            </ul>
+
+            <p>LC supports a lot of different event types, this means that the first thing we should strive to do to try to make the rule fail as quickly as possible is to filter all events we don't care about.</p>
+
+            <p>In this case, we only care about <a href="https://doc.limacharlie.io/docs/documentation/docs/events.md#code_identity" target="_blank">CODE_IDENTITY</a> events. We also know that our rule will use more than one criteria, and those criteria will be AND-ed together because we only want to match when they all match.</p>
+
+            <script src="https://gist.github.com/tekgrunt/d54c2076e899d36d74bff57e2874360a.js"></script>
+
+            <p>The above sets up the criteria #2 from above and the AND-ing that will follow. Since the AND is at the top of our rule, and it has an <code>event:</code> clause, it will ensure that any event processed by this rule but is NOT a <code>CODE_IDENTITY</code> event will be skipped over right away.</p>
+
+            <p>Next, we should look at the other criteria, and add them to the rules: list, which are all the sub-nodes that will be AND-ed together.</p>
+
+            <p>Criteria #1 was to limit to Windows, that's easy:</p>
+
+            <script src="https://gist.github.com/tekgrunt/ba9e76b1b07b6ca33bb6647838ec781e.js"></script>
+
+            <p>Next up is criteria #3 and #4. Both of those can be determined using the <code>FILE_PATH</code> component of the <code>CODE_IDENTITY</code> event. If you are unure what those events look like, the best way to get a positive confirmation of the structure is simply to open the Historic View, start a new process on that specific host and look for the relevant event. If we were to do this on a Windows host, we'd get an example like this one:</p>
+
+            <script src="https://gist.github.com/tekgrunt/fc2a10298789db261a809ac91417a92a.js"></script>
+
+            <p>This means what we want is to apply rules to the event/FILE_PATH. First part, #3 is easy, we just want to test for the <code>event/FILE_PATH</code> ends in <code>.cpl</code>, we can do this using the <code>ends with</code> operator.</p>
+
+            <p>Most operators will use a <code>path</code> and a <code>value</code>. The general convention is that the path describes how to get to a value we want to compare within the event. So <code>event/FILE_PATH</code> says "starting in the event then get the <code>FILE_PATH</code>. The value generally represents a value we want to compare to the element found in the path, how we compare depends on the operator.</p>
+
+            <script src="https://gist.github.com/tekgrunt/b044bc6ee8a778b4524c35c8c88b9eb7.js"></script>
+
+            <p>That was easy, but we're missing a critical componet! By default, D&R rules operate in a case sensitive mode. This means that the above node we added will match <code>.cpl</code> but will NOT match <code>.cPl</code>. To fix this, we just add the <code>case sensitive: false</code> statement.</p>
+
+            <script src="https://gist.github.com/tekgrunt/e8e81b6026d3870d82748f762f0224d4.js"></script>
+
+            <p>Finally, we want to make sure the <code>event/FILE_PATH</code> is NOT in the <code>windows</code> directory. To do this, we will use a regular expression with a <code>matches</code> operator. But in this case, we want to EXCLUDE the paths that include the <code>windows</code> directory, so we want to "invert" the match. We can do this with the <code>not: true</code> statement.</p>
+
+            <script src="https://gist.github.com/tekgrunt/36d24fcef7cbeac37f57a6b7e07dff33.js"></script>
+
+            Here we go, we're done drafting our first rule.
+
+
+        </div>
+    </body>
+</html>

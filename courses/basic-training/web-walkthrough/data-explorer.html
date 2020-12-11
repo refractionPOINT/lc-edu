@@ -1,102 +1,109 @@
-<div class="fr-view">
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../../style.css">
+    </head>
+    <body>
+		<div class="container">
 
-	<p>The LimaCharlie Data Explorer is a visual way to explore telemetry data for up to a full year. The interactive graph shows process trees and can be navigated in a number of ways. The interface also provides a number of ways to filter available data.</p>
+			<p>The LimaCharlie Data Explorer is a visual way to explore telemetry data for up to a full year. The interactive graph shows process trees and can be navigated in a number of ways. The interface also provides a number of ways to filter available data.</p>
 
-	<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/2f9/8dc/e5d/historic-view.png" style="width: 728px;" class="fr-fic fr-dib fr-bordered"></p>
-	<div class="wrap-collabsible">
-		<input id="collapsible-1" class="toggle" type="checkbox">
-		<label class="lbl-toggle" for="collapsible-1">Details</label>
-		<div class="collapsible-content">
-			<div class="content-inner">
+			<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/2f9/8dc/e5d/historic-view.png" style="width: 728px;" class="fr-fic fr-dib fr-bordered"></p>
+			<div class="wrap-collabsible">
+				<input id="collapsible-1" class="toggle" type="checkbox">
+				<label class="lbl-toggle" for="collapsible-1">Details</label>
+				<div class="collapsible-content">
+					<div class="content-inner">
 
-				<p>In order to load events into the Data Explorer you need to select a date and time around which to centre your investigation. You can expand the date selector located in the upper left corner of the user interface by clicking on the bar showing the current time stamp. Once the date is selected click on the search icon. The Data Explorer will load event into the users interface and from this state users can navigate across all time.</p>
+						<p>In order to load events into the Data Explorer you need to select a date and time around which to centre your investigation. You can expand the date selector located in the upper left corner of the user interface by clicking on the bar showing the current time stamp. Once the date is selected click on the search icon. The Data Explorer will load event into the users interface and from this state users can navigate across all time.</p>
 
-				<p>The icons to the left of the search icon are:</p>
+						<p>The icons to the left of the search icon are:</p>
 
-				<p><strong><em>Logs From Sensor&nbsp;</em></strong>opens a modal from which users can see a list of log files that were collected. This view provides:</p>
+						<p><strong><em>Logs From Sensor&nbsp;</em></strong>opens a modal from which users can see a list of log files that were collected. This view provides:</p>
 
-				<ul>
-					<li>Time of ingestion</li>
-					<li>Source</li>
-					<li>Log file type</li>
-					<li>Path</li>
-					<li>Retained until date</li>
-					<li>Size</li>
-				</ul>
+						<ul>
+							<li>Time of ingestion</li>
+							<li>Source</li>
+							<li>Log file type</li>
+							<li>Path</li>
+							<li>Retained until date</li>
+							<li>Size</li>
+						</ul>
 
-				<p><strong><em>Download Events&nbsp;</em></strong>will a .json file of all events loaded into the browser and make it available for download.</p>
+						<p><strong><em>Download Events&nbsp;</em></strong>will a .json file of all events loaded into the browser and make it available for download.</p>
 
-				<p><strong><em>Get All Prevalence</em></strong> inlines additional prevalence data in the <em>event pop-up&nbsp;</em>(covered later in this document).</p>
+						<p><strong><em>Get All Prevalence</em></strong> inlines additional prevalence data in the <em>event pop-up&nbsp;</em>(covered later in this document).</p>
 
-				<p>At the most basic level users can use a simple text filter to reduce the number of data points. The text filtering is done in real-time and applies to all fields. The text filter only applies to data that has been loaded into the user interface.</p>
+						<p>At the most basic level users can use a simple text filter to reduce the number of data points. The text filtering is done in real-time and applies to all fields. The text filter only applies to data that has been loaded into the user interface.</p>
 
-				<p>Using the drop-down menu users can control the broad types of data that are pulled down from the LimaCharlie Cloud. The type of data categories available are as follows.</p>
+						<p>Using the drop-down menu users can control the broad types of data that are pulled down from the LimaCharlie Cloud. The type of data categories available are as follows.</p>
 
-				<p>DIR_LIST_REP
-					<br>DNS_REQUESTS
-					<br>EXISTING_PROCESS
-					<br>NETWORK_CONNECTIONS
-					<br>NEW_PROCESS
-					<br>TERMINATE_PROCESS</p>
+						<p>DIR_LIST_REP
+							<br>DNS_REQUESTS
+							<br>EXISTING_PROCESS
+							<br>NETWORK_CONNECTIONS
+							<br>NEW_PROCESS
+							<br>TERMINATE_PROCESS</p>
 
-				<p>The Cascading Event Selector is a CSS-like language that allows users to create complex filtering conditions that are applied across the event tree. Using this language users are able to specify a series of space-separated selectors with optional relationship between sets of selectors.
-					<br>
-					<br>Selector types:</p><strong>.EVENT_TYPE</strong> : selects events of type EVENT_TYPE
-				<br><strong>#ATOM_ID</strong> : selects the event with atom ATOM_ID
-				<br><strong>@ATOM_ID</strong> : selects the event with atom ATOM_ID and all its direct parents as well as children
-				<br><strong>PLAINTEXT</strong> : selects events containing the plaintext PLAINTEXT</div>
-			<div class="fr-view">
-				<br>A selector beginning and ending with &quot;/&quot; like &quot;/.*_PROCESS/&quot; is interpreted as a regular expression.
-				<br>Selector relationships:</div>
-			<div class="fr-view">
-				<br><strong>&gt;</strong> : direct child relationship
-				<br><strong>&gt;&gt;</strong> : child relationship across any number of levels</div>
-			<div class="fr-view">
-				<br><strong>Example</strong> : <em>.NEW_PROCESS notepad.exe &gt;&gt; .NEW_PROCESS cmd.exe</em>
-				<br>
-				<br><strong><em>Equivalent to:</em></strong> NEW_PROCESS event containing notepad.exe with a child of type NEW_PROCESS containing cmd.exe
-				<br>
-				<br><strong>Example:</strong><em>&nbsp;./.*_PROCESS/ system32 &gt; .CODE_IDENTITY c:\\tmp</em></div>
-			<div class="fr-view">
-				<br>
-			</div>
-			<div class="fr-view"><strong><em>Equivalent to:</em></strong> a NEW_PROCESS or EXISTING_PROCESS with a direct child event of type CODE_IDENTITY that include the string &quot;c:\tmp&quot;
+						<p>The Cascading Event Selector is a CSS-like language that allows users to create complex filtering conditions that are applied across the event tree. Using this language users are able to specify a series of space-separated selectors with optional relationship between sets of selectors.
+							<br>
+							<br>Selector types:</p><strong>.EVENT_TYPE</strong> : selects events of type EVENT_TYPE
+						<br><strong>#ATOM_ID</strong> : selects the event with atom ATOM_ID
+						<br><strong>@ATOM_ID</strong> : selects the event with atom ATOM_ID and all its direct parents as well as children
+						<br><strong>PLAINTEXT</strong> : selects events containing the plaintext PLAINTEXT</div>
+					<div class="fr-view">
+						<br>A selector beginning and ending with &quot;/&quot; like &quot;/.*_PROCESS/&quot; is interpreted as a regular expression.
+						<br>Selector relationships:</div>
+					<div class="fr-view">
+						<br><strong>&gt;</strong> : direct child relationship
+						<br><strong>&gt;&gt;</strong> : child relationship across any number of levels</div>
+					<div class="fr-view">
+						<br><strong>Example</strong> : <em>.NEW_PROCESS notepad.exe &gt;&gt; .NEW_PROCESS cmd.exe</em>
+						<br>
+						<br><strong><em>Equivalent to:</em></strong> NEW_PROCESS event containing notepad.exe with a child of type NEW_PROCESS containing cmd.exe
+						<br>
+						<br><strong>Example:</strong><em>&nbsp;./.*_PROCESS/ system32 &gt; .CODE_IDENTITY c:\\tmp</em></div>
+					<div class="fr-view">
+						<br>
+					</div>
+					<div class="fr-view"><strong><em>Equivalent to:</em></strong> a NEW_PROCESS or EXISTING_PROCESS with a direct child event of type CODE_IDENTITY that include the string &quot;c:\tmp&quot;
 
-				<p>The histogram that separates the upper portion of the user interface from the bottom provides information on how many events are available in different context.</p>
+						<p>The histogram that separates the upper portion of the user interface from the bottom provides information on how many events are available in different context.</p>
 
-				<p>Events exist in the cloud
-					<br>Events available in browser
-					<br>Events filtered
-					<br>Low prevalence events
-					<br>Event selects</p>
+						<p>Events exist in the cloud
+							<br>Events available in browser
+							<br>Events filtered
+							<br>Low prevalence events
+							<br>Event selects</p>
 
-				<p>The lower portion of the user interface is a scrollable list of event tuples that displays a variety of information depending on which type of event is being displayed.</p>
+						<p>The lower portion of the user interface is a scrollable list of event tuples that displays a variety of information depending on which type of event is being displayed.</p>
 
-				<p>
-					<br>
-				</p>
+						<p>
+							<br>
+						</p>
 
-				<p>
-					<br>
-				</p>
+						<p>
+							<br>
+						</p>
 
-				<p>
-					<br>
-				</p>
+						<p>
+							<br>
+						</p>
 
-				<p>
-					<br>
-				</p>
+						<p>
+							<br>
+						</p>
 
-				<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/ebc/994/a8f/historic-details-raw.png" style="width: 300px;" class="fr-fic fr-dib"></p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/ebc/994/a8f/historic-details-raw.png" style="width: 300px;" class="fr-fic fr-dib"></p>
 
-				<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/70e/3cc/811/historic-detail-routing.png" style="width: 300px;" class="fr-fic fr-dib"></p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/70e/3cc/811/historic-detail-routing.png" style="width: 300px;" class="fr-fic fr-dib"></p>
 
-				<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/f8c/a9e/8c5/historic-details-detail.png" style="width: 300px;" class="fr-fic fr-dib"></p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/f8c/a9e/8c5/historic-details-detail.png" style="width: 300px;" class="fr-fic fr-dib"></p>
 
-				<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/f39/fb5/818/historic-calendar-detail.png" style="width: 300px;" class="fr-fic fr-dib"></p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/f39/fb5/818/historic-calendar-detail.png" style="width: 300px;" class="fr-fic fr-dib"></p>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
+	</body>
+</html>
 

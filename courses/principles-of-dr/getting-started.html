@@ -1,0 +1,59 @@
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../../style.css">
+    </head>
+    <body>
+        <div class="container">
+
+            <p>The goal of this portion of the course is to create a DR rule to detect the MITRE ATT&CK framework for <a href="https://attack.mitre.org/techniques/T1196/" target="_blank">Control Panel Items</a> execution, as well as validate, test and publish the rule.</p> 
+
+            <h3>Setup and Requirements</h3>
+
+            <p>To complete this section of the course you will need access to a Linux host (or MacOS terminal with <a href="https://brew.sh/" target="_blank">brew</a> installed). Along with this you will also need owner access to an organization on LimaCharlie. If you do not have an organization already you can create one - this code lab is completely compatiable with the free teir provided to all LimaCharlie users.</p>
+
+            <h3>Services Used</h3>
+
+            <p>This code lab will use the Detection & Response service as well as the Replay service to validate and the rule prior to pushing it to production</p>
+
+            <h2>Getting Started</h2>
+
+            <p>Interacting with LC can always be done via the web app but day-to-day operations and automation can be done via the Command Line Interface (CLI). This will make following this code lab easier.</p>
+
+            <p>Install the CLI: <code>pip install limacharlie --user</code></p>
+                
+            <p>If you don't have <code>pip</code> installed, install it, the exact instructions will depend on your Linux distribution.</p>
+
+            <h3>Create REST API Key</h3>
+
+            <p>We need to create an API key we can use in the CLI to authenticate with LC. To do so, go to the REST API section of the web app.</p>
+
+            <ol>
+                <li>In the REST API section, click the "+" button in the top right of the page.</li>
+                
+                <li>Give your key a name.</li>
+                
+                <li>For simplicity, click the "Select All" button to enable all permissions. Obviously this would not be a recomended in a production environment. Details on the LimaCharlie's access scheme can be found here: <a href="https://doc.limacharlie.io/docs/documentation/docs/lc-access.md" target="_blank">lc-access</a></li>
+                
+                <li>Click the copy-to-clipboard button for the new key and take note of it (pasting it in a temporary text note for example).</li>
+                
+                <li>Back on the REST API page, copy the "Organization ID" at the top of the page and keep note of it like the API key in the previous step.</li>
+            
+            </ol>
+            <p>The Organization ID (OID) identifies uniquely your organization while the API key grants specific perissions to this organization.</p>
+
+            <h3>Login to the CLI</h3>
+
+            <p>Back in your terminal, log in with your credentials: <code>limacharlie login</code></p>
+
+            <ol>
+                <li>When asked for the Organization ID, paste your OID from the previous step.</li>
+                
+                <li>  When asked for a name for this access, you can leave it blank to set the default credentials.</li>
+                
+                <li>When asked for the secret API key, enter the key you got from the previous step.</li>
+                
+                <li>You're done! If you issue a <code>limacharlie-dr list</code> you should not get any errors.</li>
+            </ol>
+        </div>
+    </body>
+</html>

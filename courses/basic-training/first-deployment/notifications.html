@@ -1,27 +1,34 @@
-<div class="fr-view">
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../../style.css">
+    </head>
+    <body>
+		<div class="container">
 
-	<p dir="ltr">LimaCharlie allows you to setup your own data lakes and send the telemetry wherever you want. With telemetry storage enabled you do not need to set up your own cold storage but you may want to get notified directly when a detection takes place.</p>
+			<p dir="ltr">LimaCharlie allows you to setup your own data lakes and send the telemetry wherever you want. With telemetry storage enabled you do not need to set up your own cold storage but you may want to get notified directly when a detection takes place.</p>
 
-	<p dir="ltr">Using the output configuration interface we can set up an SMTP module to send an email whenever a detection is caught.</p>
+			<p dir="ltr">Using the output configuration interface we can set up an SMTP module to send an email whenever a detection is caught.</p>
 
-	<p dir="ltr">You can configure the alert by visiting the Output tab and clicking the plus icon in the upper right corner. With the modal open, give the configuration a name and select smtp from the Module drop down. In order to ensure that you only get an email when a detection is triggered select Detections from the Stream dropdown.</p>
+			<p dir="ltr">You can configure the alert by visiting the Output tab and clicking the plus icon in the upper right corner. With the modal open, give the configuration a name and select smtp from the Module drop down. In order to ensure that you only get an email when a detection is triggered select Detections from the Stream dropdown.</p>
 
-	<p dir="ltr"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/3c1/1f3/92f/new-output.png" style="width: 509px;" class="fr-fic fr-dib fr-bordered"></p>
+			<p dir="ltr"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/3c1/1f3/92f/new-output.png" style="width: 509px;" class="fr-fic fr-dib fr-bordered"></p>
 
-	<ul>
-		<li dir="ltr"><strong>dest_host:</strong> the IP or DNS (and optionally port) of the SMTP server to use to send the email.</li>
-		<li dir="ltr"><strong>dest_email:</strong> the email address to send the email to.</li>
-		<li dir="ltr"><strong>from_email:</strong> the email address to set in the From field of the email sent.</li>
-		<li dir="ltr"><strong>username:</strong> the username (if any) to authenticate with the SMTP server with.</li>
-		<li dir="ltr"><strong>password:</strong> the password (if any) to authenticate with the SMTP server with.</li>
-		<li dir="ltr"><strong>secret_key:</strong> an arbitrary shared secret used to compute an HMAC (SHA256) signature of the email to verify authenticity. See Webhook section in the doc.</li>
-		<li dir="ltr"><strong>Is_readable:</strong> if &#39;true&#39; the email format will be HTML and designed to be readable by a human instead of a machine.</li>
-	</ul>
+			<ul>
+				<li dir="ltr"><strong>dest_host:</strong> the IP or DNS (and optionally port) of the SMTP server to use to send the email.</li>
+				<li dir="ltr"><strong>dest_email:</strong> the email address to send the email to.</li>
+				<li dir="ltr"><strong>from_email:</strong> the email address to set in the From field of the email sent.</li>
+				<li dir="ltr"><strong>username:</strong> the username (if any) to authenticate with the SMTP server with.</li>
+				<li dir="ltr"><strong>password:</strong> the password (if any) to authenticate with the SMTP server with.</li>
+				<li dir="ltr"><strong>secret_key:</strong> an arbitrary shared secret used to compute an HMAC (SHA256) signature of the email to verify authenticity. See Webhook section in the doc.</li>
+				<li dir="ltr"><strong>Is_readable:</strong> if &#39;true&#39; the email format will be HTML and designed to be readable by a human instead of a machine.</li>
+			</ul>
 
-	<p dir="ltr"><strong>Example:</strong></p>
+			<p dir="ltr"><strong>Example:</strong></p>
 
-	<p dir="ltr" style="margin-left: 20px;"><code>dest_host: smtp.gmail.com dest_email: soc@corp.com from_email: lc@corp.com username: lc <br>password: password-for-my-lc-email-user secret_key: this-is-my-secret-shared-key<br></code></p>
+			<p dir="ltr" style="margin-left: 20px;"><code>dest_host: smtp.gmail.com dest_email: soc@corp.com from_email: lc@corp.com username: lc <br>password: password-for-my-lc-email-user secret_key: this-is-my-secret-shared-key<br></code></p>
 
-	<p dir="ltr">There are also several optional fields that can be used to limit the alerts to particular sensors, tags or investigation IDs (you can even limit the alerts to specific event types). These optional fields should be fairly self explanatory and their configuration is left at the discretion of the user.</p>
-</div>
+			<p dir="ltr">There are also several optional fields that can be used to limit the alerts to particular sensors, tags or investigation IDs (you can even limit the alerts to specific event types). These optional fields should be fairly self explanatory and their configuration is left at the discretion of the user.</p>
+		</div>
+	</body>
+</html>
 

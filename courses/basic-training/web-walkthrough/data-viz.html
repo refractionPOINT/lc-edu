@@ -1,98 +1,104 @@
-<div class="fr-view">
-	<div class="view-title" id="data-visualization">
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../../style.css">
+    </head>
+    <body>
+		<div class="container">
+			<div class="view-title" id="data-visualization">
 
-		<h3>Data Visualization</h3>
+				<h3>Data Visualization</h3>
 
-		<p>Through the web application, LimaCharlie provides an interface where users can explore prevalence and timing for domains, IP addresses, files, file paths, hashes and user names across their entire fleet for up to a year&rsquo;s worth of data. This console also allows users to search for a given sensor ID and deep dive all of the aforementioned data points for a single endpoint over the given time period.</p>
+				<p>Through the web application, LimaCharlie provides an interface where users can explore prevalence and timing for domains, IP addresses, files, file paths, hashes and user names across their entire fleet for up to a year&rsquo;s worth of data. This console also allows users to search for a given sensor ID and deep dive all of the aforementioned data points for a single endpoint over the given time period.</p>
 
-		<p>When searched, an indicator of compromise will show up in the graph along with information relating to when it was observed, how often and across how many endpoints. Users can then click on any given graph node to get more information and start to drill down.</p>
-		<div class="hide"><img id="modal-2" class="modal fr-fic fr-dii fr-bordered" src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/48d/64c/1e2/redact.png"></div>
-		<a href="#modal-2" rel="modal:open"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/bda/e95/be6/redact.png" class="fr-fic fr-dii fr-bordered"></a>
-	</div>
-	<div class="wrap-collabsible">
-		<input id="collapsible-1" class="toggle" type="checkbox">
-		<label class="lbl-toggle" for="collapsible-1">Details</label>
-		<div class="collapsible-content">
-			<div class="content-inner">
+				<p>When searched, an indicator of compromise will show up in the graph along with information relating to when it was observed, how often and across how many endpoints. Users can then click on any given graph node to get more information and start to drill down.</p>
+				<div class="hide"><img id="modal-2" class="modal fr-fic fr-dii fr-bordered" src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/48d/64c/1e2/redact.png"></div>
+				<a href="#modal-2" rel="modal:open"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/bda/e95/be6/redact.png" class="fr-fic fr-dii fr-bordered"></a>
+			</div>
+			<div class="wrap-collabsible">
+				<input id="collapsible-1" class="toggle" type="checkbox">
+				<label class="lbl-toggle" for="collapsible-1">Details</label>
+				<div class="collapsible-content">
+					<div class="content-inner">
 
-				<p>The Data Visualization page allows users to search for a variety of data types across the entire fleet for up to a year, as well as a detailed telemetry from any given endpoint for the given time range.</p>
+						<p>The Data Visualization page allows users to search for a variety of data types across the entire fleet for up to a year, as well as a detailed telemetry from any given endpoint for the given time range.</p>
 
-				<h3>Data Types</h3>
+						<h3>Data Types</h3>
 
-				<p>The data types that can be searched for are:</p>
+						<p>The data types that can be searched for are:</p>
 
-				<ul>
-					<li>Domain: Exact match for a given domain (www.google.com returns a different result than google.com)</li>
-					<li>SID: Search by sensor ID. Searching with this parameter will bring back details across all types for the given endpoint for the given time range.</li>
-					<li>IP: IP addresses that requests are made to and from.</li>
-					<li>File Path: Search for observed file paths.</li>
-					<li>File Hash: Search for observed file hashes.</li>
-					<li>User: Search by username.</li>
-					<li>File Name: Search by file name.</li>
-					<li>Service Name: Search by service name.</li>
-				</ul>
+						<ul>
+							<li>Domain: Exact match for a given domain (www.google.com returns a different result than google.com)</li>
+							<li>SID: Search by sensor ID. Searching with this parameter will bring back details across all types for the given endpoint for the given time range.</li>
+							<li>IP: IP addresses that requests are made to and from.</li>
+							<li>File Path: Search for observed file paths.</li>
+							<li>File Hash: Search for observed file hashes.</li>
+							<li>User: Search by username.</li>
+							<li>File Name: Search by file name.</li>
+							<li>Service Name: Search by service name.</li>
+						</ul>
 
-				<h4>Node Size</h4>
+						<h4>Node Size</h4>
 
-				<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/68a/5d5/c67/Screen_Shot_2020-06-02_at_9.10.30_AM.png" style="width: 243px;" class="fr-fic fr-bordered fr-dii fr-fir">The node - as it is displayed on the graph - is calculated based on how many events of the given type are bucketed into the given hour represented by the x axis (you can also hover over the node to get the time). These event are bucketed by type and represent events across multiple endpoints. Clicking on a node will bring up a list of the given events in the lower menu. Clicking on a listed event in the lower menu will bring up sensor details which can be further expanded into the tabbed region on the lower right.</p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/68a/5d5/c67/Screen_Shot_2020-06-02_at_9.10.30_AM.png" style="width: 243px;" class="fr-fic fr-bordered fr-dii fr-fir">The node - as it is displayed on the graph - is calculated based on how many events of the given type are bucketed into the given hour represented by the x axis (you can also hover over the node to get the time). These event are bucketed by type and represent events across multiple endpoints. Clicking on a node will bring up a list of the given events in the lower menu. Clicking on a listed event in the lower menu will bring up sensor details which can be further expanded into the tabbed region on the lower right.</p>
 
-				<h4>Prevalence</h4>
+						<h4>Prevalence</h4>
 
-				<p>The prevalence is represented by a given nodes position on the y axis. The prevalence represents the number of hosts the specific type instance that has been observed on during the time period.</p>
+						<p>The prevalence is represented by a given nodes position on the y axis. The prevalence represents the number of hosts the specific type instance that has been observed on during the time period.</p>
 
-				<h3>Opacity</h3>
+						<h3>Opacity</h3>
 
-				<p>Opacity is related to the number of objects present in the given node in relation to the largest object returned for the given data set (this measure is meant to highlight outliers).</p>
+						<p>Opacity is related to the number of objects present in the given node in relation to the largest object returned for the given data set (this measure is meant to highlight outliers).</p>
 
-				<h4>Information Panel</h4>
+						<h4>Information Panel</h4>
 
-				<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/e92/d38/842/Screen_Shot_2020-06-02_at_9.14.31_AM.png" style="width: 259px;" class="fr-fic fr-bordered fr-fir fr-dii">The information panel in the lower half of the screen is where information is exposed as you interact with graph.</p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/e92/d38/842/Screen_Shot_2020-06-02_at_9.14.31_AM.png" style="width: 259px;" class="fr-fic fr-bordered fr-fir fr-dii">The information panel in the lower half of the screen is where information is exposed as you interact with graph.</p>
 
-				<h4>Objects</h4>
+						<h4>Objects</h4>
 
-				<p>Clicking on a node in the graph will populate this area with type and name(s) for the node.</p>
+						<p>Clicking on a node in the graph will populate this area with type and name(s) for the node.</p>
 
-				<h4>Sources</h4>
+						<h4>Sources</h4>
 
-				<p>Clicking on an object name will populate the Sources tab with the Source ID(s) and the first time that object was seen on the given source.</p>
+						<p>Clicking on an object name will populate the Sources tab with the Source ID(s) and the first time that object was seen on the given source.</p>
 
-				<h4>Tabbed Data</h4>
+						<h4>Tabbed Data</h4>
 
-				<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/bf2/6da/2a3/Screen_Shot_2020-06-02_at_9.15.37_AM.png" style="width: 246px;" class="fr-fic fr-bordered fr-dii fr-fir">The tabbed data section shows details for a given source. The information is spread across three tabs as outlined below.</p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/bf2/6da/2a3/Screen_Shot_2020-06-02_at_9.15.37_AM.png" style="width: 246px;" class="fr-fic fr-bordered fr-dii fr-fir">The tabbed data section shows details for a given source. The information is spread across three tabs as outlined below.</p>
 
-				<p><strong><em>Source:</em></strong> when a Sensor ID is selected the Source tab will display the following data. It also provides a link into the Historical Insight UI at the time when the selected object was observed.</p>
+						<p><strong><em>Source:</em></strong> when a Sensor ID is selected the Source tab will display the following data. It also provides a link into the Historical Insight UI at the time when the selected object was observed.</p>
 
-				<ul>
-					<li>Hostname</li>
-					<li>Last Seen Timestamp</li>
-					<li>Enrollment Timestamp</li>
-					<li>External IP</li>
-					<li>Internal IP</li>
-					<li>Installer ID</li>
-					<li>Organization ID</li>
-				</ul>
+						<ul>
+							<li>Hostname</li>
+							<li>Last Seen Timestamp</li>
+							<li>Enrollment Timestamp</li>
+							<li>External IP</li>
+							<li>Internal IP</li>
+							<li>Installer ID</li>
+							<li>Organization ID</li>
+						</ul>
 
-				<p><strong><em><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/00a/644/f27/Screen_Shot_2020-06-02_at_9.19.00_AM.png" style="width: 154px;" class="fr-fic fr-bordered fr-dii fr-fir">Metadata:</em></strong> the metadata represents additional data specific to the selected object that may be useful. For example, the metadata for a domain would be the underlying IP address.</p>
+						<p><strong><em><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/00a/644/f27/Screen_Shot_2020-06-02_at_9.19.00_AM.png" style="width: 154px;" class="fr-fic fr-bordered fr-dii fr-fir">Metadata:</em></strong> the metadata represents additional data specific to the selected object that may be useful. For example, the metadata for a domain would be the underlying IP address.</p>
 
-				<p><strong><em>Data:</em></strong> the raw JSON telemetry for events at the time of the given event.</p>
+						<p><strong><em>Data:</em></strong> the raw JSON telemetry for events at the time of the given event.</p>
 
-				<p>
-					<br>
-				</p>
+						<p>
+							<br>
+						</p>
 
-				<p>
-					<br>
-				</p>
+						<p>
+							<br>
+						</p>
 
-				<p>
-					<br>
-				</p>
+						<p>
+							<br>
+						</p>
 
-				<p>
-					<br>
-				</p>
+						<p>
+							<br>
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>
-
+	</body>
+</html>
