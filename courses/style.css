@@ -7,6 +7,10 @@ body {
     color: #292d34;
 }
 
+img {
+    padding: 20px;
+}
+
 .container {
     max-width: 670px;
     margin: auto;
@@ -26,4 +30,18 @@ body {
 .img-bool {
     max-width: 250px;
     padding: 10px;
+}
+
+.img-w-border {
+    border: #41474e 2px solid;
+}
+
+.img-float-right {
+    float: right;
+    max-width: 60%;
+}
+
+.img-float-left {
+    float: left;
+    max-width: 60%;
 }
