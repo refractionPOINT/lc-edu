@@ -1,7 +1,7 @@
 /************ Common ************/
 
 body {
-    font-family: 'Roboto Mono', monospace !important;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.4 rem !important;
     font-size: 1 rem !important;
     color: #292d34;
