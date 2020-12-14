@@ -1,9 +1,9 @@
 /************ Common ************/
 
 body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.4 rem !important;
-    font-size: 1 rem !important;
+    font-family: 'Roboto Mono', monospace !important;
+    line-height: 1.2 rem !important;
+    font-size: 0.8 rem !important;
     color: #292d34;
 }
 
