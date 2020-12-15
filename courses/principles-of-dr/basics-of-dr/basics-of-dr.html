@@ -1,6 +1,6 @@
 <htmL>
     <head>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="../../style.css">
     </head>
     <body>
         <div class="container">
@@ -15,7 +15,7 @@
             <p>And if we look at a rules nested structure we can see that they are actually more like boolean trees. The following tree represents the detection scaffold shared above.</p>
 
             <div>
-                <img class="img-bool" src="./images/principles-dr-graphic-1.png" />
+                <img class="img-bool" src="../../images/principles-dr-graphic-1.png" />
             </div>
 
             <p>DR rules are evaluated using an algoprithm that follows a <a href="https://en.wikipedia.org/wiki/Eulerian_path" target="_blank">Eulerian Path</a>. The path followed in the example given would evaluate op1, then op2, followed by the operators under the OR condition (op3 then op4).</p>
@@ -27,14 +27,10 @@
             <p>And the equivalent boolean tree construction would look like this.</p>
 
             <div>
-                <img class="img-bool" src="./images/principles-dr-graphic-2.png" />
+                <img class="img-bool" src="../../images/principles-dr-graphic-2.png" />
             </div>    
 
             <p>The algorithm also has a short circuit feature such that once the minimum conditions for success or failure are satisifeid for a detection it stops computing and exits.</p>
-
-            <div>
-                <img class="img-bool" src="./images/principles-dr-graphic-3.png" />
-                </div>
 
             <p>Adept rule authors will front-load the evaluation sequence with the least computationally intense components. This strategy will ensure that events are processed as quickly as possible.</p>
         </div>
