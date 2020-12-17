@@ -50,22 +50,22 @@
 						<br><strong>#ATOM_ID</strong> : selects the event with atom ATOM_ID
 						<br><strong>@ATOM_ID</strong> : selects the event with atom ATOM_ID and all its direct parents as well as children
 						<br><strong>PLAINTEXT</strong> : selects events containing the plaintext PLAINTEXT</div>
-					<div class="fr-view">
+					<div>
 						<br>A selector beginning and ending with &quot;/&quot; like &quot;/.*_PROCESS/&quot; is interpreted as a regular expression.
 						<br>Selector relationships:</div>
-					<div class="fr-view">
+					<div>
 						<br><strong>&gt;</strong> : direct child relationship
 						<br><strong>&gt;&gt;</strong> : child relationship across any number of levels</div>
-					<div class="fr-view">
+					<div>
 						<br><strong>Example</strong> : <em>.NEW_PROCESS notepad.exe &gt;&gt; .NEW_PROCESS cmd.exe</em>
 						<br>
 						<br><strong><em>Equivalent to:</em></strong> NEW_PROCESS event containing notepad.exe with a child of type NEW_PROCESS containing cmd.exe
 						<br>
 						<br><strong>Example:</strong><em>&nbsp;./.*_PROCESS/ system32 &gt; .CODE_IDENTITY c:\\tmp</em></div>
-					<div class="fr-view">
+					<div>
 						<br>
 					</div>
-					<div class="fr-view"><strong><em>Equivalent to:</em></strong> a NEW_PROCESS or EXISTING_PROCESS with a direct child event of type CODE_IDENTITY that include the string &quot;c:\tmp&quot;
+					<div><strong><em>Equivalent to:</em></strong> a NEW_PROCESS or EXISTING_PROCESS with a direct child event of type CODE_IDENTITY that include the string &quot;c:\tmp&quot;
 
 						<p>The histogram that separates the upper portion of the user interface from the bottom provides information on how many events are available in different context.</p>
 
@@ -77,29 +77,13 @@
 
 						<p>The lower portion of the user interface is a scrollable list of event tuples that displays a variety of information depending on which type of event is being displayed.</p>
 
-						<p>
-							<br>
-						</p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/ebc/994/a8f/historic-details-raw.png"></p>
 
-						<p>
-							<br>
-						</p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/70e/3cc/811/historic-detail-routing.png"></p>
 
-						<p>
-							<br>
-						</p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/f8c/a9e/8c5/historic-details-detail.png"></p>
 
-						<p>
-							<br>
-						</p>
-
-						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/ebc/994/a8f/historic-details-raw.png" style="width: 300px;" class="fr-fic fr-dib"></p>
-
-						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/70e/3cc/811/historic-detail-routing.png" style="width: 300px;" class="fr-fic fr-dib"></p>
-
-						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/f8c/a9e/8c5/historic-details-detail.png" style="width: 300px;" class="fr-fic fr-dib"></p>
-
-						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/f39/fb5/818/historic-calendar-detail.png" style="width: 300px;" class="fr-fic fr-dib"></p>
+						<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/f39/fb5/818/historic-calendar-detail.png"></p>
 					</div>
 				</div>
 			</div>

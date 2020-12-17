@@ -5,34 +5,31 @@
     <body>
 		<div class="container">
 
-			<p dir="ltr">In order to demonstrate the full process of leveraging a pre-made detection we will walk though setting up a detection and response (DR) rule based off of the AlienVault threat feed. The AlienVault threat feed is a good add on to have as a part of your initial posture and will provide good coverage for known major threats.&nbsp;</p>
+			<p>In order to demonstrate the full process of leveraging a pre-made detection we will walk though setting up a detection and response (DR) rule based off of the AlienVault threat feed. The AlienVault threat feed is a good add on to have as a part of your initial posture and will provide good coverage for known major threats.</p>
 
-			<p dir="ltr"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/65b/666/519/add-on-sub.png" style="width: 544px;" class="fr-fic fr-dib ui-cap fr-bordered"></p>
+			<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/65b/666/519/add-on-sub.png"/></p>
 
-			<p dir="ltr">Start by visiting the Add Ons section, navigating to the Lookup tab and enabling alientvault-ip-reputation.</p>
+			<p>Start by visiting the Add Ons section, navigating to the Lookup tab and enabling alientvault-ip-reputation.</p>
 
-			<p dir="ltr">Once the Add On is enabled you will need to set up a DR rule to report if any of the listed domains are accessed. To get started go to the D&amp;R Rules section of the website and click on the plus icon in the upper right corner.</p>
+			<p>Once the Add On is enabled you will need to set up a DR rule to report if any of the listed domains are accessed. To get started go to the D&R Rules section of the website and click on the plus icon in the upper right corner.</p>
 
-			<p dir="ltr">Click on the Advanced tab of the rule creation modal and give the detection a name. For this example we will call our rule AlienVault.&nbsp;</p>
+			<p>Click on the Advanced tab of the rule creation modal and give the detection a name. For this example we will call our rule AlienVault.</p>
 
-			<p dir="ltr"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/1af/59a/167/dr-rule-builder.png" style="width: 503px;" class="fr-fic fr-dib ui-cap fr-bordered"></p>
+			<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/1af/59a/167/dr-rule-builder.png"/></p>
 
-			<p dir="ltr">Copy the following example YAML into the detection section of the modal. This YAML example uses the AlientVault threat feed across Windows and MacOS checking all requests on TCP4, UDP4, TCP6 and UDP6.</p>
+			<p>Copy the following example YAML into the detection section of the modal. This YAML example uses the AlientVault threat feed across Windows and MacOS checking all requests on TCP4, UDP4, TCP6 and UDP6.</p>
 
-			<p dir="ltr">For more information on how the YAML is structured you can read the doc or work through the online course.</p><pre data-stringify-type="pre" style="margin-left: 60px;">op: lookup
-		path: event/NETWORK_ACTIVITY/?/IP_ADDRESS
-		resource: &#39;lcr://lookup/alienvault-ip-reputation&#39;
-		event: NETWORK_CONNECTIONS
+			<p>For more information on how the YAML is structured you can read the doc or work through the online course.</p>
 
+			<script src="https://gist.github.com/tekgrunt/84b3a2e888db4bb770e33d92c0bdf064.js"></script>
 
-			<p dir="ltr">With the detection in place you will want to indicate the response. The following YAML will send an alert. Copy the YAML into the response section of the modal and click Create.</p>
+			<p>With the detection in place you will want to indicate the response. The following YAML will send an alert. Copy the YAML into the response section of the modal and click Create.</p>
 
-		<code>- action: report
-		  name: AlienVault</code>
+			<script src="https://gist.github.com/tekgrunt/84b3a2e888db4bb770e33d92c0bdf064.js"></script>
 
-			<p dir="ltr">Having completed these steps you will now have monitoring of the AlienVault threat feed across the portions of your fleet indicated by the conditions in the detection rule.</p>
+			<p>Having completed these steps you will now have monitoring of the AlienVault threat feed across the portions of your fleet indicated by the conditions in the detection rule.</p>
 
-			<p dir="ltr"><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/b49/b2f/15f/alien-vault-detail.png" style="width: 601px;" class="fr-fic fr-dib fr-bordered"></p>
+			<p><img src="https://s3.amazonaws.com/thinkific/file_uploads/228508/images/b49/b2f/15f/alien-vault-detail.png"/></p>
 		</pre></div>
 	</body>
 </html>

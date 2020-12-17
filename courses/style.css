@@ -1,9 +1,34 @@
-/************ Common ************/
+/* roboto-regular - latin */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''), 
+         url('../fonts/roboto-v20-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/roboto-v20-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
 
+/* roboto-mono-regular - latin */
+@font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+         url('../fonts/roboto-mono-v12-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+         url('../fonts/roboto-mono-v12-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+    
 body {
-    font-family: 'Roboto Mono', monospace !important;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.4em !important;
     font-size: 1em !important;
+    color: #292d34;
+}
+
+pre {
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1.2em !important;
+    font-size: 0.8em !important;
     color: #292d34;
 }
 
@@ -23,6 +48,8 @@ img {
     max-width: 670px;
     margin: auto;
 }
+
+/************* Embedded ***********/
 
 .gist {
     padding-top: 10px;
