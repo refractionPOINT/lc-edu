@@ -20,24 +20,34 @@
     
 body {
     font-family: 'Roboto', sans-serif;
-    line-height: 1.4em !important;
-    font-size: 1em !important;
+    line-height: 1.4em;
+    font-size: 1em;
     color: #292d34;
 }
 
 pre {
     font-family: 'Roboto Mono', monospace;
-    line-height: 1.2em !important;
-    font-size: 0.8em !important;
-    color: #292d34;
+    line-height: 1.4em;
+    font-size: 1.2em;
+    color: #3b8452;
+}
+
+code {
+    line-height: 1.4em;
+    font-size: 1.2em;
+    color: #d98e24;
 }
 
 h2 {
-    color: #596a37;
+    color: #3b8452;
 }
 
 h3 {
-    color: #596a37;
+    color: #3b8452;
+}
+
+a {
+    color: #3889c7;
 }
 
 img {
