@@ -13,13 +13,13 @@
 
             <script class="gist" src="https://gist.github.com/tekgrunt/556249e33be7f008e470bdfbf21e4b5b.js"></script>
 
-            <p>And if we look at a rules nested structure we can see that they are actually more like boolean trees. The following tree represents the detection scaffold shared above.</p>
+            <p>And if we look at a rule's nested structure we can see that they are actually more like boolean trees. The following tree represents the detection scaffold shared above.</p>
 
             <div>
                 <img class="img-bool" src="../../images/principles-dr-graphic-1.png" />
             </div>
 
-            <p>DR rules are evaluated using an algoprithm that follows a <a href="https://en.wikipedia.org/wiki/Eulerian_path" target="_blank">Eulerian Path</a>. The path followed in the example given would evaluate op1, then op2, followed by the operators under the OR condition (op3 then op4).</p>
+            <p>DR rules are evaluated using an algorithm that follows a <a href="https://en.wikipedia.org/wiki/Eulerian_path" target="_blank">Eulerian Path</a>. The path followed in the example given would evaluate op1, then op2, followed by the operators under the OR condition (op3 then op4).</p>
 
             <p>Re-arranging the order of operations in the example given would result in the operators being evaluated in a different order. The following example would produce an evaluation sequence that begins with the OR condtion starting with the operators underneath it (op3 then op4), followed by op1 and op2.</p>
 
