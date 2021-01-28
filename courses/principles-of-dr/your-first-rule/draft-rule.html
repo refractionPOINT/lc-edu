@@ -7,17 +7,17 @@
     <body>
         <div class="container">
 
-            <p>To draft our rule, open your prefered text editor and save the rule to a file, we'll call it <code>T1196.rule</code>. The format of a rule is <a href="https://en.wikipedia.org/wiki/YAML" target="_blank">YAML</a>, if you are not familiar with it you're best spending a few minutes getting familiar. It is not too complex.</p>
+            <p>To draft our rule, open your preferred text editor and save the rule to a file. Name the file <code>T1196.rule</code>. The format of a rule is <a href="https://en.wikipedia.org/wiki/YAML" target="_blank">YAML</a>.  If you are not familiar with YAML, consider spending a few minutes reading up on it.</p>
 
+                For our rules based on the <a href="https://attack.mitre.org/techniques/T1196/" target="_blank">T1196</a> technique, we need to apply the following constraints:
             <ul>
-                <li>For our rules based on the <a href="https://attack.mitre.org/techniques/T1196/" target="_blank">T1196</a> technique, we need to apply the following constraints:</li>
                 <li>It only applies to Windows.</li>
-                <li>The event is a module (DLL for example on Windows) loading.</li>
+                <li>The event is a module (e.g. Windows DLL) loading.</li>
                 <li>The module loading ends with <code>.cpl</code> (control panel extension).</li>
                 <li>The module is loading from outside of the <code>C:\windows\</code> directory.</li>
             </ul>
 
-            <p>LC supports a lot of different event types, this means that the first thing we should strive to do to try to make the rule fail as quickly as possible is to filter all events we don't care about.</p>
+            <p>LimaCharlie supports a lot of different event types.  For efficiency the first thing we should do is to try and make the rule fail as quickly as possible so that we can filter all events we don't care about.</p>
 
             <p>In this case, we only care about <a href="https://doc.limacharlie.io/docs/documentation/docs/events.md#code_identity" target="_blank">CODE_IDENTITY</a> events. We also know that our rule will use more than one criteria, and those criteria will be AND-ed together because we only want to match when they all match.</p>
 
@@ -33,6 +33,7 @@
 
             <p>Next up is criteria #3 and #4. Both of those can be determined using the <code>FILE_PATH</code> component of the <code>CODE_IDENTITY</code> event. If you are unure what those events look like, the best way to get a positive confirmation of the structure is simply to open the Historic View, start a new process on that specific host and look for the relevant event. If we were to do this on a Windows host, we'd get an example like this one:</p>
 
+			<b>Event Sample:</b>
             <script src="https://gist.github.com/tekgrunt/fc2a10298789db261a809ac91417a92a.js"></script>
 
             <p>This means what we want is to apply rules to the event/FILE_PATH. First part, #3 is easy, we just want to test for the <code>event/FILE_PATH</code> ends in <code>.cpl</code>, we can do this using the <code>ends with</code> operator.</p>

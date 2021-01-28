@@ -7,13 +7,13 @@
 
             <p>What we want to do now is validate the rule. If the rule validates, it doesn't mean it's correct, it just means that the structure is correct, the operators we use are known etc. It's the first pass at detecting possible formatting issues or typos.</p>
 
-            <p>Do validate, we will simply leverage the Replay service. This service can be used to test rules or replay historical events against a rule. In this case however, we just want to start by validating.</p>
+            <p>To validate, we will simply leverage the Replay service. This service can be used to test rules or replay historical events against a rule. In this case however, we just want to start by validating.</p>
 
             <p>Up until now we focused on the "detection" part of the rule. But a full rule also contains a "response" component. So before we proceed, we'll just add this structure. For a response, we will just use a simple <code>action: report</code>. The <code>report</code> simply creates a "detection" (alert).</p>
 
             <script src="https://gist.github.com/tekgrunt/d92d9d462c84695800156cdca4489e9e.js"></script>
 
-            <p>Now validate: <code>limacharlie-replay --validate --rule-content T1196.rule</code></p>
+            <p>Now validate: <code>limacharlie replay --validate --rule-content T1196.rule</code></p>
 
             <p>After a few seconds, you should see a response with <code>success: true</code> if the rule validates properly.</p>
 

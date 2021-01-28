@@ -6,11 +6,11 @@
     <body>
         <div class="container">
 
-            <p>Interacting with LC can always be done via the web app but day-to-day operations and automation can be done via the Command Line Interface (CLI). This will make following this code lab easier.</p>
+            <p>Interacting with LimaCharlie can always be done via the web app, but day-to-day operations and automation can be done via the Command Line Interface (CLI). Using the CLI will make following this code lab easier.</p>
 
-            <p>Install the CLI: <code>pip install limacharlie --user</code></p>
+            <p>Install the CLI: <code>pip3 install limacharlie --user</code></p>
                 
-            <p>If you don't have <code>pip</code> installed, install it, the exact instructions will depend on your Linux distribution.</p>
+            <p>If you don't have <code>pip3</code> installed, install it. The exact instructions will depend on your Linux distribution.</p>
 
             <h3>Create REST API Key</h3>
 
@@ -21,16 +21,16 @@
                 
                 <li>Give your key a name.</li>
                 
-                <li>For simplicity, click the "Select All" button to enable all permissions. Obviously this would not be a recomended in a production environment. Details on the LimaCharlie's access scheme can be found here: <a href="https://doc.limacharlie.io/docs/documentation/docs/lc-access.md" target="_blank">lc-access</a></li>
+                <li>For simplicity, click the "Select All" button to enable all permissions. Obviously this would not be recommended in a production environment. Details on LimaCharlie's access scheme can be found here: <a href="https://doc.limacharlie.io/docs/documentation/docs/lc-access.md" target="_blank">lc-access</a></li>
                 
-                <li>Click the copy-to-clipboard button for the new key and take note of it (pasting it in a temporary text note for example).</li>
+                <li>Click the copy-to-clipboard button for the new key and save it somewhere safe as we'll be using it in a future step.  Note that the key cannot be retrieved from the web app later.</li>
                 
-                <li>Back on the REST API page, copy the "Organization ID" at the top of the page and keep note of it like the API key in the previous step.</li>
+                <li>Back on the REST API page, copy the "Organization ID" at the top of the page and keep note of it as we'll be using it in a future step.</li>
             
             </ol>
-            <p>The Organization ID (OID) identifies uniquely your organization while the API key grants specific perissions to this organization.</p>
+            <p>The Organization ID (OID) uniquely identifies your organization and the API key grants specific perissions to this organization.</p>
 
-            <h3>Login to the CLI</h3>
+            <h3>Log in to the CLI</h3>
 
             <p>Back in your terminal, log in with your credentials: <code>limacharlie login</code></p>
 
@@ -41,7 +41,9 @@
                 
                 <li>When asked for the secret API key, enter the key you got from the previous step.</li>
                 
-                <li>You're done! If you issue a <code>limacharlie-dr list</code> you should not get any errors.</li>
+                <li>When asked "If this key is a *user* API key", leave the field empty and press Return</li>
+                
+                <li>You're done! If you issue a <code>limacharlie dr list</code> you should not get any errors.</li>
             </ol>
         </div>
     </body>
