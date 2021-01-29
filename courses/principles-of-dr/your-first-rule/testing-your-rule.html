@@ -28,11 +28,11 @@
 
             <h3>Testing a Single Event</h3>
 
-            <p>To tests #1 and #2, let's just create some synthetic events. It's always better to use real-world samples, but we'll leave that up to you.</p>
+            <p>To test #1 and #2, let's just create some synthetic events. It's always better to use real-world samples, but we'll leave that up to you.</p>
 
-            <p>Take the event sample we had in the "Draft Rule" section and copy it to two new files we will name <code>positive.json</code>, <code>negative-1.json</code> and <code>negative-2.json</code>.
+            <p>Take the <b>Event Sample</b> we had in the "Draft Rule" section and copy it to two new files we will name <code>positive.json</code>, <code>negative-1.json</code> and <code>negative-2.json</code>.
             
-            <p>Modify the <code>positive.json</code> file by renaming the <code>FILE_PATH</code> at the bottom from <code>"C:\\Windows\\System32\\setupcln.dll"</code> to <code>"C:\\temp\\System32\\setupcln.cpl"</code> so that the event now describes a <code>.cpl</code> loading in the <code>temp</code> directory, which we should detect.</p>
+            <p>Modify the <code>positive.json</code> file by renaming the <code>FILE_PATH</code> at the bottom from <code>"^.\:\\windows\\"</code> to <code>"C:\\temp\\System32\\setupcln.cpl"</code> so that the event now describes a <code>.cpl</code> loading in the <code>temp</code> directory, which we should detect.</p>
             
             <p>Then modify the <code>negative-1.json</code> file by changing the same <code>.dll</code> to <code>.cpl</code>. This should NOT match because the path is still in the <code>windows</code> directory.
             
@@ -40,25 +40,25 @@
             
             <p>Now we can run our 3 samples against the rule using Replay,</p>
             
-            <p><code>limacharlie-replay --rule-content T1196.rule --events positive.json</code> should output a result indicating the event matched (by actioning the <code>report</code>) like:</p>
+            <p><code>limacharlie replay --rule-content T1196.rule --events positive.json</code> should output a result indicating the event matched (by actioning the <code>report</code>) like:</p>
 
             <script src="https://gist.github.com/tekgrunt/96d9d41ca507829ab0f6363734ea6193.js"></script>
 
-            <p><code>limacharlie-replay --rule-content T1196.rule --events negative-1.json</code> should output a result indicating the event did NOT match like:</p>
+            <p><code>limacharlie replay --rule-content T1196.rule --events negative-1.json</code> should output a result indicating the event did NOT match like:</p>
 
             <script src="https://gist.github.com/tekgrunt/a2559c26af1fcca9604ed2b854d89025.js"></script>
 
-            <p><code>limacharlie-replay --rule-content T1196.rule --events negative-2.json</code> be the same as <code>negative-1.json</code>.</p>
+            <p><code>limacharlie replay --rule-content T1196.rule --events negative-2.json</code> be the same as <code>negative-1.json</code>.</p>
 
             <h3>Testing Historical Data</h3>
 
-            <p>The final test is to run the rule against historical data. If you are not using an organization on the free tier, note that the Replay API is billed on usage, in the following step we will run against all historical data from the organization, so if your organization is not on the free tier and it is large, there may be non-trivial costs associated.</p>
+            <p>The final test is to run the rule against historical data. If you are not using an organization on the free tier, note that the Replay API is billed on usage. In the following step we will run against all historical data from the organization, so if your organization is not on the free tier and it is large, there may be non-trivial costs associated.</p>
             
             <p>Running our rule against the last week of data is simple:</p>
             
-            <p><code>limacharlie-replay --rule-content T1196.rule --entire-org --last-seconds 604800</code></p>
+            <p><code>limacharlie replay --rule-content T1196.rule --entire-org --last-seconds 604800</code></p>
             
-            <p>No matches should look like that:</p>
+            <p>No matches should look like this:</p>
 
             <script src="https://gist.github.com/tekgrunt/a164013451f8ae18aaf6ccaf781ec5ef.js"></script>
 
