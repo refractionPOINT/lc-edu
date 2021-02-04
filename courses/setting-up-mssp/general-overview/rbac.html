@@ -9,26 +9,26 @@
 
             <p>To recap, we have defined two classes of objects when thinking about LimaCharlie deployments at a high level.</p>
             
+            <h3>Users</h3> 
 
-            <p>Users</p> 
+            <p>A user is basically a unit of access and will usually represent a person and their credentials but it could just be a set of credentials used for a special types of access.</p> 
 
-            A user is basically a unit of access and will usually represent a person and their credentials but it could just be a set of credentials used for a special types of access.
-
-            <p>Organizations</p>
+            <h3>Organizations</h3>
 
             <p>This is the main organizational unit for companies or groups. An MSSP will generally have multiple organizations under thier control. All data and access between organizations is siloed. Billing is also done per organization.</p>
             
             <p>Users can be grouped together with a common permission scheme called Organization Groups.</p>
 
+            <h3>Organization Groups</h3>
 
             <p>There are two types of API keys available with LimaCharlie.</p> 
 
-            <p>Org Level API Key</p>
+            <h3>Org Level API Key</h3>
             <ul>
                 <li>An org level API key only applies to the specific organization it was created for and the permissions can be set per-key. That is, an unlimited number if keys with vastly different permissions can be created per organization.</li>
             </ul>
             
-            <p>User Level API Key </p>
+            <h3>User Level API Key </h3>
             <ul>
                 <li>A user level API key can be applied to all organizations and permissions that the given user has. That is to say, user API keys that are created automatically inherit the permissions of the user that is creating them. These keys are powerful and should be used cautiously.</li>
             </ul>
