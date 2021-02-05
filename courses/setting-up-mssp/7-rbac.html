@@ -21,14 +21,23 @@
 
             <h3>Organization Groups</h3>
 
+            <p>Organization Groups allow you to grant permissions to a set of users on a group of organizations.</p>
+
+            <p>Permissions granted through the group are applied on top of permissions granted at the organization level. Ther permissions are additive, and a group cannot be used to subsctract permissions granted at the organization level.</p>
+
+            <p>Organization Group Owners are allowed to manage the Organization Group, but are not affected by the permissions. Members are affected by the permissions but do not have the ability to modify the Organization Group.</p>
+        
+
+            <h3>API Keys</h3>
+
             <p>There are two types of API keys available with LimaCharlie.</p> 
 
-            <h3>Org Level API Key</h3>
+            <h4>Org Level API Key</h4>
             <ul>
                 <li>An org level API key only applies to the specific organization it was created for and the permissions can be set per-key. That is, an unlimited number if keys with vastly different permissions can be created per organization.</li>
             </ul>
             
-            <h3>User Level API Key </h3>
+            <h4>User Level API Key </h4>
             <ul>
                 <li>A user level API key can be applied to all organizations and permissions that the given user has. That is to say, user API keys that are created automatically inherit the permissions of the user that is creating them. These keys are powerful and should be used cautiously.</li>
             </ul>
