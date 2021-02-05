@@ -4,7 +4,87 @@
     </head>
     <body>
 		<div class="container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/5Qbbf2LFqYA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-		</div>
+            <iframe width="670" height="377" src="https://www.youtube.com/embed/5Qbbf2LFqYA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
+        <p>This is where the rubber meets the road. The repository referenced in this video can be <a href="https://github.com/refractionPOINT/mssp-demo" target="_blank">found here</a>.</p>
+
+        <p>If you are not an MSSP, this structure still describes a recommended setup
+        that is scalable and efficient using LimaCharlie. The main changes is that
+        you can simplify the configuration (repo here) to be a single tree.</p>
+                
+        <h3>Prerequisite Steps</h3>
+        <ol>
+            <li>Create a special CI/CD User on LC to use for orchestrating.</li>
+            <li>Create a User API key for the CI/CD User.</li>
+        </ol>
+        
+        <h3>Repo Structure</h3>
+      
+        <script src="https://gist.github.com/tekgrunt/2c798610242460427398dfab3e6d1b8d.js"></script>
+        
+        <p>The <code>global</code> directory contains all configs that are global to all customers.</p>
+        
+        <p>Each <code>customers</code> subdirectory contains any specific customizations needed per customer. The <code>main.yaml</code> file is the core file used in the <code>limacharlie configs</code> CLI invocation.</p>
+        
+        <h3>Adding a New Customer</h3>
+        <ol>
+            <li>Add the CI/CD User to the new organization.</li>
+            <li>Edit the following files and add the relevant commands based on previous customers:</li>
+            <ul>
+                <li><code>.github/workflows/deploy.yaml</code></li>
+                <li><code>.github/workflows/dry_run.yaml</code></li>
+            </ul>
+        </ol>
+        
+        <h3>Permissions</h3>
+        <p>The best way to scale for access control as an MSSP is to make use of a root account and Organization Groups.</p>
+        
+        <h3>Root Account</h3>
+        <p>A root account is simply a normal user account that is dedicated to be the ultimate authority for all Organizations the MSSP manages, while also being a user account that nobody actually logs in with other than to perform high level management tasks.</p>
+        
+        <p>Having this root account be a member (and even the creator) of all Organizations simplifies the management of API keys. Instead of using per-Organization API keys, you can create User-level API keys that inherently have access across all your Organizations.</p>
+        
+        <p>Obviously this also implies this account has a high level of privilege, so make sure to safeguard the credentials for it and to avoid logging in with it whenever possible, delegating specific permissions through Organization Groups instead.</p>
+        
+        <h3>Organization Group</h3>
+        <p>An Organization Group (OG) is an access unit composed of the following components:</p>
+        <ul>
+            <li>Owners: Users with the permission to modify the OG. Note that an Owner does not automatically get the permissions on the Organizations that the OG itself provides its Members.</li>
+            <li>Members: Users who will gain permissions on a set of Organizations through this OG.</li>
+            <li>Organizations: Organizations onto which permissions will be granted by this OG.</li>
+            <li>Permissions: permissions that will be granted to all Members of the OG to all the Organizations that are part of this OG.</li>
+        </ul>
+
+        <p>This means an OG is a great way to maintain a given role (set of permissions) on a large number of Organizations without having to modify each Organization every time a new User needs this role.</p>
+        
+        <h3>Sample Setup</h3>
+        
+        <p>Here is an example access setup an MSSP may opt for:</p>
+        
+        <h3>Root Account</h3>
+        
+        <p>A special root account User, <code>limacharlie-root@corp.com</code>. This root account is used to create new MSSP customer Organizations as needed. Being the creator of these Organizations, the root account will automatically receive "owner" permissions (all) on the new Organizations.</p>
+        
+        <h3>Organization Groups</h3>
+        <p>When a new Organization is created, it is added to the following OGs. When a new User (employee) joins the MSSP, that User is added to the relevant OGs.</p>
+        
+        <h3>Administrators</h3>
+        <p>The Administrators OG is the top level of delegation for people within the MSSP that need full admin access to all features, billing and user access control. It holds all permissions.</p>
+        
+        <h3>Analysts</h3>
+        <p>The Analysts OG is meant for most operators and analysts in the MSSP. It has all permissions except:</p>
+        
+        <ul>
+            <li><code>apikey.ctrl</code> (create and delete API keys)</li>
+            <li><code>billing.ctrl</code> (subscribe or make changes that will change billing in significant ways)</li>
+            <li><code>user.ctrl</code> (add and remove Users from Organizations)</li>
+        </ul>
+        
+        <h3>Viewers</h3>
+        <p>The Viewers OG is designed for Users who require visibility into the activity within each Organization, but do not require the ability to modify or task sensors.</p>
+        
+        <h3>Auditors</h3>
+        <p>The Auditors OG is designed for high level auditing and reporting. It provides permissions to view audit logs and list sensors within each Organization.</p>
+    </div>
 	</body>
 </html>
