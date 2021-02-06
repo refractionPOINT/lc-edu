@@ -9,40 +9,36 @@
 
             <p>Billing in LimaCharlie is done on monthly cycles and per-Organization (multi-tenant).</p>
 
-            <p>Some features like centralized billing are available to larger LC users like MSSPs, if you would like more details contact us at sales@limacharlie.io.</p>
+            <p>Some features like centralized billing are available to larger customers like MSSPs. If you would like more details, contact us at sales@limacharlie.io.</p>
 
-            <p>For exact pricing see the LimaCharlie website or Web App. The various services are listed as follows.</p>
+            <p>For pricing details, see the <a href="https://www.limacharlie.io/">LimaCharlie website</a> or <a href="https://app.limacharlie.io/">Web App</a>. The various services are listed as follows.</p>
 
             <h3>Endpoints (EDR)</h3>
             
-            <p>The EDR service is the foundation of LimaCharlie. In order to make billing simpler and more predictible, it is based on a Quota set by the user.</p>
-
-            <p>The Quota is the number of sensors (agents) concurrently online that should be supported by the given Organization. The Quota applies to concurrently onlie sensors meaning that you may have more sensors registered than your quota.</p>
-
-            <p>If sensors attempt to connect to the cloud while the Quota is full, they will simply be turned away for a short period of time. In that case, a special sensor_over_quota will also be emitted which you can use in D&R rules for automation.</p>
+            <p>The EDR service is the foundation of LimaCharlie. In order to make billing simpler and more predictable, it is based on a Quota set by the user.  The Quota sets the number of sensors (agents) that can concurrently be online in a given Organization.</p>
 
             <p>The endpoint service includes Outputs as well as D&R rules processed in real-time.</p>
 
             <h3>Sidecar Sensors</h3>
             
-            <p>A special case around Quota use is called Sidecar Sensors. At the moment the only Sidecar Sensor is the Chrome sensor. A Sidecar Sensor will not count against your Quota as long as it has a correspondant "normal" sensor.</p>
+            <p>A special case around Quota use is called Sidecar Sensors. At the moment the only Sidecar Sensor is the Chrome sensor. A Sidecar Sensor will not count against your Quota as long as it has a corresponding "normal" sensor.</p>
 
-            <p>For example, let's say you have 10 Windows sensors and 10 MacOS sensors online for a total of 20 "normal" sensors. This means you will be able to have up to 20 other Chrome sensors online without using any extra quota. If 25 Chrome sensors become online however, 5 extra Quota will be consumed.</p>
+            <p>For example, let's say you have 10 Windows sensors and 10 macOS sensors online, for a total of 20 "normal" sensors. This means you will be able to have up to 20 Chrome sensors online without using any extra quota. If 25 Chrome sensors become online however, the 5 additional sensors will be counted toward the organization's Quota and an <i>over quota</i> error will be emitted.</p>
 
             <p>The intent is to allow Chrome sensors to be companion sensors enhancing visibility of your existing LimaCharlie deployment without making Chrome-only deployments effectively free.</p>
 
             <h3>Insight (Retention)</h3>
             
-            <p>Insight is also a foundational service of LimaCharlie. It provides a flat 1 year of full retention (full telemetry) for a single price in order to make billing more predictible.</p>
+            <p>Insight is also a foundational service of LimaCharlie. It provides 1 year of <b>full</b> telemetry retention for a single price in order to make billing more predictable.</p>
 
             <h3>Replay (Retroactive Scanning)</h3>
             
-            <p>Replay allows you to run D&R rules against external or historical telemetry. Not to be confused with Searching for specific IoCs which is a free feature of Insight.</p>
+            <p>Replay allows you to run D&R rules against external or historical telemetry. Not to be confused with Searching for specific IoCs which is a feature included as part of Insight.</p>
 
                 <p>Its pricing is based on two factors:</p>
 
                     <ul>
-                        <li>The Complexity of the D&R rule.</li>
+                        <li>The complexity of the D&R rule.</li>
 
                         <li>The number of events (telemetry) to be replayed.</li>
 
@@ -63,11 +59,11 @@
 
             <p>The best way to evaluate the cost of a specific rule through Replay is to launch a limited Replay job of a given rule first. The results of the job will contain the number of operation evaluations performed. You can then extrapolate an estimate of the cost.</p>
 
-            <p>Replay jobs can also be launched with a maximum number of operation evaluations to consume during the life-cycle of the job. This limit is aproximate due to the de-centralized nature of Replay jobs and may vary a bit.</p>
+            <p>Replay jobs can also be launched with a maximum number of operation evaluations to consume during the life-cycle of the job. This limit is approximate due to the de-centralized nature of Replay jobs and may vary a bit.</p>
 
             <h3>Artifact Collection</h3>
             
-            <p>The Artifact Collection service allows you to ingest artifacts like Syslogs, Windows Events Logs as well as more complex file formats like Packet Captures (PCAP), Windows Prefetch files, Portable Executable (PE) etc.</p>
+            <p>The Artifact Collection service allows you to ingest artifacts like Syslogs, Windows Events Logs as well as more complex file formats like Packet Captures (PCAP), Windows Prefetch files, Portable Executable (PE), etc.</p>
 
             <p>Ingested files can then be downloaded as originals or viewed in parsed formats right from your browser. You can also run D&R rules against them.</p>
 
