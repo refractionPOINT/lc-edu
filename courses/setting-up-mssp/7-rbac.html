@@ -5,7 +5,7 @@
     <body>
 		<div class="container">
 
-            <iframe width="670" height="377" src="https://www.youtube.com/embed/b1MUefZ7Wgk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="670" height="377" src="https://www.youtube.com/embed/5Qbbf2LFqYA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
             <p>To recap, we have defined two classes of objects when thinking about LimaCharlie deployments at a high level.</p>
             
@@ -15,7 +15,7 @@
 
             <h3>Organizations</h3>
 
-            <p>This is the main organizational unit for companies or groups. An MSSP will generally have multiple organizations under thier control. All data and access between organizations is siloed. Billing is also done per organization.</p>
+            <p>This is the main organizational unit for companies or groups. An MSSP will generally have multiple organizations under their control. All data and access between organizations is siloed. Billing is also done per organization.</p>
             
             <p>Users can be grouped together with a common permission scheme called Organization Groups.</p>
 
@@ -23,7 +23,7 @@
 
             <p>Organization Groups allow you to grant permissions to a set of users on a group of organizations.</p>
 
-            <p>Permissions granted through the group are applied on top of permissions granted at the organization level. Ther permissions are additive, and a group cannot be used to subsctract permissions granted at the organization level.</p>
+            <p>Permissions granted through the group are applied on top of permissions granted at the organization level. Their permissions are additive, and a group cannot be used to subtract permissions granted at the organization level.</p>
 
             <p>Organization Group Owners are allowed to manage the Organization Group, but are not affected by the permissions. Members are affected by the permissions but do not have the ability to modify the Organization Group.</p>
         
@@ -34,7 +34,7 @@
 
             <h4>Org Level API Key</h4>
             <ul>
-                <li>An org level API key only applies to the specific organization it was created for and the permissions can be set per-key. That is, an unlimited number if keys with vastly different permissions can be created per organization.</li>
+                <li>An org level API key only applies to the specific organization it was created for and the permissions can be set per-key. That is, a virtually unlimited number of keys with vastly different permissions can be created per organization.</li>
             </ul>
             
             <h4>User Level API Key </h4>
@@ -42,7 +42,7 @@
                 <li>A user level API key can be applied to all organizations and permissions that the given user has. That is to say, user API keys that are created automatically inherit the permissions of the user that is creating them. These keys are powerful and should be used cautiously.</li>
             </ul>
             
-            <p>Because LimaCharlie is multi-tenant it is advantageous to create a special CI/CD user account on LimaCharlie to use for orchestrating. For our purposes we will refer to this account as the root account.</p>
+            <p>Because LimaCharlie is multi-tenant, it is advantageous to create a special CI/CD user account to use for orchestration. For our purposes we will refer to this account as the root account.</p>
             
 		</div>
 	</body>

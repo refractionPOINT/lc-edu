@@ -9,12 +9,12 @@
         <p>This is where the rubber meets the road. The repository referenced in this video can be <a href="https://github.com/refractionPOINT/mssp-demo" target="_blank">found here</a>.</p>
 
         <p>If you are not an MSSP, this structure still describes a recommended setup
-        that is scalable and efficient using LimaCharlie. The main changes is that
-        you can simplify the configuration (repo here) to be a single tree.</p>
+        that is scalable and efficient. The main changes is that
+        you can simplify the configuration to be a single tree.</p>
                 
         <h3>Prerequisite Steps</h3>
         <ol>
-            <li>Create a special CI/CD User on LC to use for orchestrating.</li>
+            <li>Create a special CI/CD User in LimaCharlie to use for orchestrating.</li>
             <li>Create a User API key for the CI/CD User.</li>
         </ol>
         
@@ -44,7 +44,7 @@
         
         <p>Having this root account be a member (and even the creator) of all Organizations simplifies the management of API keys. Instead of using per-Organization API keys, you can create User-level API keys that inherently have access across all your Organizations.</p>
         
-        <p>Obviously this also implies this account has a high level of privilege, so make sure to safeguard the credentials for it and to avoid logging in with it whenever possible, delegating specific permissions through Organization Groups instead.</p>
+        <p>Obviously this also implies this account has a high level of privilege, so make sure to safeguard the credentials for it.  Avoid logging in with it whenever possible, and instead delegate specific permissions through Organization Groups.</p>
         
         <h3>Organization Group</h3>
         <p>An Organization Group (OG) is an access unit composed of the following components:</p>
