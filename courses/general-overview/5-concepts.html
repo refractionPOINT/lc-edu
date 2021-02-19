@@ -1,0 +1,87 @@
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+		<div class="container">
+
+			<p dir="ltr">LimaCharlie makes use of several high-level ideas around which the operational construct of the platform is built. In order to further our understanding, and prepare the student for a real world deployment, these ideas are briefly outlined here.</p>
+
+			<h3 dir="ltr">Organization</h3>
+
+			<p dir="ltr">An Organization represents the primary units of division in LImaCharlie. One User can have multiple Organizations.</p>
+
+			<p dir="ltr">Adding new organizations is simple. Organizations are free to create and begin with a full-featured free tier of two agents. Free tier user accounts are limited to two organizations but if you are a researcher or &nbsp;working on a POC and you the maximum number of organizations just get in touch with us and we&rsquo;ll increase your limit.</p>
+
+			<p dir="ltr">Scaling up and down as well as granting access to an organization is easy. This means the first step to onboarding a new customer, even if only for a trial, should be to create an organization.</p>
+
+			<h3 dir="ltr">Users</h3>
+
+			<p dir="ltr">Users can be Account Owners or Operators with varying . Account Owners have administrative control over a given Organization. Operators are users of a specific Organization but operate with a subset of permissions.</p>
+
+			<p dir="ltr">LimaCharlie supports fine-grain role-based access control (RBAC) for user accounts. Account Owners can create additional users while controlling what it is they are able to see and do. Several pre-built access control templates are made available by default.</p>
+
+			<p dir="ltr">Access control templates available:</p>
+
+			<ul>
+				<li dir="ltr">Account owners</li>
+				<li dir="ltr">Administrators&nbsp;</li>
+				<li dir="ltr">Operators&nbsp;</li>
+				<li dir="ltr">View-only&nbsp;</li>
+				<li dir="ltr">Create your own</li>
+			</ul>
+
+			<h3 dir="ltr">Installation Keys</h3>
+
+			<p dir="ltr">The Installation Keys (IK) are used to enroll new agents. One IK can be reused as many times as you want and it remains valid until it is deleted. Agents that are already enrolled will keep their access but new agents will not be able to enroll with the deleted key. This model makes it easy to revoke keys and maintain tight control over installer agents.</p>
+
+			<p dir="ltr">The main reason to have multiple installation keys is to associate tags with agents. Each IK has a list of tags that are attached to agents enrolled using it. For an MSSP this provides an easy first pass at categorizing agents.</p>
+
+			<p dir="ltr">For example, you can create a key with the tag &ldquo;server&rdquo;, and another with &ldquo;desktop&rdquo;. Then it is just a matter of asking your customer to use the relevant installation keys for the various assets.</p>
+
+			<p dir="ltr">Tags can also be added/removed either programmatically or interactively after enrolment.</p>
+
+			<h3 dir="ltr">Outputs</h3>
+
+			<p dir="ltr">Outputs enable users to forward data to outside locations. User defined levels of telemetry&nbsp;</p>
+
+			<p dir="ltr">Outputs allow you to forward data to your infrastructure. If storage is enabled all telemetry will automatically be stored and accessible through the LimaCharlie infrastructure. Storage does not have to be enabled for Outputs to work. Outputs allow the user to direct an adjustable amount of telemetry to any external location. For example, users can direct the full telemetry to cold storage on S3 and send alert level &nbsp;data to Slack. The data is composed of three main streams.</p>
+
+			<ul>
+				<li dir="ltr">Event</li>
+				<li dir="ltr">Detect</li>
+				<li dir="ltr">Audit</li>
+			</ul>
+
+			<p dir="ltr">The audit stream allows you to choose where you want to store a copy of the audit messages. It is not technically required but we recommend sending it to a write-only location like an AWS S3 bucket.</p>
+
+			<p dir="ltr">Next is the detection stream. This is high priority data and you will want it to go to a live system rather than an archiving one. It is common to send it to the SIEM or a product like Splunk.</p>
+
+			<p dir="ltr">If you find some of the detections to be overly verbose you can also customize the outputs so that only certain detection types go to a cold storage and others to a live system.</p>
+
+			<p dir="ltr">Finally, the event stream is by far the most verbose. It contains the raw events coming from the agents. Most cost-conscious MSSPs will, as a general rule, send all the events to cold storage. A popular method is to use an AWS S3 bucket with a retention period set (like 3 months), and to upload data to it with compression enabled.</p>
+
+			<p dir="ltr">The event data is very verbose so that it can be easily used operationally, but it also compresses extremely well (~90%). So for cold storage, enabling compression is a good idea.</p>
+
+			<p dir="ltr">Another common setup is to tag sensitive agents as &ldquo;vip&rdquo; and configure an Output to send the event stream from these agents to a live system like Splunk so that it is always readily available.</p>
+
+			<h3 dir="ltr">Insight [telemetry storage]</h3>
+
+			<p dir="ltr">Long-term telemetry storage with search capability is available as an optional add-on. LimaCharlie still operates as middleware but with this feature enabled we offer one year of storage and search capability for a small additional cost. This move allows MSSPs and SOCs who do not already have their own EDR infrastructure to gain a completely functional information security centre upon signing up.</p>
+
+			<p dir="ltr">Once enabled, LimaCharlie Insight will automatically send all telemetry data to secure storage on the Google Cloud Platform.</p>
+
+			<p dir="ltr">The Insight user interface allows you to select a date and time from which to start and then perform complex investigations.</p>
+
+			<h3 dir="ltr">Infrastructure as Code</h3>
+
+			<p dir="ltr">The first few organizations you onboard will likely be done manually. But you will quickly want to clone your configuration and store it for use setting up future organizations. LimaCharlie provides tools to export your configuration and store your &ldquo;infrastructure as code&rdquo;.&nbsp;</p>
+
+			<p dir="ltr">Using the <a href="https://github.com/refractionpoint/python-limacharlie/#config-syncing" rel="noopener noreferrer" target="_blank">sync tool</a> part of the Python API, you can backup an organization&rsquo;s configuration as YAML files and organize them so that you re-use base configurations across all your customers.&nbsp;</p>
+
+			<p dir="ltr">The tool will allow you to export to YAML and apply the YAML back up to the cloud. This results in a more efficient onboarding process and a better repeatable process.</p>
+
+			<p dir="ltr">For a more complete discussion, see the related blog post: <a href="https://www.limacharlie.io/blog/2018/11/16/limacharlie-like-a-pro" rel="noopener noreferrer" target="_blank">Infrastructure as Code</a></p>
+		</div>
+	<body>
+</html>
