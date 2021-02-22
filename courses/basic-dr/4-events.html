@@ -6,6 +6,58 @@
     <body>
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/TYPetPWAKb8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <p>The LimaCharlie agent monitors events taking place on the endpoint. There are over 70 unique event types that can be monitored and have detection rules written against them. Event telemetry is processed as well strcutured JSON. Each event type shares certain common information. </p>
+
+            <h3>Common Information</h3>
+
+            <p>Some common elements to events are worth pointing out. Those elements have been removed from examples in the remainder of this course, only leaving the information unique to the event. The actual event stream will contain much more information for each event than any of the examples indicate.</p>
+            
+            <p><code>routing/this</code> is a UUID generated for every event in the sensor.</p>
+            
+            <p><code>routing/parent</code> is a reference to the parent event's routing/this, providing strong relationships (much more reliable than simple process IDs) between the events. This allows you to get the extremely powerful explorer view.</p>
+            
+            <p><code>routing/event_time</code> is the time (UTC) the sensor produced the event.</p>
+            
+            <p><code>routing/hostname</code> is the hostname of where the event came from.</p>
+            
+            <p><code>routing/tags</code> is the list of tags associated with the agent where the event came from.</p>
+            
+            <h3>Atoms</h3>
+            
+            <p>Atoms can be found in 3 locations:</p>
+            
+            <p><code>routing/parent</code></p>
+            
+            <p><code>routing/this</code></p>
+            
+            <p><code>routing/target</code></p>
+            
+            <p>Atoms are Globally Unique Identifiers that look like this: <code>1e9e242a512d9a9b16d326ac30229e7b</code>. You can treat it as an opaque value. These unique values are used to relate events together without the need to use clunky and unreliable things like Process IDs.</p>
+            
+            <p>The <code>routing/this</code> Atom reprents the indentifier for the current event. The <code>routing/parent</code> Atom in an event tells you the global identifier for the parent event of the current event. Using these two Atoms, you can create an entire chain of event.</p>
+            
+            <p>For processes, this parent relationship is simply the parent process and child process (parent spawned child), but for other less obvious events, the nature of relationship varies. For example for a <code>NETWORK_SUMMARY</code> event, the parent is the process that generated the network connections.</p>
+            
+            <p>Depending on the exact storage and searching solution you are using, you will likely want to index the values of <code>routing/this</code> and <code>routing/parent</code> for each event, doing so will allow you to very quickly find the root cause and actions of everything on your hosts.</p>
+            
+            <p>Finally, the <code>routing/target</code> is only sometimes found in an event, and it represents a second related (without having a parent-child relationship). For example, in the <code>NEW_REMOTE_THREAD</code> event, this target represents the process where the remote thread was created.</p>
+            
+            Basic example:
+            
+            <strong>Event 1</strong>
+
+            <script src="https://gist.github.com/tekgrunt/6d628836126a9a7b742cab839e226524.js"></script>
+
+            <strong>Event 2</strong>
+
+            <script src="https://gist.github.com/tekgrunt/0ce2de00d32948bc4a56c75ac86cda08.js"></script>
+
+            Means that Event 1 is the parent of Event 2 (Event1 ---> Event2).
+
+            <h3>Event Types</h3>
+
+            <p>A full listing of the events that can be monitored with DR rules can be found in the documentation <a href="https://doc.limacharlie.io/docs/documentation/docs/events.md#edr-events" target="_blank">here</a></p>
         </div>
     </body>
 </htmL>
