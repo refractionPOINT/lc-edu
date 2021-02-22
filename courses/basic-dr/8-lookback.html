@@ -5,6 +5,23 @@
     </head>
     <body>
         <div class="container">
-            <iframe width="670" height="377" src="https://www.youtube.com/embed/-DZDDXGv5yQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        </div>
+            <iframe width="670" height="377" src="https://www.youtube.com/embed/-DZDDXGv5yQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>        
+        
+            <p>Many comparison values support a special "lookback" format. That is, an operation that supports comparing a value to a literal like "system32", can also support a value of <code>&lt;&lt;event/PARENT/FILE_PATH&gt;&gt;</code>. When that value is surrounded by <code>&lt;&lt;  &gt;&gt;</code>, it will be interpreted as a path within the event and the value at that path will replace the <code>&lt;&lt;...&gt;&gt;</code> value. This allows you to "look back" at the event and use values within for your rule.</p>
+
+            <p>For example, this sample JSON event:</p>
+
+            <script src="https://gist.github.com/tekgrunt/9880e1da794ddb9f26b2b9c36d75775c.js"></script>
+
+            <p>The following paths with their result element:</p>
+
+            <ul>
+                <li><code>&lt;&lt;event/USER_ID&gt;&gt; results in 501</li></code>
+                <li><code>&lt;&lt;event/?/USER_NAME&gt;&gt; results in "maxime"</code></li>
+                <li><code>&lt;&lt;event/PARENT/PROCESS_ID&gt;&gt; results in 71955</code></li>
+                <li><code>&lt;&lt;event/*/HASH_VALUE&gt;&gt; results in ufs8f8hfinsfd9sfdsf</code></li>
+            </ul>
+
+        </div>
     </body>
 </htmL>

@@ -6,6 +6,25 @@
     <body>
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/_9apXzm-KIo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <p>It is possible to store some pieces of state on a per-sensor basis for the lifetime of a sensor (single boot). This state is called "variables". Variables have a name and a set of values associated with them. Values can be associated with a variable name at run-time using the add var (and del var) response.</p>
+
+            <p>The add var action supports an optional ttl value which is the number of seconds the value should be set for, like ttl: 3600.</p>
+
+            <p>Other rules may then use the values in a variable as part of the detection component.</p>
+
+            <p>Like the "lookback" feature, variables can be used in the <code>is</code>, <code>contains</code>, <code>starts with</code> and <code>ends with</code> operators by surrounding the variable name with <code>[[</code> and <code>]]</code>, like <code>[[my-var]]</code>.</p>
+
+            <p>For example, these rules looking for unsigned execution from external drives (like USB).</p>
+
+            <p>First, add new external drives to a variable when they are connected:</p>
+
+            <script src="https://gist.github.com/tekgrunt/da498eb9da55cbd68af01daf090c62bb.js"></script>
+
+            <p>Second, look for unsigned execution starting on those drives:</p>
+
+            <script src="https://gist.github.com/tekgrunt/a2b67b685fcf2e5cc93fd76cf05a7f23.js"></script>
+
         </div>
     </body>
 </htmL>

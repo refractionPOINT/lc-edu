@@ -6,6 +6,32 @@
     <body>
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/zJ-C6Iwu97o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            Transforms are transformations applied to the value being evaluated in an event, prior to the evaluation.
+
+            <h3>file name</h3>
+            
+            Sample: <code>file name: true</code>
+
+            The <code>file name</code> transform takes a file path and replaces it with the file name component of the path. This means that the file path <code>c:\windows\system32\wininet.dll</code> will become <code>wininet.dll</code>.
+
+            <h3>sub domain</h3>
+
+            Sample: <code>sub domain: "-2:"</code>
+
+            The <code>sub domain</code> extracts specific components from a domain name. The value of <code>sub domain</code> is in basic slice notation. This notation is of the form <code>startIndex:endIndex</code> where the index is 0-based and indicates which parts of the domain to keep. 
+            
+            <p>Examples:</p>
+
+            <ul>
+                <li><code>0:2</code> means the first 2 components of the domain: <code>aa.bb</code> for <code>aa.bb.cc.dd</code>.</li>
+                
+                <li><code>-1</code> means the last component of the domain: <code>cc</code> for <code>aa.bb.cc</code>.</li>
+                
+                <li><code>1:</code> means all components starting at 1: <code>bb.cc</code> for <code>aa.bb.cc</code>.</li>
+
+                <li><code>:</code> means to test the operator to every component individually.</li>
+            </ul>
         </div>
     </body>
 </htmL>

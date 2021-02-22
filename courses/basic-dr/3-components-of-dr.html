@@ -8,40 +8,6 @@
             <iframe width="670" height="377" src="https://www.youtube.com/embed/6bXy_D56YLQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
             <p>Once installed the LimaCharlie <a href="https://doc.limacharlie.io/docs/documentation/docs/lc-agent.md" target="_blank">Agent</a> is able to track over 70 <a href="https://doc.limacharlie.io/docs/documentation/docs/events.md" target="_blank">Event</a> types as they take place on the endpoint. These events produce telemetry which is shared with the LimaCharlie Cloud in real-time. The telemetry is evaluated against a collection of Detection & Response (DR) rules in the LimaCharlie Cloud. DR rules are generally applied on a per-event basis. When the rule is applied the detection component of the rule is processed to determine if it matches. If it matches the response component is actioned. Response actions can include tasking the sensor, isolating the host from the network, sending an alert, along with many other possibilities.</p>
-
-            <p>DR rules are simply boolean expressions.</p> 
-
-            <p>The logical construction of the detection component of a rule written in YAML might look something like this:</p>
-
-            <script class="gist" src="https://gist.github.com/tekgrunt/556249e33be7f008e470bdfbf21e4b5b.js"></script>
-
-            <p>And if we look at a rule's nested structure we can see that they are actually more like boolean trees. The following tree represents the detection scaffold shared above.</p>
-
-            <div>
-                <img class="img-bool" src="https://storage.googleapis.com/lc-edu/content/images/graphs/basic-dr-components-of-dr-1.png" />
-            </div>
-
-            <p>DR rules are evaluated using an algorithm that follows a <a href="https://en.wikipedia.org/wiki/Eulerian_path" target="_blank">Eulerian Path</a>. The path followed in the example given would evaluate op1, then op2, followed by the operators under the OR condition (op3 then op4).</p>
-
-            <p>Re-arranging the order of operations in the example given would result in the operators being evaluated in a different order. The following example would produce an evaluation sequence that begins with the OR condtion starting with the operators underneath it (op3 then op4), followed by op1 and op2.</p>
-
-            <script class="gist" src="https://gist.github.com/tekgrunt/f7dcadc3803f89cff2cd5dcb53f1a009.js"></script>
-
-            <p>And the equivalent boolean tree construction would look like this.</p>
-
-            <div>
-                <img class="img-bool" src="https://storage.googleapis.com/lc-edu/content/images/graphs/basic-dr-components-of-dr-2.png" />
-            </div>    
-
-            <p>The algorithm also has a short circuit feature such that once the minimum conditions for success or failure are satisifeid for a detection it stops computing and exits.</p>
-
-            <p>Adept rule authors will front-load the evaluation sequence with the least computationally intense components. This strategy will ensure that events are processed as quickly as possible.</p>
-
-            <p>The evaluation would be satisfied and exit in the following example if op2 was the first to return true in the Eularian order of evaluations.</p>
-
-            <div>
-                <img class="img-bool" src="https://storage.googleapis.com/lc-edu/content/images/graphs/basic-dr-components-of-dr-3.png" />
-            </div>   
         </div>
     </body>
 </htmL>
