@@ -6,6 +6,52 @@
     <body>
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/MR95gy_B20U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+       
+            <h2>Namespaces</h2>
+
+            <p>Detection and Response rules support a few namespaces. Initially you do not have to worry about using them since by default operations on rules use the <code>general</code> namespace.</p>
+
+            <p>However, if you plan on having multiple groups of people accessing DR rules and want to maintain some segmentation, then namespaces are for you. An example of this is an MSSP wanting to allow their customers to create their own rules without giving them access to the MSSP-maintained sets of rules.</p>
+
+            <p>Beyond the <code>general</code> namespace, the main other namespace is called <code>managed</code> (as in MSSP-managed). Currently, operating on namespaces other than <code>general</code> can only be accomplished using the REST API by providing the <code>namespace</code> parameter in the relevant queries.</p>
+                
+            <h2>Targets</h2>
+
+            <p>Targets are types of sources of events that the rule should apply to. The D&R rules apply by default to the <code>edr</code> target. This means that if you omit the <code>target</code> element from the Detection component, the rule will assume you want it to apply to events coming from the LimaCharlie agents. Other targets are available however.</p>
+
+            <ul>
+                <li><code>edr</code>: the default, telemetry events from LC agents.</li>
+
+                <li><code>artifact</code>: applies to artifacts submitted through the REST API or through the artifact_get command of the agent.</li>
+
+                <li><code>artifact_event</code>: applies to lifecycle around artifacts, like a new artifact being ingested.</li>
+
+                <li><code>deployment</code>: applies to high level events about the entire deployment, like new enrollments and cloned sensors detected.</li>
+            </ul>
+            
+            <p>While the <code>edr</code> and <code>deployment</code> targets supports most of the APIs, stateful operators and actions below, the log target only supports the following subset:</p>
+
+            <ul>
+                <li>All the basics: <code>is</code>, <code>and</code>, <code>or</code>, <code>exists</code>, <code>contains</code>, <code>starts with</code>, <code>ends with</code>, <code>is greater than</code>, <code>is lower than</code>, <code>matches</code>, <code>string distance</code></li>
+
+                <li>Referring to add-ons / resources: <code>lookup</code>, <code>external</code></li>
+
+                <li>Response actions: <code>report</code></li>
+
+                <li>artifact</code> target only: <code>artifact source</code>, <code>artifact type</code></li>
+            </ul>
+
+            <p>In the case of the <code>log target</code>, <code>path</code> references apply to JSON parsed logs the same way as in <code>edr</code> DR rules, but rules on pure text logs requires using the path <code>/txt</code> as the value of a log line. The <code>artifact source</code> matches the log's source string, and the <code>artifact type</code> matches the log's type string.</p>
+
+            <p>For examples of D&R rules applying to artifacts, you can look at the <a href="https://github.com/refractionPOINT/sigma/tree/lc-rules/lc-rules/windows_builtin" taregt="_blank">Sigma rules generated for the Sigma Service</a> which uses the Windows Event Logs.</p>
+
+            <h3>Windows Event Logs</h3>
+            
+            <p>When running D&R rules against Windows Event Logs (<code>target: artifact</code> and <code>artifact type: wel</code>), although the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md" target="_blank">Artifact Collection Service</a> may ingest the same Windows Event Log file that contains some records that have already been processed by the rules, the LimaCharlie platform will keep track of the processed <code>EventRecordID</code> and therefore will NOT run the same D&R rule over the same record multiple times.</p>
+
+            <p>This means you can safely set the Artifact Collection Service to collect various Windows Event Logs from your hosts and run D&R rules over them without risking producing the same alert multiple times.</p>
+
+            <p>For most Windows Event Logs available, see <code>c:\windows\system32\winevt\logs\</code>.</p>
         </div>
     </body>
 </htmL>

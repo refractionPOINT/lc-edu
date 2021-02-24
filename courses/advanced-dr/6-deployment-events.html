@@ -6,6 +6,30 @@
     <body>
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/YBKyyw6D2og" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <h2>Targets</h2>
+            
+            <p>Targets are types of sources of events that the rule should apply to. The D&R rules apply by default to the edr target. This means that if you omit the target element from the Detection component, the rule will assume you want it to apply to events coming from the LimaCharlie agents. Other targets are available however.</p>
+
+            <ul>
+                <li><code>edr</code>: the default, telemetry events from LC agents.</li>
+                <li><code>artifact</code>: applies to artifacts submitted through the REST API or through the artifact_get command of the agent.</li>
+                <li><code>artifact_event</code>: applies to lifecycle around artifacts, like a new artifact being ingested.</li>
+                <li><code>deployment</code>: applies to high level events about the entire deployment, like new enrollments and cloned sensors detected.</li>
+            </ul>
+
+            <p>While the <code>edr</code> and <code>deployment</code> targets supports most of the APIs, stateful operators and actions below, the <code>log</code> target only supports the following subset:</p>
+
+            <ul>
+                <li>All the basics: <code>is</code>, <code>and</code>, <code>or</code>, <code>exists</code>, <code>contains</code>, <code>starts with</code>, <code>ends with</code>, <code>is greater than</code>, <code>is lower than</code>, <code>matches</code>, <code>string distance</code></li>
+                <li>Referring to add-ons / resources: lookup, external</li>
+                <li>Response actions: report</li>
+                <li>artifact target only: artifact source, artifact type</li>
+            </ul>
+
+            <p>In the case of the log target, path references apply to JSON parsed logs the same way as in edr DR rules, but rules on pure text logs requires using the path /txt as the value of a log line. The artifact source matches the log's source string, and the artifact type matches the log's type string.</p>
+
+           <p> For examples of D&R rules applying to artifacts, you can look at the <a href="https://github.com/refractionPOINT/sigma/tree/lc-rules/lc-rules/windows_builtin" target="_blank">Sigma rules generated for the Sigma Service</a> which uses the Windows Event Logs.</p>
         </div>
     </body>
 </htmL>
