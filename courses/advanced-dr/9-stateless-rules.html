@@ -7,7 +7,7 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/BZkCJsptj5Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-            <h2>Stateless</h2>
+            <h2>Stateful</h2>
 
             <p>Generally the DR rules operate in a stateless fashion, meaning a rule operates on one event at a time and either matches or doesn't.</p>
 
@@ -44,6 +44,8 @@
             <p>On top of containing stateless rules, an operator underneath a <code>with child</code> (or descendant) can also contain another operator with another <code>with child</code> (or descendant).</p>
 
             <p>Another parameter comes into play if you want to define a set of operators underneath a with child to be "stateless", meaning where you want all the operators to apply and match with single events (like the classic stateless D&R rules). This parameter is is stateless: true. Simply add it to the operators at the root of the logic you want to be applied statelessly.</p>
+
+            <p>Finally, a node in stateful mode under a <code>with child</code> or <code>with descendand</code> can specify a <code>count: N</code> parameter. When specified, you specify that the given node must be matched N times before it is considered successful. So setting <code>count: 3</code> in a node looking for a <code>event/FILE_PATH</code> ending in <code>cmd.exe</code> will mean that we want to match only if we see 3 instances of a <code>cmd.exe</code> in that context to match. An example usage of this is to set <code>count:</code> in a matches operator looking for a set of processes which would result in detecting a "burst" of matching processes from a parent (like: if a process starts more than 3 <code>cmd.exe</code>, alert). Adding a <code>within: Z</code> parameter to the <code>count: N</code> limits the count to where the first and last event in the count is within a <code>Z</code> seconds time window.</p>
         </div>
     </body>
 </htmL>
