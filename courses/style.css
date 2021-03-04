@@ -73,6 +73,11 @@ img {
 
 /************ Custom ************/
 
+img {
+    max-width: 670px;
+    padding: 0px;
+}
+
 .img-bool {
     max-width: 250px;
     padding: 10px;
