@@ -7,6 +7,19 @@
          
             <iframe width="670" height="377" src="https://www.youtube.com/embed/chxWKz9cEyA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             
+            <h2>Service</h2>
+
+            <p>Service policies define a service available through the network on a specific host, and which other endpoints have access to it.</p>
+
+            <p>The <code>server_sid</code> specifies the Sensor ID of the lc-net endpoint running the service. The <code>service_port</code> defines a specific port (or 0 for any) where the service is running.</p>
+
+            <p>The <code>tag_clients</code> specifies a tag that defines which lc-net endpoints have access to this service.</p>
+
+            <p>The <code>protocol</code> defines the network protocol ID that the service is allowed on. TCP is <code>6</code> and UDP is <code>17</code>.</p>
+
+            <p>The following example describes that all lc-net endpoints with the <code>finance</code> tag should be allowed to connect to the service running on TCP port 8000 for the Sensor ID 9ccd5a2c-e83c-4ffb-8f52-9f48626a6fc6.</p>
+
+            <p>Once in place, accessing this service can be done using the server's Internal IP that is available through the detailed information view of a given sensor. In the case of lc-net endpoints, this Internal IP is always in the 10.x.x.x range and is static, meaning a sensor is given an Internal IP that it will keep for its whole lifetime, making it easier to bookmark services or even create your own DNS entries for services.</p>
         </div>
     </body>
 </htmL>

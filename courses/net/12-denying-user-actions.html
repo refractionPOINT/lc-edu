@@ -7,6 +7,23 @@
          
             <iframe width="670" height="377" src="https://www.youtube.com/embed/kL0R7uR-Nq8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             
+            <h2>Prevent Use of a Service</h2>
+
+            <p>Let's say we want to prevent users on mobile devices from accessing Dropbox. Assuming mobile users are tagged as <code>mobile as it can be done either manually, through a D&R rule or through the tags of an Installation Key.</p>
+
+            <p>This is the dns policy:</p>
+
+            <script src="https://gist.github.com/tekgrunt/1d6456c883b81475117f4e205a4e29bb.js"></script>
+
+            <h2>Prevent SSH</h2>
+
+            <p>Let's say we want to prevent users working in the Finance Department from using SSH. Assuming Finance users are tagged as finance as it can be done either manually, through a D&R rule or through the tags of an Installation Key.</p>
+
+            <p>But only do this Monday through Friday, 8AM to 6PM Pacific Time, when the user is connected from an office which is hosted behind <code>9.9.9.0/24</code>.</p>
+
+            <p>This is the firewall policy:</p>
+
+            <script src="https://gist.github.com/tekgrunt/0068ac5b212c57ac22dd68ab757d5c10.js"></script>
         </div>
     </body>
 </htmL>
