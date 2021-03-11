@@ -6,6 +6,29 @@
         <div class="container">
          
             <iframe width="670" height="377" src="https://www.youtube.com/embed/z9u1SE2YS5k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <h3>Firewall</h3>
+
+            <p>Firewall policies define what outbound access is allowed or disallowed. Since all clients in lc-net are under a NAT, the inbound access is defined through <code>service</code> policies (details further below).</p>
+
+            <p>By default when you create a new organization and enable lc-net, a firewall policy will be created for you, as specified below.</p>
+
+            <p>This default policy gives access by all the clients to the internet without any limitation. This policy is required by default to provide connectivity because lc-net denies all outbound connections by default (safe by default). This means that if you remove this policy, all outbound access will be disabled.</p>
+
+            <p>Firewall policies can either specify:</p>
+
+            <ul>
+                <li><code>is_allow: true</code> indicating this policy defines a destination that should be allowed</li>
+
+                <li><code>is_allow: false</code> indicating this policy defines a destination that should be denied</li>
+            </ul>
+
+            <p>On a connection, all <code>firewall</code> policies will be applied. For the connection to be allowed, at least one policy must positively allow the traffic. If, however even a single policy defines the destination is not allowed, then the connection will be denied.</p>
+
+            <p>Sample policy:</p>
+
+            <script src="https://gist.github.com/tekgrunt/9320ef622b0377bc714f923e941922da.js"></script>
+
             
         </div>
     </body>

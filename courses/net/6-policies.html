@@ -71,29 +71,41 @@
                 <li>Python SDK: <code>function getApplicablePolicies(sid) of the class limacharlie.Net</code></li>
             </ul>
 
-            <h2>Policy Types</h2>
 
-            <h3>Firewall</h3>
+            
+            <h3>Service</h3>
 
-            <p>Firewall policies define what outbound access is allowed or disallowed. Since all clients in lc-net are under a NAT, the inbound access is defined through <code>service</code> policies (details further below).</p>
+            <p>Service policies define a service available through the network on a specific host, and which other endpoints have access to it.</p>
 
-            <p>By default when you create a new organization and enable lc-net, a firewall policy will be created for you, as specified below.</p>
+            <p>The <code>server_sid</code> specifies the Sensor ID of the lc-net endpoint running the service. The <code>service_port</code> defines a specific port (or<code> 0</code> for any) where the service is running.<p>
 
-            <p>This default policy gives access by all the clients to the internet without any limitation. This policy is required by default to provide connectivity because lc-net denies all outbound connections by default (safe by default). This means that if you remove this policy, all outbound access will be disabled.</p>
+            <p>The <code>tag_clients</code> specifies a tag that defines which lc-net endpoints have access to this service.</p>
 
-            <p>Firewall policies can either specify:</p>
+            <p>The <code>protocol</code> defines the network protocol ID that the service is allowed on. TCP is <code>6</code> and UDP is <code>17</code>.</p>
 
-            <ul>
-                <li><code>is_allow: true</code> indicating this policy defines a destination that should be allowed</li>
+            <p>The following example describes that all lc-net endpoints with the <code>finance</code> tag should be allowed to connect to the service running on TCP port 8000 for the Sensor ID <code>9ccd5a2c-e83c-4ffb-8f52-9f48626a6fc6</code>.</p>
 
-                <li><code>is_allow: false</code> indicating this policy defines a destination that should be denied</li>
-            </ul>
-
-            <p>On a connection, all <code>firewall</code> policies will be applied. For the connection to be allowed, at least one policy must positively allow the traffic. If, however even a single policy defines the destination is not allowed, then the connection will be denied.</p>
+            <p>Once in place, accessing this service can be done using the server's Internal IP that is available through the detailed information view of a given sensor. In the case of lc-net endpoints, this Internal IP is always in the <code>10.x.x.x</code> range and is static, meaning a sensor is given an Internal IP that it will keep for its whole lifetime, making it easier to bookmark services or even create your own DNS entries for services.</p>
 
             <p>Sample policy:</p>
 
-            <script src="https://gist.github.com/tekgrunt/9320ef622b0377bc714f923e941922da.js"></script>
+            <script src="https://gist.github.com/tekgrunt/64828e2b307982dde37fde50af015737.js"></script>
+
+            <h3>Service</h3>
+
+            <p>Service policies define a service available through the network on a specific host, and which other endpoints have access to it.</p>
+
+            <p>The server_sid specifies the Sensor ID of the lc-net endpoint running the service. The service_port defines a specific port (or 0 for any) where the service is running.</p>
+
+            <p>The tag_clients specifies a tag that defines which lc-net endpoints have access to this service.</p>
+
+            <p>The protocol defines the network protocol ID that the service is allowed on. TCP is 6 and UDP is 17.</p>
+
+            <p>The following example describes that all lc-net endpoints with the finance tag should be allowed to connect to the service running on TCP port 8000 for the Sensor ID 9ccd5a2c-e83c-4ffb-8f52-9f48626a6fc6.
+
+            Once in place, accessing this service can be done using the server's Internal IP that is available through the detailed information view of a given sensor. In the case of lc-net endpoints, this Internal IP is always in the 10.x.x.x range and is static, meaning a sensor is given an Internal IP that it will keep for its whole lifetime, making it easier to bookmark services or even create your own DNS entries for services.
+
+            Sample policy:
 
         </div>
     </body>
