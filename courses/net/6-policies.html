@@ -7,6 +7,94 @@
          
             <iframe width="670" height="377" src="https://www.youtube.com/embed/j40UQKulfos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             
+            <h2>Policies</h2>
+
+            <p>Policies govern the access as well as the configuration of various other tools used by lc-net. Generally policies will apply either to all lc-net endpoints or lc-net endpoints with a given tag applied to them.</p>
+
+            <p>Operations on policies are generic and the specific configuration is dependant on the policy type itself.</p>
+
+            <p>Policies can be set using the CLI like this:</p>
+
+            <script src="https://gist.github.com/tekgrunt/ce18ae762b8acfd632abe962d4d7ccb2.js"></script>
+
+            <p>Policies often contain some generic components:</p>
+
+            <p><code>bpf_filter:</code> this is a tcpdump-like BPF filter syntax describing matching packets. An empty bpf_filter will match all traffic.</p>
+
+            <p><code>times:</code> this is a list of Time Descriptors that describe when this policy is valid and applied. If any of the Time Descriptor is valid, the policy will be applied. More details in the Time Descriptor section below.</p>
+
+            <p><code>sources:</code> this is a list of networks in CIDR notations where the clients must be connecting from for the policy to apply.</p>
+
+            <h2>Time Descriptor</h2>
+
+            <p>A Time Descriptor is a block of configuration that describes a period of time. This can be done in a few different ways. These different ways can be combined together.</p>
+
+            <h3>Time Zone</h3>
+
+            <p>The Time Zone specified should match a <code>TZ database</code> name of the <a href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" target="_blank">Time Zones Database</a>.</p>
+
+            <h3>Epoch Times</h3>
+
+            <p>Specify second epoch timestamps by specifying <code>ts_start</code> and <code>ts_end</code>.</p>
+
+            <h3>Time of Day</h3>
+
+            <p>Using a time of day by specifying <code>time_of_day_start</code> and <code>time_of_day_end</code>. Each of these parameters is an integer representing the 24h time and minute. For example for 16h30m specify <code>1630</code>.</p>
+
+            <h3>Day of Week</h3>
+
+            <p>Using a day of the week range by specifying <code>day_of_week_start</code> and <code>day_of_week_end</code> where the value is the integer representing the day of the week starting with Sunday equal to <code>1</code>. So for example, Tuesday is <code>3</code>.</p>
+
+            <h3>Day of Month</h3>
+
+            <p>Using a specific day of the week by specifying <code>day_of_month</code> where the value is the integer representing the day of the month, from <code>1</code> to <code>31</code>.</p>
+
+            <h3>Month of year</h3>
+
+            <p>Using a specific month of the year by specifying <code>month_of_year</code> where the value is the integer representing the month, where January is <code>1</code> and December is <code>12</code>.</p>
+
+            <h3>Example</h3>
+
+            <p>Let's say you want a policy to be valid from 8 AM to 6 PM, Mondays in the Pacific Time Zone:</p>
+
+            <script src="https://gist.github.com/tekgrunt/4b39b9cf7d839e0b9e1d71c571b7651e.js"></script>
+
+            <h2>Troubleshooting</h2>
+
+            <p>It is sometimes useful to see the list of policies that currently apply to a given sensor. To do this you may use one of the following:</p>
+
+            <ul>
+                <li>REST endpoint: <code>/net/policy/applicable/SID</code></li>
+
+                <li>Python CLI: <code>limacharlie net client policies --help</code></li>
+
+                <li>Python SDK: <code>function getApplicablePolicies(sid) of the class limacharlie.Net</code></li>
+            </ul>
+
+            <h2>Policy Types</h2>
+
+            <h3>Firewall</h3>
+
+            <p>Firewall policies define what outbound access is allowed or disallowed. Since all clients in lc-net are under a NAT, the inbound access is defined through <code>service</code> policies (details further below).</p>
+
+            <p>By default when you create a new organization and enable lc-net, a firewall policy will be created for you, as specified below.</p>
+
+            <p>This default policy gives access by all the clients to the internet without any limitation. This policy is required by default to provide connectivity because lc-net denies all outbound connections by default (safe by default). This means that if you remove this policy, all outbound access will be disabled.</p>
+
+            <p>Firewall policies can either specify:</p>
+
+            <ul>
+                <li><code>is_allow: true</code> indicating this policy defines a destination that should be allowed</li>
+
+                <li><code>is_allow: false</code> indicating this policy defines a destination that should be denied</li>
+            </ul>
+
+            <p>On a connection, all <code>firewall</code> policies will be applied. For the connection to be allowed, at least one policy must positively allow the traffic. If, however even a single policy defines the destination is not allowed, then the connection will be denied.</p>
+
+            <p>Sample policy:</p>
+
+            <script src="https://gist.github.com/tekgrunt/9320ef622b0377bc714f923e941922da.js"></script>
+
         </div>
     </body>
 </htmL>

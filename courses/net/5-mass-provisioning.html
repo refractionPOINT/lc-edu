@@ -7,6 +7,30 @@
          
             <iframe width="670" height="377" src="https://www.youtube.com/embed/p9lD95jgAwo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             
+            <h3>CLI</h3>
+
+            <p>Using the LimaCharlie CLI (pip install limacharlie), you can provising new clients one at a time or in batches.</p>
+
+            <p>Provisioning is done in the context of an installation key, just like an host based endpoint.</p>
+
+            <p>The command line to use is:</p>
+
+            <script src="https://gist.github.com/tekgrunt/4d1195c848148b9e786b2b45ef6b665a.js"></script>
+
+            <p>The name is the name that will be associated with the lc-net device. We recommend using a user identifier like an email address. If you use an email address, you can specify the --email-user flag and the QR code + configuration file will be emailed directly to the name (email address).</p>
+
+            <p>The --name-file option allows you to specify a file containing all the names to provision.</p>
+
+            <p>The --output can be used to send the configuration files directly to a directory.</p>
+
+            <p>An example provisioning a basic new client:</p>
+
+            <script src="https://gist.github.com/tekgrunt/ebb9d23c2b2c75a785973c214ef282ad.js"></script>
+
+            <p>An example provisioning a client in the 10.42.0.0/16 range and excluding the local IP range 100.115.92.200/28 from the VPN:</p>
+
+            <script src="https://gist.github.com/tekgrunt/b332f28370f5f0e5fa52714199d8fa84.js"></script>
+
         </div>
     </body>
 </htmL>
