@@ -8,7 +8,7 @@
         
             <h2>Getting Started</h2>
             
-            <p>The Python API uses the LimaCharlie.io REST API. The REST API currently supports many more functions. If the Python is missing a function available in the REST API that you would like to use, let us know at support@limacharlie.io.</p>
+            <p>The Python API uses the LimaCharlie REST API. The REST API currently supports many more functions. If the Python is missing a function available in the REST API that you would like to use, let us know at [support@limacharlie.io](mailto:support@limacharlie.io).</p>
 
             <h3>Installing</h3>
             <code>pip install limacharlie</code>
@@ -24,7 +24,7 @@
             <p>The API Keys are managed through the organization view of the [limacharlie.io](https://limacharlie.io) web interface.</p>
 
             <h3>Getting a JWT</h3>
-            <p>Simply issue an HTTP GET or HTTP POST (recommended) like:</p>
+            <p>Simply issue an <code>HTTP GET</code> or <code>HTTP POST</code> (recommended) like:</p>
 
             <code>curl "https://app.limacharlie.io/jwt?oid=c82e5c17-d520-4ef5-a4ac-c454a95d31ca&secret=1b1ae891-4316-4124-b859-556dd92add00"</code>
             
@@ -37,7 +37,7 @@
 
             <p>The User API keys can be used through all the same interfaces as the Organization API keys. The only different is how you get the JWT. Instead of giving an oid parameter to [app.limacharlie.io/jwt](https://app.limacharlie.io/jwt), provide it with a uid parameter available through the LimaCharlie web interface.</p>
 
-            <p>In some instances, the JWT resulting from a User API key may be to large for normal API use, in which case you will get an HTTP 413 Payload too large from the API gateway. In those cases, also provide an oid (on top of the uid) to the /jwt REST endpoint to get a JWT only valid for that organization.</p>
+            <p>In some instances, the JWT resulting from a User API key may be to large for normal API use, in which case you will get an <code>HTTP 413</code> Payload too large from the API gateway. In those cases, also provide an oid (on top of the uid) to the /jwt REST endpoint to get a JWT only valid for that organization.</p>
 
             <p>You may also use a User API Key to get the list of organizations available to it by querying the following REST endpoint:</p>
 
@@ -66,9 +66,9 @@
             </ul>
             
             <h3>Flair</h3>
-            <p>API Keys may have "flair" as part of the key name. A flair is like a tag surrounded by []. Although it is not required, we advise to put the flair at the end of the API key name for readability.</p>
+            <p>API Keys may have "flair" as part of the key name. A flair is like a tag surrounded by <code>[]</code>. Although it is not required, we advise to put the flair at the end of the API key name for readability.</p>
 
-            <p>For example: orchestration-key[bulk] is a key with a bulk flair.</p>
+            <p>For example: <code>orchestration-key[bulk]</code> is a key with a bulk flair.</p>
 
             <p>Flairs are used to modify slightly the behavior of an API key or provide some usage hints to various systems in LimaCharlie.</p>
 
