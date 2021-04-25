@@ -1,0 +1,95 @@
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <div class="container">
+            <iframe width="670" height="377" src="https://www.youtube.com/embed/E5xiMoP-oCU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
+            <h2>Getting Started</h2>
+            
+            <p>The Python API uses the LimaCharlie REST API. The REST API currently supports many more functions. If the Python is missing a function available in the REST API that you would like to use, let us know at [support@limacharlie.io](mailto:support@limacharlie.io).</p>
+
+            <h3>Installing</h3>
+            <code>pip install limacharlie</code>
+
+            <h2>API Keys</h2>
+            <p>LimaCharlie Cloud has a concept of API keys. Those are secret keys that can be created and named which can then in turn be used to retrieve a JWT that can be used with the LC REST Api at [api.limacharlie.io](https://api.limacharlie.io).</p>
+
+            <p>This allows you to build headless applications that securely acquire time-restricted REST authentication tokens that it can then use.</p>
+
+            <p>The list of available permissions can be programmatically retrieved from this URL: [app.limacharlie.io/owner_permissions](https://app.limacharlie.io/owner_permissions)</p>
+
+            <h3>Managing<?h3>
+            <p>The API Keys are managed through the organization view of the [limacharlie.io](https://limacharlie.io) web interface.</p>
+
+            <h3>Getting a JWT</h3>
+            <p>Simply issue an <code>HTTP GET</code> or <code>HTTP POST</code> (recommended) like:</p>
+
+            <code>curl "https://app.limacharlie.io/jwt?oid=c82e5c17-d520-4ef5-a4ac-c454a95d31ca&secret=1b1ae891-4316-4124-b859-556dd92add00"</code>
+            
+            <p>where the oid parameter is the organization id as found through the web interface and the secret parameter is the API key to use.</p>
+
+            <p>The return value is a simple JSON response with a jwt component which is the JWT token. This token is only valid for one hour to limit the possible damage of a leak and make the deletion of the API keys easier.</p>
+
+            <h3>User API Keys</h3>
+            <p>User API keys are used to generate JWT tokens for the REST API. In contrast to Organization API keys, the User API keys are associated with a specific user and provide the exact same access you have across all organizations you have access to. This makes User API Keys very powerful but also riskier to manage. Therefore we recommend you use Organization API keys whenever possible.</p>
+
+            <p>The User API keys can be used through all the same interfaces as the Organization API keys. The only different is how you get the JWT. Instead of giving an oid parameter to [app.limacharlie.io/jwt](https://app.limacharlie.io/jwt), provide it with a uid parameter available through the LimaCharlie web interface.</p>
+
+            <p>In some instances, the JWT resulting from a User API key may be to large for normal API use, in which case you will get an <code>HTTP 413</code> Payload too large from the API gateway. In those cases, also provide an oid (on top of the uid) to the /jwt REST endpoint to get a JWT only valid for that organization.</p>
+
+            <p>You may also use a User API Key to get the list of organizations available to it by querying the following REST endpoint:</p>
+
+            <code>https://app.limacharlie.io/user_key_info?secret=<YOUR_USER_API_KEY>&uid=<YOUR_USER_ID></code>
+            
+            <h3>Python</h3>
+            <p>A simple Python API is also provided that simplifies usage of the REST API by taking care of the API Key -> JWT exchange as necessary and wraps the functionality into nicer objects.</p>
+
+            <h3>Privileges</h3>
+            <p>API Keys have several on-off privileges available.</p>
+
+            <p>To see a full list, see the "REST API" section of your organization.</p>
+
+            <p>Making a REST call will fail with a 401 if your API Key / token is missing some privileges and the missing privilege will be specified in the error.</p>
+
+            <h3>Required Privileges</h3>
+            <p>Below is a list of privileges required for some common tasks.</p>
+
+            <h3>Go Live</h3>
+            <p>When "going Live" through the web UI, the following is required by the user:</p>
+
+            <ul>
+                <li><code>output.*</code>: for the creation of the real-time output via HTTP to the browser.</li>
+
+                <li><code>sensor.task</code>: to send the commands (both manually for the console and to populate the various tabs) to the sensor.</li>
+            </ul>
+            
+            <h3>Flair</h3>
+            <p>API Keys may have "flair" as part of the key name. A flair is like a tag surrounded by <code>[]</code>. Although it is not required, we advise to put the flair at the end of the API key name for readability.</p>
+
+            <p>For example: <code>orchestration-key[bulk]</code> is a key with a bulk flair.</p>
+
+            <p>Flairs are used to modify slightly the behavior of an API key or provide some usage hints to various systems in LimaCharlie.</p>
+
+            <p>The following flairs are currently supported:</p>
+            
+            <ul>
+                <li><code>bulk</code>: indicates to the REST API that this key is meant to do a large amount of calls, the API gateway tweaks the API call limits accordingly.</li>
+
+                <li><code>lock</code>: indicates that the resources created or updated by this key should be "locked". This means that the only entity able to update or delete those resources is the key itself (or a new key re-created later on with the same name).</li>
+
+                <li><code>secret</code>: indicates that resources created by this key should only have their content visible to the same key. For example D&R rules will be listed, but the contents will be opaque. This is useful to protect Intellectual Property.</li>
+
+                <li><code>segment</code>: indicates that only resources created by this key will be visible by this key. This is useful to provide access to a 3rd party in a limited fashion.</li>
+
+                <li><code>root</code>: indicates that this key is not subject to the segment and lock flairs. Useful to provide high privilege access to an organization.</li>
+            </ul>
+            
+            <h3>Lock</h3>
+            <p>The lock flair is useful if you are using a key to specifically manage an aspect of your deployment that relies on things like precisely defined D&R rules, Exfil Watch rules etc. The key flair ensures someone else does not modify it by mistake. It does NOT bring privacy (other users with the appropriate permissions will still see those resources, but they will not be able to modify them).</p>
+
+
+    </div>
+    </body>
+</htmL>

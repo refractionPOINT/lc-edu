@@ -1,0 +1,33 @@
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <div class="container">
+            <iframe width="670" height="377" src="https://www.youtube.com/embed/q3JsE2NtSOU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <h2>Firehose</h2>
+            
+            <p>The Firehose is a simple object that listens on a port for LimaCharlie.io data. Under the hood it creates a Syslog Output on limacharlie.io pointing to itself and removes it on shutdown. Data from limacharlie.io is added to firehose.queue (a gevent Queue) as it is received.</p>
+
+            <p>It is a basic building block of automation for limacharlie.io.</p>
+
+            <code>python -m limacharlie.Firehose 1.2.3.4:9424 event -n firehose_test -t fh_test --oid c82e5c17-d519-4ef5-a4ac-caa4a95d31ca</code>
+
+            <p>Listens on interface <code>1.2.3.4</code>, port <code>9424</code> for incoming connections from LimaCharlie.io. Receives only events from hosts tagged with <code>fh_test</code>.</p>
+
+            <h2>Spout</h2>
+            
+            <p>Much like the Firehose, the Spout receives data from LimaCharlie.io, the difference is that the Spout does not require opening a local port to listen actively on. Instead it leverages <code>stream.limacharlie.io</code> to receive the data stream over HTTPS.</p>
+
+            <p>A Spout is automatically created when you instantiate a <code>Manager</code> with the <code>is_interactive = True</code> and <code>inv_id = XXXX</code> arguments in order to provide real-time feedback from tasking sensors.</p>
+
+            <code>python -m limacharlie.Spout event --oid c82e5c17-d519-4ef5-a4ac-caa4a95d31ca</code>
+
+            <p>Behaves similarly to the Firehose, but instead of listenning from an internet accessible port, it connects to the <code>stream.limacharlie.io</code> service to stream the output over HTTPS. This means the Spout allows you to get ad-hoc output like the Firehose, but it also works through NATs and proxies.</p>
+
+            <p>It is MUCH more convenient for short term ad-hoc outputs, but it is less reliable than a Firehose for very large amounts of data.</p>
+        
+    </div>
+    </body>
+</htmL>
