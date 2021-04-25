@@ -6,7 +6,51 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/gSFOaSiZKvQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
+            <h3>Network Capture</h3>
 
+            <p>Network telemetry is ingested in LimaCharlie through the Artifact Collection system.</p>
+
+            <p>Packet captures can be acquired in one of two ways:</p>
+
+            <ol>
+                <li>Using the Artifact Collection's REST API or the SDK's CLI.</li>
+                <li>By configuring capture directly through a LimaCharlie endpoint.</li>
+            </ol>
+
+            <p>For this recipe, we'll show you how to use method 2 since it's the easiest to get started with.</p>
+
+            <p>In the LimaCharlie web app, go to the Artifact Collection section of your organization.</p>
+
+            <p>Towards the bottom of the page you'll find "PCAP Collection Rules". These rules define where and how to capture network traffic. Each rule has a few components:</p>
+
+            <ul>
+            <li>Platforms: this where you select which platform this rule should apply to.</li>
+
+            <li>Tags: specifies that this rule should only apply to endpoints that have all these tags applied to them.</li>
+
+            <li>Retention: the number of days that the raw network captures should be retained by LimaCharlie.</li>
+
+            <li>Patterns: this is the list of capture expressions describing which parts of the network to capture.?li>
+
+                <ul>
+                    <li>Interface: specifies which network interface should be captured.</li>
+
+                    <li>Filter: this is the filter expression (tcpdump format) of the traffic to capture.</li>
+                </ul>
+            </ul>
+
+            <p>For this recipe, we'll use the following rule:</p>
+
+            <p style="white-space: pre-line;"><strong>Platform:</strong> Linux /n
+            <strong>Tags:</strong> leave empty/n
+            <strong>Retention:</strong> 7
+            <strong>Patterns:</strong>
+            <strong>Interface:</strong> any
+            <strong>Filter:</strong> tcp port 80</p>
+
+            <p>The above rule will result in all network traffic on tcp port 80 (HTTP) getting captured regardless of the network interface and will be retained for 7 days.</p>
+
+            <p>Once created, the relevant endpoints will be tasked to collect the network traffic. As enough network data is collected, it will be uploaded to LimaCharlie. When ingested, these packet captures (PCAP) will show up at the bottom of the Artifact Collection page.</p>
     </div>
     </body>
 </htmL>
