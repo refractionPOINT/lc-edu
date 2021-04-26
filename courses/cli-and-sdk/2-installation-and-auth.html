@@ -8,20 +8,20 @@
         
             <h2>Getting Started</h2>
             
-            <p>The Python API uses the LimaCharlie REST API. The REST API currently supports many more functions. If the Python is missing a function available in the REST API that you would like to use, let us know at [support@limacharlie.io](mailto:support@limacharlie.io).</p>
+            <p>The Python API uses the LimaCharlie REST API. The REST API currently supports many more functions. If the Python is missing a function available in the REST API that you would like to use, let us know at <a href="mailto:support@limacharlie.io" target="_blank">support@limacharlie.io</a>.</p>
 
             <h3>Installing</h3>
             <code>pip install limacharlie</code>
 
             <h2>API Keys</h2>
-            <p>LimaCharlie Cloud has a concept of API keys. Those are secret keys that can be created and named which can then in turn be used to retrieve a JWT that can be used with the LC REST Api at [api.limacharlie.io](https://api.limacharlie.io).</p>
+            <p>LimaCharlie Cloud has a concept of API keys. Those are secret keys that can be created and named which can then in turn be used to retrieve a JWT that can be used with the LC REST Api at <a href="https://api.limacharlie.io" target="_blank">api.limacharlie.io</a>.</p>
 
             <p>This allows you to build headless applications that securely acquire time-restricted REST authentication tokens that it can then use.</p>
 
-            <p>The list of available permissions can be programmatically retrieved from this URL: [app.limacharlie.io/owner_permissions](https://app.limacharlie.io/owner_permissions)</p>
+            <p>The list of available permissions can be programmatically retrieved from this URL: <a href="https://app.limacharlie.io/owner_permissions" target="_blank">app.limacharlie.io/owner_permissions</a></p>
 
-            <h3>Managing<?h3>
-            <p>The API Keys are managed through the organization view of the [limacharlie.io](https://limacharlie.io) web interface.</p>
+            <h3>Managing<h3>
+            <p>The API Keys are managed through the organization view of the <a href="https://limacharlie.io" target="_blank">limacharlie.io</a> web interface.</p>
 
             <h3>Getting a JWT</h3>
             <p>Simply issue an <code>HTTP GET</code> or <code>HTTP POST</code> (recommended) like:</p>
@@ -35,7 +35,7 @@
             <h3>User API Keys</h3>
             <p>User API keys are used to generate JWT tokens for the REST API. In contrast to Organization API keys, the User API keys are associated with a specific user and provide the exact same access you have across all organizations you have access to. This makes User API Keys very powerful but also riskier to manage. Therefore we recommend you use Organization API keys whenever possible.</p>
 
-            <p>The User API keys can be used through all the same interfaces as the Organization API keys. The only different is how you get the JWT. Instead of giving an oid parameter to [app.limacharlie.io/jwt](https://app.limacharlie.io/jwt), provide it with a uid parameter available through the LimaCharlie web interface.</p>
+            <p>The User API keys can be used through all the same interfaces as the Organization API keys. The only different is how you get the JWT. Instead of giving an oid parameter to <a href="https://app.limacharlie.io/jwt" target="_blank">app.limacharlie.io/</a>jwt, provide it with a uid parameter available through the LimaCharlie web interface.</p>
 
             <p>In some instances, the JWT resulting from a User API key may be to large for normal API use, in which case you will get an <code>HTTP 413</code> Payload too large from the API gateway. In those cases, also provide an oid (on top of the uid) to the /jwt REST endpoint to get a JWT only valid for that organization.</p>
 
@@ -88,8 +88,6 @@
             
             <h3>Lock</h3>
             <p>The lock flair is useful if you are using a key to specifically manage an aspect of your deployment that relies on things like precisely defined D&R rules, Exfil Watch rules etc. The key flair ensures someone else does not modify it by mistake. It does NOT bring privacy (other users with the appropriate permissions will still see those resources, but they will not be able to modify them).</p>
-
-
     </div>
     </body>
 </htmL>
