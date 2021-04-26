@@ -14,8 +14,7 @@
             
             <h3>Manually</h3>
             
-            <p>To instruct the ingestion of an artifact file located on a host where LC is installed, simply issue the [artifact_get](https://doc.limacharlie.io/docs/documentation/docs/sensor_commands.md#artifact_get) command. You should receive two events in response to this command: a general receipt indicating the sensor received the command, and a response with a status code indicating whether the ingestion was successful (an error code of <code>200</code> (as in HTTP) indicates success).</p>
-            
+            <p>To instruct the ingestion of an artifact file located on a host where LC is installed, simply issue the <a href="https://doc.limacharlie.io/docs/documentation/docs/sensor_commands.md#artifact_get" target="_blank">artifact_get</a> command. You should receive two events in response to this command: a general receipt indicating the sensor received the command, and a response with a status code indicating whether the ingestion was successful (an error code of <code>200</code> (as in HTTP) indicates success).</p>
             <h3>Using the Service</h3>
             
             <p>With the Artifact Collection Service enabled, a new section should be open in the web interface. It will allow you to manage the automatic collection of files from your fleet without manual input or configuration.</p>
@@ -46,7 +45,7 @@
             
             <p>To see the network interfaces available for capture, issue the <code>pcap_ifaces</code> command to the sensor.</p>
             
-            <p>Each capture rule filters a set of sensor per platform and tag. The second part of the rule is the list of patterns to capture from. Each pattern defines a network interface to use and a [tcpdump-like](https://www.tcpdump.org/manpages/pcap-filter.7.html) filter expression to select traffic from that interface.</p>
+            <p>Each capture rule filters a set of sensor per platform and tag. The second part of the rule is the list of patterns to capture from. Each pattern defines a network interface to use and a <a href="https://www.tcpdump.org/manpages/pcap-filter.7.html" target="_blank">tcpdump-like</a> filter expression to select traffic from that interface.</p>
             
             <p>The filter part of the capture pattern will automatically receive an additional "filter out" expression that removes traffic related to LimaCharlie itself (to avoid a feedback loop of traffic).</p>
             
@@ -58,7 +57,7 @@
             
             <script src="https://gist.github.com/tekgrunt/785ab1838cf5c556260283bcf6efb3fb.js"></script>
 
-            <p>These rules get synced with agents every 10 minutes. Once a capture on the agent reaches a certain threshold (about 30MB), the capture will get automatically sent to the LimaCharlie cloud with the retention specified in the rule. From there you can specify D&R rules to process further the pcap data automatically, like using the [Zeek](https://doc.limacharlie.io/docs/documentation/docs/zeek.md) service.</p>
+            <p>These rules get synced with agents every 10 minutes. Once a capture on the agent reaches a certain threshold (about 30MB), the capture will get automatically sent to the LimaCharlie cloud with the retention specified in the rule. From there you can specify D&R rules to process further the pcap data automatically, like using the <a href="https://doc.limacharlie.io/docs/documentation/docs/zeek.md" target="_blank">Zeek</a> service.</p>
             
             <h3>Using the CLI</h3>
             
@@ -70,7 +69,7 @@
             
             <p>The REST API uses Ingestion Keys, which can be managed through the REST API section of the LC web interface. Access to manage these Ingestion Keys requires the <code>ingestkey.ctrl</code> permission.</p>
             
-            <p>The REST endpoint is located at a per-datacenter URL. You can query the relevant URL for your organization using [this REST call](https://api.limacharlie.io/static/swagger/#/orgs/get_orgs__oid__url).</p>
+            <p>The REST endpoint is located at a per-datacenter URL. You can query the relevant URL for your organization using <a href="https://api.limacharlie.io/static/swagger/#/orgs/get_orgs__oid__url" target="_blank">this REST call</a>.</p>
             
             <p>The endpoint is authenticated using Basic Authentication with the user name being the Organization ID (OID) and the password the Ingestion Key, via a POST.</p>
             
