@@ -26,11 +26,11 @@
 
             <h3>From Files at Rest</h3>
 
-            When running D&R rules against Windows Event Logs (<code>target: artifact</code> and <code>artifact type: wel</code>) that were acquired from files at rest, although the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md" target="_blank">Artifact Collection Service</a> may ingest the same Windows Event Log file that contains some records that have already been processed by the rules, the LimaCharlie platform will keep track of the processed <code>EventRecordID</code> and therefore will NOT run the same D&R rule over the same record multiple times.
+            <p>When running D&R rules against Windows Event Logs (<code>target: artifact</code> and <code>artifact type: wel</code>) that were acquired from files at rest, although the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md" target="_blank">Artifact Collection Service</a> may ingest the same Windows Event Log file that contains some records that have already been processed by the rules, the LimaCharlie platform will keep track of the processed <code>EventRecordID</code> and therefore will NOT run the same D&R rule over the same record multiple times.</p>
 
-            This means you can safely set the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md" target="_blank">Artifact Collection Service</a> to collect various Windows Event Logs from your hosts and run D&R rules over them without risking producing the same alert multiple times.
+            <p>This means you can safely set the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md" target="_blank">Artifact Collection Service</a> to collect various Windows Event Logs from your hosts and run D&R rules over them without risking producing the same alert multiple times.</p>
 
-            For most Windows Event Logs available, see <code>c:\windows\system32\winevt\logs\</code>.
+            <p>For most Windows Event Logs available, see <code>c:\windows\system32\winevt\logs\</code>.</p>
 
     </div>
     </body>
