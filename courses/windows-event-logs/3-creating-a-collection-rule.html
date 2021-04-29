@@ -35,7 +35,7 @@
             <p>Note that Artifact Collection configurations are synchronized with sensors every few minutes.</p>
 
             <h3>Ingestion</h3>
-            
+
             <p>The LimaCharlie sensor can be used to retrieve artifact files directly from hosts.</p>
 
             <strong>Manually</strong>
@@ -56,9 +56,9 @@
 
             <p>These wildcards are NOT supported in the path portion of the pattern. Windows directory separators (backslash,<code>\</code>) must be escaped like <code>\\</code>.</p>
 
-            <p>Good example: <code>/var/log/*.1</code></p>
+            <p><strong>Good example:</strong> <code>/var/log/*.1</code></p>
 
-            <p>Bad example: <code>/var/*/syslog</code></p>
+            <p><strong>Bad example:</strong> <code>/var/*/syslog</code></p>
 
             <p>Note that matching files are watched for changes. When a change is detected, the entire file is ingested. This means you usually want to target logs that get rolled over after a certain time.</p>
 
