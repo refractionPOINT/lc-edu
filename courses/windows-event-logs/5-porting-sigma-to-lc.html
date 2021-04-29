@@ -40,23 +40,21 @@
              
              <p>Targets are types of sources of events that the rule should apply to. The DR rules apply by default to the edr target. This means that if you omit the target element from the Detection component, the rule will assume you want it to apply to events coming from the LimaCharlie agents. Other targets are available however.</p>
  
-             <p><strong>edr:</strong> the default, telemetry events from LC agents.</p>
- 
-             <p><strong>artifact:</strong> applies to artifacts submitted through the REST API or through the artifact_get command of the agent.</p>
- 
-            <p><strong>artifact_event:</strong> applies to lifecycle around artifacts, like a new artifact being ingested.</p>
- 
-             <p><strong>deployment:</strong> applies to high level events about the entire deployment, like new enrollments and cloned sensors detected.</p>
- 
+             <ul>
+                <li><p><strong>edr:</strong> the default, telemetry events from LC agents.</p></li>
+                <li><p><strong>artifact:</strong> applies to artifacts submitted through the REST API or through the artifact_get command of the agent.</p></li>
+                <li><p><strong>artifact_event:</strong> applies to lifecycle around artifacts, like a new artifact being ingested.</p></li>
+                <li><p><strong>deployment:</strong> applies to high level events about the entire deployment, like new enrollments and cloned sensors detected.</p></li>
+             </ul>
+
              <p>While the <code>edr</code> and <code>deployment</code> targets supports most of the APIs, stateful operators and actions below, the <code>log</code> target only supports the following subset:</p>
  
              <p><strong>All the basics:</strong> <code>is</code>, <code>and</code>, <code>or</code>, <code>exists</code>, <code>contains</code>, <code>starts with</code>, <code>ends with</code>, <code>is greater than</code>, <code>is lower than</code>, <code>matches</code>, <code>string distance</code>
  
+                
              <p><strong>Referring to add-ons / resources:</strong> <code>lookup</code>, <code>external</code></p>
- 
              <p><strong>Response actions:</strong> <code>report</code></p>
- 
-             <p><strong>artifact target only:</strong> <code>artifact source</code>, <code>artifact type</code></p>
+             <p><strong>Artifact target only:</strong> <code>artifact source</code>, <code>artifact type</code></p>
  
              <p>In the case of the <code>log</code> target, <code>path</code> references apply to JSON parsed logs the same way as in <code>edr</code> DR rules, but rules on pure text logs requires using the path <code>/txt</code> as the value of a log line. The <code>artifact source</code> matches the log's source string, and the <code>artifact type</code> matches the log's type string.</p>
  
