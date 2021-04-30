@@ -29,9 +29,9 @@
             
             <p>These wildcards are NOT supported in the path portion of the pattern. Windows directory separators (backslash, <code>\</code>) must be escaped like <code>\\</code>.</p>
             
-            <p>Good example: <code>/var/log/*.1</code></p>
+            <p><strong>Good example:</strong> <code>/var/log/*.1</code></p>
             
-            <p>Bad example: <code>/var/*/syslog</code></p>
+            <p><strong>Bad example:</strong> <code>/var/*/syslog</code></p>
             
             <p>Note that matching files are watched for changes. When a change is detected, the entire file is ingested. This means you usually want to target logs that get rolled over after a certain time.</p>
             
@@ -53,7 +53,7 @@
             
             <script src="https://gist.github.com/tekgrunt/61de95caefce6e1f958247766663f325.js"></script>
 
-            <p>which would automatically be expanded for you as</p>
+            <p>Which would automatically be expanded for you as</p>
             
             <script src="https://gist.github.com/tekgrunt/785ab1838cf5c556260283bcf6efb3fb.js"></script>
 

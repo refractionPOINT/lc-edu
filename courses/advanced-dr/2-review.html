@@ -41,13 +41,12 @@
             
             <p>Targets are types of sources of events that the rule should apply to. The DR rules apply by default to the edr target. This means that if you omit the target element from the Detection component, the rule will assume you want it to apply to events coming from the LimaCharlie agents. Other targets are available however.</p>
 
-            <p><strong>edr:</strong> the default, telemetry events from LC agents.</p>
-
-            <p><strong>artifact:</strong> applies to artifacts submitted through the REST API or through the artifact_get command of the agent.</p>
-
-           <p><strong>artifact_event:</strong> applies to lifecycle around artifacts, like a new artifact being ingested.</p>
-
-            <p><strong>deployment:</strong> applies to high level events about the entire deployment, like new enrollments and cloned sensors detected.</p>
+            <ul>
+                <li><strong>edr:</strong> the default, telemetry events from LC agents.</li>
+                <li><strong>artifact:</strong> applies to artifacts submitted through the REST API or through the artifact_get command of the agent.</li>
+                <li><strong>artifact_event:</strong> applies to lifecycle around artifacts, like a new artifact being ingested.</li>
+                <li><strong>deployment:</strong> applies to high level events about the entire deployment, like new enrollments and cloned sensors detected.</li>
+            </ul>
 
             <p>While the <code>edr</code> and <code>deployment</code> targets supports most of the APIs, stateful operators and actions below, the <code>log</code> target only supports the following subset:</p>
 
@@ -80,9 +79,6 @@
             <script src="https://gist.github.com/tekgrunt/f4e9ba102612e8504bdec1fa450179a3.js"></script>
 
             <p>The <code>"event": "SOME_EVENT_NAME"</code> pattern can be used in all logical nodes to filter the type of event being evaluated. You can also use an <code>"events": [ "EVENT_ONE", "EVENT_THREE"]</code> to filter in certain types of events. When a detection is generated (through the report action), it gets fed back into DR rules with an <code>event_type</code> of <code>_DETECTIONNAME</code>. This can be used to compose higher order detections. Finally, a special value can be used in the <code>event/events field: _*</code>. By specifying this <code>_*</code> wildcard as the only value of <code>event:</code>, you ask the DR rule engine to match against all Detections that are re-sent through the engine as describe previously. This effectively allows you to relax the rule of having at least one <code>event:</code> type literal in your rule for Detections. <strong>Example:</strong> <code>event: _*</code> will match all detections.</p>
-
-            
-
         </div>
     </body>
 </htmL>
