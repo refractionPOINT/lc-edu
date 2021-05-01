@@ -4,7 +4,7 @@
     </head>
     <body>
         <div class="container">
-            <iframe width="670" height="377" src="https://www.youtube.com/embed/gSFOaSiZKvQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="670" height="377" src="https://www.youtube.com/embed/57z53p8Q1sg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
             <h3>Network Capture</h3>
 
@@ -30,7 +30,7 @@
 
             <li>Retention: the number of days that the raw network captures should be retained by LimaCharlie.</li>
 
-            <li>Patterns: this is the list of capture expressions describing which parts of the network to capture.?li>
+            <li>Patterns: this is the list of capture expressions describing which parts of the network to capture.</li>
 
                 <ul>
                     <li>Interface: specifies which network interface should be captured.</li>
@@ -41,12 +41,12 @@
 
             <p>For this recipe, we'll use the following rule:</p>
 
-            <p style="white-space: pre-line;"><strong>Platform:</strong> Linux /n
-            <strong>Tags:</strong> leave empty/n
-            <strong>Retention:</strong> 7
-            <strong>Patterns:</strong>
-            <strong>Interface:</strong> any
-            <strong>Filter:</strong> tcp port 80</p>
+            <p><strong>Platform:</strong> Linux</p>
+            <p><strong>Tags:</strong> leave empty</p>
+            <p><strong>Retention:</strong> 7</p>
+            <p><strong>Patterns:</strong></p>
+            <p><strong>Interface:</strong> any</p>
+            <p><strong>Filter:</strong> tcp port 80</p>
 
             <p>The above rule will result in all network traffic on tcp port 80 (HTTP) getting captured regardless of the network interface and will be retained for 7 days.</p>
 

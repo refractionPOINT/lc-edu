@@ -6,7 +6,78 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/q9c_AnM6qzU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
+            <p>A DR rule has two components:</p>
 
+            <ol>
+                 <li>the detection part of the rule is a simple expression that describes what the rule should match on.</li>
+ 
+                 <li>the response part of the rule describes the list of actions that should be taken when the rule matches.</li>
+            </ol>
+ 
+             <p>The REST interface expects those rules in their native JSON format (as described below), but UIs to generate this format are available if you are uncomfortable with the JSON.</p>
+ 
+             <p>For more sample rules and guidelines around rule writing, see our <a href="https://github.com/refractionPOINT/rules" target="_blank">public repository</a> dedicated to this purpose.</p>
+ 
+             <h3>Namespaces</h3>
+             
+             <p>Detection and Response rules support a few namespaces. Initially you do not have to worry about using them since by default operations on rules use the general namespace.</p>
+ 
+            <p>However, if you plan on having multiple groups of people accessing DR rules and want to maintain some segmentation, then namespaces are for you. An example of this is an MSSP wanting to allow their customers to create their own rules without giving them access to the MSSP-maintained sets of rules.</p>
+ 
+             <p>Beyond the general namespace, the main other namespace is called managed (as in MSSP-managed). Currently, operating on namespaces other than general can only be accomplished using the REST API by providing the namespace parameter in the relevant queries.</p>
+ 
+             <h3>Expiration</h3>
+ 
+             <p>It is possible to set an experation time for DR rules as well as False Positive (FP) rules. The expiration is set by providing a <code>expire_on</code>  paramater when creating/setting the DR or FP rule. The value of the parameter should be a second-based unix epoch timestamp, like <code>expire_on: 1588876878</code>.</p>
+ 
+             <p>Once that timestamp has been reached, the rule will be automatically deleted. Note that the exact precision of the expiration can vary, the rule could effectively remain in operation for as long as 10 minutes past the expiration.</p>
+ 
+             <h3>Detection Component</h3>
+ 
+             <p>The Detection component describes what event(s) should produce a match, which the Response section will then action.</p>
+ 
+             <h3>Targets</h3>
+             
+             <p>Targets are types of sources of events that the rule should apply to. The DR rules apply by default to the edr target. This means that if you omit the target element from the Detection component, the rule will assume you want it to apply to events coming from the LimaCharlie agents. Other targets are available however.</p>
+ 
+             <ul>
+                <li><p><strong>edr:</strong> the default, telemetry events from LC agents.</p></li>
+                <li><p><strong>artifact:</strong> applies to artifacts submitted through the REST API or through the artifact_get command of the agent.</p></li>
+                <li><p><strong>artifact_event:</strong> applies to lifecycle around artifacts, like a new artifact being ingested.</p></li>
+                <li><p><strong>deployment:</strong> applies to high level events about the entire deployment, like new enrollments and cloned sensors detected.</p></li>
+             </ul>
+
+             <p>While the <code>edr</code> and <code>deployment</code> targets supports most of the APIs, stateful operators and actions below, the <code>log</code> target only supports the following subset:</p>
+ 
+             <p><strong>All the basics:</strong> <code>is</code>, <code>and</code>, <code>or</code>, <code>exists</code>, <code>contains</code>, <code>starts with</code>, <code>ends with</code>, <code>is greater than</code>, <code>is lower than</code>, <code>matches</code>, <code>string distance</code>
+ 
+
+             <p><strong>Referring to add-ons / resources:</strong> <code>lookup</code>, <code>external</code></p>
+             <p><strong>Response actions:</strong> <code>report</code></p>
+             <p><strong>Artifact target only:</strong> <code>artifact source</code>, <code>artifact type</code></p>
+ 
+             <p>In the case of the <code>log</code> target, <code>path</code> references apply to JSON parsed logs the same way as in <code>edr</code> DR rules, but rules on pure text logs requires using the path <code>/txt</code> as the value of a log line. The <code>artifact source</code> matches the log's source string, and the <code>artifact type</code> matches the log's type string.</p>
+ 
+             <p>For examples of DR rules applying to artifacts, you can look at the Sigma rules generated for the Sigma Service which uses the Windows Event Logs.</p>
+ 
+             <h3>Windows Event Logs</h3>
+ 
+             <p>When running DR rules against Windows Event Logs (<code>target: artifact</code> and <code>artifact type: wel</code>), although the Artifact Collection Service may ingest the same Windows Event Log file that contains some records that have already been processed by the rules, the LimaCharlie platform will keep track of the processed <code>EventRecordID</code> and therefore will NOT run the same DR rule over the same record multiple times.</p>
+ 
+             <p>This means you can safely set the Artifact Collection Service to collect various Windows Event Logs from your hosts and run DR rules over them without risking producing the same alert multiple times.</p>
+ 
+             <p>For most Windows Event Logs available, see <code>c:\windows\system32\winevt\logs\</code></p>
+ 
+             <h3>Basic Structure</h3>
+ 
+             <p>Each logical operation in this component is a dictionary with an <code>op</code> field. Complex logical evaluation is done by using two special <op>op</op> values, and and or. These will take a rules parameter that is a list of other logical operations to perform.</p>
+ 
+             <p>Here is a basic example of a rule that says: When we receive a <code>STARTING_UP</code> event from a linux sensor, and this sensor has the tag <code>test_tag</code>, match.</p>
+ 
+             <script src="https://gist.github.com/tekgrunt/f4e9ba102612e8504bdec1fa450179a3.js"></script>
+ 
+             <p>The <code>"event": "SOME_EVENT_NAME"</code> pattern can be used in all logical nodes to filter the type of event being evaluated. You can also use an <code>"events": [ "EVENT_ONE", "EVENT_THREE"]</code> to filter in certain types of events. When a detection is generated (through the report action), it gets fed back into DR rules with an <code>event_type</code> of <code>_DETECTIONNAME</code>. This can be used to compose higher order detections. Finally, a special value can be used in the <code>event/events field: _*</code>. By specifying this <code>_*</code> wildcard as the only value of <code>event:</code>, you ask the DR rule engine to match against all Detections that are re-sent through the engine as describe previously. This effectively allows you to relax the rule of having at least one <code>event:</code> type literal in your rule for Detections. <strong>Example:</strong> <code>event: _*</code> will match all detections.</p>
+ 
     </div>
     </body>
 </htmL>

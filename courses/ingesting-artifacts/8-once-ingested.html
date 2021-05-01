@@ -6,6 +6,131 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/ALRjsS6wd6Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
-    </div>
+            <h3>Common Information</h3>
+                            
+                <p>Some common elements to events are worth pointing out. Those elements have been removed from the events below, only leaving the information unique to the event. The actual event stream will contain much more information for each event.</p>
+
+                <p>routing/this is a UUID generated for every event in the sensor.</p>
+
+                <p>routing/parent is a reference to the parent event's routing/this, providing strong relationships (much more reliable than simple process IDs) between the events. This allows you to get the extremely powerful explorer view.</p>
+
+                <p>routing/event_time is the time (UTC) the sensor produced the event.</p>
+
+                <p>routing/hostname is the hostname of where the event came from.</p>
+
+                <p>routing/tags is the list of tags associated with the agent where the event came from.</p>
+
+                <h3>Atoms</h3>
+
+                <p>Atoms can be found in 3 locations:</p>
+
+                <ol>
+                    <li><code>routing/parent</code></li>
+                    <li><code>routing/this</code></li>
+                    <li><code>routing/target</code></li>
+                </ol>
+
+
+                <p>Atoms are Globally Unique Identifiers that look like this: 1e9e242a512d9a9b16d326ac30229e7b. You can treat it as an opaque value. These unique values are used to relate events together without the need to use clunky and unreliable things like Process IDs.</p>
+
+                <p>The routing/this Atom reprents the indentifier for the current event. The routing/parent Atom in an event tells you the global identifier for the parent event of the current event. Using these two Atoms, you can create an entire chain of event.</p>
+
+                <p>For processes, this parent relationship is simply the parent process and child process (parent spawned child), but for other less obvious events, the nature of relationship varies. For example for a NETWORK_SUMMARY event, the parent is the process that generated the network connections.</p>
+
+                <p>Depending on the exact storage and searching solution you are using, you will likely want to index the values of routing/this and routing/parent for each event, doing so will allow you to very quickly find the root cause and actions of everything on your hosts.</p>
+
+                <p>Finally, the routing/target is only sometimes found in an event, and it represents a second related (without having a parent-child relationship). For example, in the NEW_REMOTE_THREAD event, this target represents the process where the remote thread was created.</p>
+
+                <p>Basic example:</p>
+
+                <p>Event 1</p>
+
+                <script src="https://gist.github.com/tekgrunt/0886bab0facf528c5011b2df880c93e6.js"></script>
+
+                <p>Event 2</p>
+
+                <script src="https://gist.github.com/tekgrunt/b1cec772ca0366ba28393184d13b3e7e.js"></script>
+
+                <p>Means that <code>Event 1</code> is the parent of <code>Event 2 (Event1 ---> Event2)</code>.</p>
+
+                <h2>ID Schemes</h2>
+
+                <h3>Agent IDs</h3>
+                
+                <p>An AgentID is a 5-tuple that completely describes a sensor, whereas a SensorID is the smallest single unique identifier that can identify a sensor.</p>
+
+                <p>The AgentID's components look like this: <code>OID.IID.SID.PLATFORM.ARCHITECTURE</code>.</p>
+
+                <p>For all components, a value of 0 indicates a wildcard value that matches any value when comparing AgentIDs as masks.</p>
+
+                <h3>OID</h3>
+                
+                <p>The OID (Organization ID) is a UUID that identifies a unique organization.</p>
+
+                <h3>IID</h3>
+                
+                <p>The IID (Installer ID) is a UUID that identifies a unique installation key. This allows us to cycle installation keys and repudiate old keys (in the event the key gets leaked).</p>
+
+                <h3>SID</h3>
+                
+                <p>The SID (Sensor ID) is a UUID that identifies a unique sensor.</p>
+
+                <h3>Platform</h3>
+                
+                <p>The platform is a 32 bit integer (in its hex format) that identifies the exact platform the sensor runs on. Although it is structured with a major and minor platform, the important values are:</p>
+
+                <p><code>0x10000000</code>: Windows</p>
+
+                <p><code>0x20000000</code>: Linux</p>
+
+                <p><code>0x30000000</code>: MacOS</p>
+
+                <p><code>0x40000000</code>: iOS (unused)</p>
+
+                <p><code>0x50000000</code>: Android (unused)</p>
+
+                <p><code>0x60000000</code>: ChromeOS</p>
+
+                <p><code>ox70000000</code>: lc-net</p>
+
+                <h3>Architecture</h3>
+
+                <p>The architecture is an 8 bit integer that identifies the exact architecture the sensor runs on. The important values are:</p>
+
+                <p><code>1</code>: 32 bit</p>
+
+                <p><code>2</code>: 64 bit</p>
+
+                <p><code>3</code>: ARM</p>
+
+                <p><code>4</code>: ARM64</p>
+
+                <p><code>5</code>: Alpine 64</p>
+
+                <p><code>6</code>: Chrome
+
+                <p><code>7</code>: Wireguard</p>
+
+                <p><code>8</code>: ARML</p>
+
+                <h3>Device IDs</h3>
+                
+                <p>Given the breadth of platforms supported by LimaCharlie, it is not unusual for one "device" (laptop, server, mobile etc) to be visible from multiple sensors. A basic example of this might be:</p>
+
+                <ol>
+                    <li>We have a laptop.</li>
+                    <li>The laptop's Operating System is macOS, running a macOS sensor.</li>
+                    <li>The laptop is also running a Windows Virtual Machine, running a Windows sensor.</li>
+                    <li>Finally, the laptop is running an lc-net sensor at the macOS level.</li>
+                </ol>
+
+                <p>In this example, we're dealing with one piece of hardware, but 3 different sensors.</p>
+
+                <p>To help provide a holistic view of activity, LimaCharlie introduces the concept of a Device ID. This ID is mostly visible in the sensor's basic info and in the <code>routing</code> component of sensor events under the name <code>did</code> (Device ID).</p>
+
+                <p>This Device ID is automatically generated and assigned by LimaCharlie using correlation of specific low level events common to all the sensors. This means that if two sensors share a did: <code>1234-5678... ID</code>, it means that they are either on the same device or at least share the same visibility (they see the same activity from two angles).</p>
+
+
+        </div>
     </body>
 </htmL>

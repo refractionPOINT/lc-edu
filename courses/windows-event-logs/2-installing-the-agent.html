@@ -6,7 +6,215 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/CV74tAvEJ08" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
+            <h2>Deploying Sensors</h2>
 
-    </div>
+            <p>The sensor is signed and the same for everyone. The sensor's customization (who is the owner) is done at installation time based on the installation key used. The installation key specifies where the sensor should connect to enroll as well as the encryption key used to start the enrollment process.</p>
+            
+            <p>Installing the sensor does not require a reboot. Also note that once installed the sensor does not have any visual components so instructions on confirming it is installed and running are found below.</p>
+
+            <p>This course specifically deals with Windows deployments but all options are included below for awareness.</p>
+            
+            <h3>Connectivity</h3>
+            
+            <p>The network connection required by the LimaCharlie sensor is very simple. It requires a single TCP connection over port <code>443</code> to a specific domain, and optionally another destination for the Artifact Collection service.</p>
+            
+            <p>The specific domains are listed in the Sensor Downloads section of your organization's dashboard. They will vary depending on the datacenter you chose to create your organization in.</p>
+            
+            <p>Currently, web proxies are not supported, but since LimaCharlie requires a single connection to a single dedicated domain, it makes creating a single exception safe and easy.</p>
+            
+            <h3>Downloading the Sensors</h3>
+
+            <p>To download the single installers relevant for your deployment, access the <code>/download/[platform]/[architecture]</code> control plane. The <code>platform</code> component is one of <code>win</code>, <code>linux</code> or <code>osx</code> while the architecture component is either <code>32</code> or <code>64</code>.</p>
+            
+            <p>For example:</p>
+
+            <ul>
+                <li><a href="https://app.limacharlie.io/get/windows/32" target="_blank">app.limacharlie.io/get/windows/32</a> for the Windows 32 bit executable installer</li>
+                
+                <li><a href="https://app.limacharlie.io/get/windows/64" target="_blank">app.limacharlie.io/get/windows/64</a> for the Windows 64 bit executable installer</li>
+                
+                <li><a href="https://app.limacharlie.io/get/windows/msi32" target="_blank">app.limacharlie.io/get/windows/msi32</a> for the Windows 32 bit MSI installer</li>
+                
+                <li><a href="https://app.limacharlie.io/get/windows/msi64" target="_blank">app.limacharlie.io/get/windows/msi64</a> for the Windows 64 bit MSI installer</li>
+                
+                <li><a href="https://app.limacharlie.io/get/linux/64" target="_blank">app.limacharlie.io/get/linux/64</a> for the Linux 64 bit installer</li>
+                
+                <li><a href="https://app.limacharlie.io/get/linux/alpine64" target="_blank">app.limacharlie.io/get/linux/alpine64</a> for the Linux Apline 64 bit installer</li>
+                
+                <li><a href="https://app.limacharlie.io/get/linux/arm32" target="_blank">app.limacharlie.io/get/linux/arm32</a> for the Linux ARM 32 bit installer</li>
+                
+                <li><a href="https://app.limacharlie.io/get/linux/arm64" target="_blank">app.limacharlie.io/get/linux/arm64</a> for the Linux ARM 64 bit installer</li>
+                
+                <li><a href="https://app.limacharlie.io/get/mac/64" target="_blank">app.limacharlie.io/get/mac/64</a> for the MacOS 64 bit installer</li>
+                
+                <li><a href="https://app.limacharlie.io/get/chrome" target="_blank">app.limacharlie.io/get/chrome</a> for the Chrome extension</li>
+            </ul>
+
+            <h3>Installing the Sensor</h3>
+
+            <p>The sensors are designed to be simple to use and re-package for any deployment methodology you use in your organization.</p>
+            
+            <p>The sensor requires administrative privileges to install. On Windows this means an Administrator or System account, on MacOS and Linux it means the root account.</p>
+            
+            <p>Before installing, you will need the <a href="https://doc.limacharlie.io/docs/documentation/docs/manage_keys.md" target="_blank">installation key</a> you want to use,</p>
+            
+            <h3>Windows</h3>
+            
+            <p>Executing the installer via the command line, pass the <code>-i INSTALLATION_KEY</code> argument where <code>INSTALLATION_KEY</code> is the key mentioned above. This will install the sensor as a Windows service and trigger its enrollment.</p>
+            
+            <p>You may also install the Windows sensor using the MSI version. With the MSI, install using: <code>installer.msi WRAPPED_ARGUMENTS="INSTALLATION_KEY"</code>.</p>
+            
+            <p>You may also pass the value <code>-</code> instead of the <code>INSTALLATION_KEY</code> like: <code>-i -</code>. This will make the installer look for the installation key in an alternate place in the following order:</p>
+            
+            <ul>
+                <li>Environment variable <code>LC_INSTALLATION_KEY</code></li>
+                <li>Text file in current working directory: <code>lc_installation_key.txt</code></li>
+            </ul>
+
+            <h3>System Requirements</h3>
+            
+            <p>The LimaCharlie.io agent supports Windows XP 32 bit and up (32 and 64 bit). However, Windows XP and 2003 support is for the more limited capabilities of the agent that do not require kernel support.</p>
+            
+            <h3>Checking it Runs</h3>
+
+            <p>In an administrative command prompt issue the command <code>sc query rphcpsvc</code> and confirm the <code>STATE</code> displayed is <code>RUNNING</code>.</p>
+            
+            <h3>macOS</h3>
+            
+            <p>Executing the installer via the command line, pass the <code>-i INSTALLATION_KEY</code> argument where <code>INSTALLATION_KEY</code> is the key mentioned above.</p>
+            
+            <p><a href="https://doc.limacharlie.io/docs/documentation/docs/sensor_installation/macOS_sensor_installation-latest.md" target="_blank">Step-by-step instructions for macOS 10.15 (Catalina) and newer</a></p>
+            
+            <p><a href="https://doc.limacharlie.io/docs/documentation/docs/sensor_installation/macOS_sensor_installation-older.md" target="_blank">Step-by-step instructions for macOS 10.14 (Mojave) and older</a></p>
+            
+            <p>You may also pass the value <code>-</code> instead of the <code>INSTALLATION_KEY</code> like: <code>-i -</code>. This will make the installer look for the installation key in an alternate place in the following order:</p>
+            
+            <ul>
+                <li>Environment variable <code>LC_INSTALLATION_KEY</code></li>
+                <li>Text file in current working directory: <code>lc_installation_key.txt</code></li>
+            </ul>
+
+            <h3>Linux</h3>
+
+            <p>Executing the installer via the command line, pass the <code>-d INSTALLATION_KEY</code> argument where <code>INSTALLATION_KEY</code> is the key mentioned above.</p>
+            
+            <p>Because Linux supports a plethora of service management frameworks, by default the LC sensor does not install itself onto the system. Rather it assumes the "current working directory" is the installation directory and immediately begins enrollment from there.</p>
+            
+            <p>This means you can wrap the executable using the specific service manasgement technology used within your organization by simply specifying the location of the installer, the <code>-d INSTALLATION_KEY</code> parameter and making sure the current working directory is the directory where you want the few sensor-related files written to disk to reside.</p>
+            
+            <p>A common methodology for Linux is to use init.d, if this sufficient for your needs, see this <a href="https://github.com/refractionPOINT/lce_doc/blob/master/docs/lc_linux_installer.sh" target="_blank">sample install script</a>. You can invoke it like this:</p>
+            
+            <script src="https://gist.github.com/tekgrunt/d17dbb5613e1a8f75b1a9dd86dbfe53c.js"></script>
+            
+            <p>You may also pass the value <code>-</code> instead of the <code>INSTALLATION_KEY</code> like: <code>-d -</code>. This will make the installer look for the installation key in an alternate place in the following order:</p>
+            
+            <ul>
+                <li>Environment variable LC_INSTALLATION_KEY</li>
+                <li>Text file in current working directory: lc_installation_key.txt</li>
+            </ul>
+
+            <p>An installation script that leverages SystemD can be <a href="https://github.com/refractionPOINT/lce_doc/blob/master/scripts/lc_systemd_installer.sh" target="_blank">downloaded here</a>.</p> 
+            
+            <h3>Disabling Netlink</h3>
+
+            <p>By default the Linux sensor makes use of Netlink if it's availabe. In some rare configurations this auto-detection may be unwanted and Netlink usage can be disabled by setting the environment variable <code>DISABLE_NETLINK</code> to any value on the sensor process.</p>
+            
+            <h3>System Requirements</h3>
+            
+            <p>All versions of Debian and CentOS starting around Debian 5 should be supported. Due to the high diversity of the ecosystem it's also likely to be working on other distributions. If you need a specific platform contact us.</p>
+            
+            <h3>Containers and Virtual Machines</h3>
+
+            <p>The LimaCharlie sensor can be installed in template-based environments whether they're VMs or Containers.</p>
+            
+            <p>The methodology is the same as described above, but you need to be careful to stage the sensor install properly in your templates.</p>
+            
+            <p>The most common mistake is to install the sensor directly in the template, and then instantiate the rest of the infrastructure from this template. This will result in "cloned sensors", sensors running using the same Sensor ID (SID) on different hosts/VMs/Containers.</p>
+            
+            <p>If these occur, a <a href="https://doc.limacharlie.io/docs/documentation/docs/events.md#sensor_clone" target="_blank">sensor_clone</a> event will be generated as well as an error in your dashboard. If this happens you have two choices:</p>
+            
+            <ol>
+              <li>Fix the installation process and re-deploy.</li>
+              <li>Run a de-duplication process with a Detection & Response rule <a href="https://doc.limacharlie.io/docs/documentation/docs/dr.md#de-duplicate-cloned-sensors" target="_blank">like this</a>.</li>
+            </ol>
+
+            <p>Preparing sensors zto run properly from templates can be done in one of two ways:</p>
+            
+            <ol>
+              <li>Run the installer on the template, shut down the service and delete the "identity files".</li>
+              <li>Script the sensor installation process in the templating process.</li>
+            </ol>
+            
+            <p>For solution 1, the identity files you will want to remove are:</p>
+            
+            <ol>
+              <li><strong>Windows:</strong> <code>%windir%\system32\hcp*</code></li>
+              <li><strong>Linux:</strong> depending on the install location of the sensor, the <code>hcp*</code> files like <code>/usr/local/hcp*</code></li>
+              <li><strong>MacOS:</strong> <code>/usr/local/hcp*</code></li>
+            </ol>
+
+            <p>For solution 2, you can start a simple shell script like this to fetch the installer and run it on first boot:</p>
+            
+            <script src="https://gist.github.com/tekgrunt/d2e95dc02e3a5fe9994122ad63b5a35d.js"></script>
+
+            <h3>Container Clusters</h3>
+
+            <p>You can also run LimaCharlie at the host level in a container cluster system like Kubernetes in order to monitor all running containers on the host with a single sensor. In fact, this is the prefered method as it reduces the overhead of running LC within every single container.</p>
+            
+            <p>This is accomplished by a combination of a few techniques:</p>
+            
+            <ol>
+              <li>A privilged container running LC.</li>
+              <li>LC runs with <code>HOST_FS</code> environment variable pointing to the host's root filesystem mounted within the container.</li>
+              <li>LC runs with the <code>NET_NS</code> environment variable pointing to the host's directory listing network namespaces.</li>
+              <li>Running the container with the required flags to make sure it can have proper access.</li>
+            </ol>
+
+            <p>The first step is straight forward, for example, set the environment like <code>ENV HOST_FS=/rootfs</code> and <code>ENV NET_NS=/netns</code> as part of your Dockerfile. This will let the LC sensor know where it can expect host-level information.</p>
+            
+            <p>The second step is to run the container like:</p>
+            
+            <script src="https://gist.github.com/tekgrunt/bde6e56f9a2dd9425db2a6beeb1ac7d7.js"></script>
+
+            <p>Remember to pick the approriate LC sensor architecture installer for the container that will be running LC (not the host). So if your privileged container runs Alpine Linux, use the <code>alpine64</code> version of LC.</p>
+            
+            <p>A public version of the container described below is available from dockerhub as: <code>refractionpoint/limacharlie_sensor:latest</code></p>
+            
+            <h3>Sample Configurations</h3>
+            
+            <p>This is a sample <code>Dockerfile</code> you may use to run LC within a privileged container as described above:</p>
+            
+            <script src="https://gist.github.com/tekgrunt/753397c575e653cfac8fe11b83c64f25.js"></script>
+
+            And this is a sample Kubernetes deployment:
+            
+            <script src="https://gist.github.com/tekgrunt/b486b077f7bb33b8509b9ecfb67012ef.js"></script>
+
+            <h3>Chrome</h3>
+            
+            <ol>
+              <li>The Chrome sensor is available in the Chrome Web Store.</li>
+              <li>In the LimaCharlie web app (app.limacharlie.io), go to the "Installation Keys" section, select your installation key and click the "Chrome Key" copy icon to copy the key to your clipboard.</li>
+              <li>Install the sensor from: <a href="https://app.limacharlie.io/get/chrome" target="_blank">app.limacharlie.io/get/chrome</a></li>
+              <li>A new tab will open where you can add your installation key from before. If you close it by mistake, you can re-open it by:</li>
+              <li>From the Extensions page at chrome://extensions/ click on the "Details" button of the LimaCharlie Sensor extension.</li>
+              <li>Go to the "Extension options" section, and enter your installation key from the previous step. Click save.</li>
+              <li>The <code>installation key</code> can also be pre-configured through the Managed Storage feature (key named installation_key) if you are using a managed Chrome deployment.</li>
+            </ol>
+
+            <h3>Staging Deployment</h3>
+
+            <p>When a new version of the sensor is made available, it can be useful to test the new version on specific hosts within an Organization without upgrading the whole Organization.</p>
+            
+            <p>This can be achieved using a sensor tag called <code>latest</code>. When you tag a sensor with <code>latest</code>, the sensor version currently assigned to the Organization will be ignore for that specific sensor and the latest version of the sensor will be used instead. This means you can tag a representative set of computers in the Organization with the <code>latest</code> tag in order to test-deploy the latest version and confirm no negative effects.</p>
+            
+            <h3>Uninstalling the Sensor</h3>
+            
+            <p>Using an installer, as administrator / root, simply invoke it with one of:</p>
+            
+            <p><code>-r</code> to remove the sensor but leave in place the identity files. This means that although the sensor is no longer running, re-running an installer will re-use the previous sensor config (where to connect, sensor id etc) instead of creating a new one.</p>
+            
+            <p><code>-c</code> to remove EVERYTHING. This means that after a -c, the previous sensor's identity is no longer recoverable. Installing a new sensor on the same host will result in a brand new sensor registering with the cloud.</p>
+        </div>
     </body>
 </htmL>

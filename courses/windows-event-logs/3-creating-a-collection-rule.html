@@ -6,7 +6,107 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/QGiXoIQrs4o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
+            
+            <h2>Artifact Collection</h2>
+            
+            <p>The Artifact Collection system allows you to ingest artifact types like:</p>
 
+            <ul>
+                <li>Plain text logs (syslog for example)</li>
+                <li>Windows Event Logs</li>
+                <li>PCAPs</li>
+                <li>Windows Prefetch files</li>
+                <li>Windows PE (executables) files</li>
+                <li>Zeek (previously Bro)</li>
+                <li>Full memory dumps</li>
+                <li>Generic JSON</li>
+                <li>OLE (MS Word, Excel etc)</li>
+                <li>Windows MFT CSV Listing</li>
+            </ul>
+
+            <p>Those artifacts can be ingested from hosts running a LimaCharlie sensor, or they can be pushed to the LimaCharlie platform via a REST interface.</p>
+
+            <p>Once ingested, the artifacts are retained and made available to you with a custom retention period. Ingested artifacts are also indexed similarly to LimaCharlie events. This means that you can search all of your artifact for the last year for Indicators like IP Addresses, Domain Names, User Names, Hashes etc.</p>
+
+            <p>This in turn makes it possible for you to be looking at sensor data, identity an IP of interest, and launch a quick search to see if this IP has been observed in any artifacts over the past year. If it has, with one click you can visualize the relevant artifact entries to assist you in your investigation.</p>
+
+            <p>We call this "artifact operationalization". It is not mean to be a general viewing and querying tool like Splunk, but as a tactical tool providing you with critical answers as you need them during security operations.</p>
+
+            <p>Note that Artifact Collection configurations are synchronized with sensors every few minutes.</p>
+
+            <h3>Ingestion</h3>
+
+            <p>The LimaCharlie sensor can be used to retrieve artifact files directly from hosts.</p>
+
+            <strong>Manually</strong>
+
+            <p>To instruct the ingestion of an artifact file located on a host where LC is installed, simply issue the <a href="https://doc.limacharlie.io/docs/documentation/docs/sensor_commands.md#artifact_get" target="_blank">artifact_get</a> command. You should receive two events in response to this command: a general receipt indicating the sensor received the command, and a response with a status code indicating whether the ingestion was successful (an error code of <code>200</code> (as in HTTP) indicates success).</p>
+
+            <strong>Using the Collection Service</strong>
+
+            <p>With the Artifact Collection Service enabled, a new section should be open in the web interface. It will allow you to manage the automatic collection of files from your fleet without manual input or configuration.</p>
+
+            <p>The service manages this through the use of Rules that specify a set of Platforms (like Windows), Tags (sensor tags), a retention time and file patterns.</p>
+
+            <p>Rules define which file path patterns should be monitored for changes and ingested for specific sets of hosts.</p>
+
+            <p>Filter tags are tags that must ALL be present on a sensor for it to match (ANDed), while the platform of the sensor much match one of the platforms in the filter (ORed).</p>
+
+            <p>Patterns are file path where the file expression at the end of the path can contain patterns line (<code>*</code>, <code>?</code>, <code>+</code>).</p>
+
+            <p>These wildcards are NOT supported in the path portion of the pattern. Windows directory separators (backslash,<code>\</code>) must be escaped like <code>\\</code>.</p>
+
+            <p><strong>Good example:</strong> <code>/var/log/*.1</code></p>
+
+            <p><strong>Bad example:</strong> <code>/var/*/syslog</code></p>
+
+            <p>Note that matching files are watched for changes. When a change is detected, the entire file is ingested. This means you usually want to target logs that get rolled over after a certain time.</p>
+
+            <p>For example syslog is rolled from <code>syslog</code> to <code>syslog.1</code> after a day, you want to target <code>syslog.1</code> to avoid duplicating records from a file being appended to.</p>
+
+            <strong>Network Capture</strong>
+
+            <p>The service also offers a rule system to do network capture from the host. This feature is currently only available on Linux.</p>
+
+            <p>To see the network interfaces available for capture, issue the <code>pcap_ifaces</code> command to the sensor.</p>
+
+            <p>Each capture rule filters a set of sensor per platform and tag. The second part of the rule is the list of patterns to capture from. Each pattern defines a network interface to use and a <a href="https://www.tcpdump.org/manpages/pcap-filter.7.html" target="_blank">tcpdump-like</a> filter expression to select traffic from that interface.</p>
+
+            <p>The filter part of the capture pattern will automatically receive an additional "filter out" expression that removes traffic related to LimaCharlie itself (to avoid a feedback loop of traffic).</p>
+
+            <p>For example, you could specify the filter:</p>
+
+            <script src="https://gist.github.com/tekgrunt/6728a1574e5b9d79e73190290f69a9ef.js"></script>
+
+            <p>which would automatically be expanded for you as</p>
+
+            <script src="https://gist.github.com/tekgrunt/243f9f3a8a74d03c7fe3b8752d511fe5.js"></script>
+
+            <p>These rules get synced with agents every 10 minutes. Once a capture on the agent reaches a certain threshold (about 30MB), the capture will get automatically sent to the LimaCharlie cloud with the retention specified in the rule. From there you can specify D&R rules to process further the pcap data automatically, like using the <a href="https://doc.limacharlie.io/docs/documentation/docs/zeek.md" target="_blank">Zeek service</a>.</p>
+
+            <h3>Using the CLI</h3>
+
+            <p>To simplify the task on ingesting via the REST API, you can use the LC CLI tool (<code>pip install limacharlie</code>). Using this tool, you can use the <code>limacharlie artifacts --help</code> command it installs. This is the recommended way of ingesting logs from external systems where LC is not installed.</p>
+
+            <h3>Using the REST API</h3>
+
+            <p>When the sensor is tasked to ingest an artifacts file, it itself uses the REST API.</p>
+
+            <p>The REST API uses Ingestion Keys, which can be managed through the REST API section of the LC web interface. Access to manage these Ingestion Keys requires the <code>ingestkey.ctrl</code> permission.</p>
+
+            <p>The REST endpoint is located at a per-datacenter URL. You can query the relevant URL for your organization using <a href="https://api.limacharlie.io/static/swagger/#/orgs/get_orgs__oid__url" taregt="_blank">this REST call</a>.</p>
+
+            <p>The endpoint is authenticated using Basic Authentication with the user name being the Organization ID (OID) and the password the Ingestion Key, via a POST.</p>
+
+            <p>The body of the POST contains the artifact file to ingest. Additional metadata is provided using the following Header fields:</p>
+
+            <ul>
+                <li><code>lc-source</code> is a free form string used as an identifier of the origin of the artifact. When an artifact is ingested from a LC sensor, this value is the Sensor ID (SID) of the sensor.</li>
+                <li><code>lc-hint</code> if present, this indicates to the backend how the file should be interpreted. It default to <code>auto</code> which results in the backend auto-detecting the formal. Currently supported hints include <code>wel</code> (Windows Events Log), <code>prefetch</code> (Windows prefetch file), <code>pcap</code>, <code>txt</code>, <code>pe</code>, <code>zeek</code>, <code>json</code>.</li>
+                <li><code>lc-payload-id</code> if present, this is a globally unique identifier for the artifact file. It can be used to ingest artifacts in an idempotent way, meaning a second file ingested with this same value will be ignore.</li>
+                <li><code>lc-path</code> if present, should be a base-64 encoded string representing the original file path of the artifact on the source system.</li>
+                <li><code>lc-part</code> if present, is used to track multi-part artifact uploads. If set, it should be an integer starting at <code>0</code> and incrementing for every part with the last part being set to <code>done</code>. The <code>lc-payload-id</code> MUST be set and constant across all parts.</li>
+            </ul>
     </div>
     </body>
 </htmL>

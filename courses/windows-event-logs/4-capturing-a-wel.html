@@ -6,7 +6,52 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/jxelM15qDag" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
+            <h3>Accessing Artifacts</h3>
 
+            <p>There are several ways to access the artifacts.</p>
+
+            <p>The main page contains a link to "Artifact Collection" which displays all logs files ingested in the last week. From there you can select a specific log and view it.</p>
+
+            <p>The search page contains a switch to search "in artifacts" instead of sensors. When you search for an indicator, enabling this switch will return you all the hits from the artifact files you have previously ingested.</p>
+
+            <p>The historical view has a button that appears in the top left of the page after a search. Click it will list all log files received from that sensor during that time period and will allow you to go view them. Finally, from the same page, when viewing the details of a specific event, right-clicking on an indicator and clicking "Find Other Locations" will bring you a search interface where you can also search for "in artifact".</p>
+
+            <h3> Windows Event Logs</h3>
+
+            <p>When running D&R rules against Windows Event Logs (<code>target: artifact</code> and <code>artifact type: wel</code>), although the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md" target="_blank">Artifact Collection Service</a> may ingest the same Windows Event Log file that contains some records that have already been processed by the rules, the LimaCharlie platform will keep track of the processed <code>EventRecordID</code> and therefore will NOT run the same D&R rule over the same record multiple times.</p>
+
+            <p>This means you can safely set the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md" target="_blank">Artifact Collection Service</a> to collect various Windows Event Logs from your hosts and run D&R rules over them without risking producing the same alert multiple times.</p>
+
+            <p>For most Windows Event Logs available, see <code>c:\windows\system32\winevt\logs\</code>.</p>
+
+            <h2>Windows Event Logs</h2>
+
+            <h3>From Real-Time Events</h3>
+
+            <em>Only supported on Windows 2008 and up</em>
+
+            <p>It is possible to subscribe to receive Windows Event Logs in real-time from the sensor. By doing this, the targeted Windows Events will be sent to the cloud as normal LimaCharlie telemetry events encapsulated in an event type of <code>WEL</code>. The Windows Events in those cases will be structured as JSON similarly to other LimaCharlie telemetry. This means you can create D&R rules that operate directly on Windows Events, or even correlate between Windows Events and native LimaCharlie telemetry events.</p>
+
+            <p>To configure this collection, you need to specify a special kind of log path as a collection pattern. The format is as follows:</p>
+
+            <script src="https://gist.github.com/tekgrunt/a34ecbd40a01d59a250bee4843f4c543.js"></script>
+
+            <p>The <code>wel://</code> prefix tells LimaCharlie this is not a file at rest, but a live API request from the sensor. The EventSource part of the expression refers to the ChannelPath described in the Windows documentation here: <a href="https://docs.microsoft.com/en-us/windows/win32/api/winevt/nf-winevt-evtsubscribe" target="_blank">docs.microsoft.com/en-us/windows/win32/api/winevt/nf-winevt-evtsubscribe</a>. The FilterExpression component refers to the Query parameter described in the same documentation. Additional documentation on the filter format can also be found here: <a href="https://docs.microsoft.com/en-us/windows/win32/wes/consuming-events" target="_blank">docs.microsoft.com/en-us/windows/win32/wes/consuming-events</a></p>
+
+            Examples of supported patterns:
+
+            <ul>
+                <li><code>wel://Security:*</code></li>
+                <li><code>wel://System:Event[System[EventID=4624]]</code></li>
+            </ul>
+
+            <h3>From Files at Rest</h3>
+
+            <p>When running D&R rules against Windows Event Logs (<code>target: artifact</code> and <code>artifact type: wel</code>) that were acquired from files at rest, although the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md" target="_blank">Artifact Collection Service</a> may ingest the same Windows Event Log file that contains some records that have already been processed by the rules, the LimaCharlie platform will keep track of the processed <code>EventRecordID</code> and therefore will NOT run the same D&R rule over the same record multiple times.</p>
+
+            This means you can safely set the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md" target="_blank">Artifact Collection Service</a> to collect various Windows Event Logs from your hosts and run D&R rules over them without risking producing the same alert multiple times.
+
+            For most Windows Event Logs available, see <code>c:\windows\system32\winevt\logs\</code>
     </div>
     </body>
 </htmL>
