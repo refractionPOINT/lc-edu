@@ -6,7 +6,23 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/ms112nG3wxc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
+            <p>Artifact ingestion and processing involves several steps outlined as follows.</p>
 
+            <h3>Ingestion</h3>
+
+            <p>Artifacts are injested into LimaCharlie via the REST API, automatically from the sensor or through the CLI tool.</p>
+
+            <h3>Normalize to JSON</h3>
+
+            <p>A copy of the original document is saved and then the file is normailzed into JSON. These normalized JSON files are further indexed across common indicators of compromise.</p>
+
+            <h3>Detection & Response Engine</h3>
+
+            <p>The normalized JSON file (the Artifact) and the injestion Event are then run through the LimaCharlie Detection & Response engine where indicators of compromise are checked against detection logic at wire speed.</p>
+
+            <h3>Custom Retention</h3>
+
+            <p>The original Artifact and mirror JSON file are then stored for a custom retention period defined by the user.</p>
     </div>
     </body>
 </htmL>

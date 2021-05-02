@@ -6,7 +6,120 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/kEc4DASMBds" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
+            <h3>Overview</h3>
 
+            <p>This recipe will show you how to use various features of LimaCharlie in order to do network capture, process those network captures with Zeek/BRO and apply simple Detection & Response rules on the Zeek logs.</p>
+
+            <p>At a high level, these will be the steps we'll take:</p>
+
+            <ol>
+                <li>Automate network capture on a Linux endpoint.</li>
+                <li>Automate the processing through Zeek.</li>
+                <li>Create D&R rules for the Zeek logs.</li>
+            </ol>
+
+            <h3>Step 1: Network Capture</h3>
+
+            <p>Network telemetry is ingested in LimaCharlie through the Artifact Collection system.</p>
+
+            <p>Packet captures can be acquired in one of two ways:</p>
+
+            <ol>
+                <li>Using the Artifact Collection's REST API or the SDK's CLI.</li>
+                <li>By configuring capture directly through a LimaCharlie endpoint.</li>
+            </ol>
+
+            <p>For this recipe, we'll show you how to use method 2 since it's the easiest to get started with.</p>
+
+            <p>In the LimaCharlie web app, go to the Artifact Collection section of your organization.</p>
+
+            <p>Towards the bottom of the page you'll find "PCAP Collection Rules". These rules define where and how to capture network traffic. Each rule has a few components:</p>
+
+            <ul>
+                <li>Platforms: this where you select which platform this rule should apply to.</li>
+                <li>Tags: specifies that this rule should only apply to endpoints that have all these tags applied to them.</li>
+                <li>Retention: the number of days that the raw network captures should be retained by LimaCharlie.</li>
+                <li>Patterns: this is the list of capture expressions describing which parts of the network to capture.</li>
+                <ul>
+                    <li>Interface: specifies which network interface should be captured.</li>
+                    <li>Filter: this is the filter expression (tcpdump format) of the traffic to capture.</li>
+                </ul>
+            </ul>
+
+            <p>For this recipe, we'll use the following rule:</p>
+
+            <ul>
+                <li>Platform: Linux</li>
+                <li>Tags: leave empty</li>
+                <li>Retention: <code>7</code></li>
+                <li>Patterns:</li>
+                <ul>
+                    <li>Interface: <code>any</code></li>
+                    <li>Filter: <code>tcp port 80</code></li>
+                </ul>
+            </ul>
+
+            <p>The above rule will result in all network traffic on tcp port 80 (HTTP) getting captured regardless of the network interface and will be retained for 7 days.</p>
+
+            <p>Once created, the relevant endpoints will be tasked to collect the network traffic. As enough network data is collected, it will be uploaded to LimaCharlie. When ingested, these packet captures (PCAP) will show up at the bottom of the Artifact Collection page.</p>
+
+            <h3>Step 2: Zeek Processing</h3>
+
+            <p>Now that we have PCAPs making it into LimaCharlie, we'll want to run the Zeek service over those PCAPs.</p>
+
+            <p>To do this, we'll use the <a href="https://doc.limacharlie.io/docs/documentation/docs/dr.md" target="_blank">D&R Rules</a>. When an Artifact is ingested in LimaCharlie, it generates a synthetic event of type <code>ingest</code> that looks <a href="https://doc.limacharlie.io/docs/documentation/docs/events.md#ingest" target="_blank">like this</a>.</p>
+
+            <p>So what we want is to execute a Service in reaction to an ingested Artifact of type <code>pcap</code>.</p>
+
+            <p>Head over to the D&R Rules section of the web app. Create a new rule and set it (in the advanced section) to this yaml:</p>
+
+            Detection:
+
+            <script src="https://gist.github.com/tekgrunt/b23c537e451ca2388605e654672b618a.js"></script>
+
+            Response:
+
+            <script src="https://gist.github.com/tekgrunt/250189695dec4a4ac19a10228d4ff219.js"></script>
+            
+            <p>So what's going on here?</p>
+
+            <p>First the Detection component. It says to target the <code>artifact_event</code> system (as opposed to the default <code>edr</code> system). Then it specifies to look for events of type <code>ingest</code>, meaning that a new Artifact has been ingested. Finally, we specify to only use events where the log type is <code>pcap</code> since Artifacts could be anything from PCAPs to Windows Event Logs or syslogs. The last components simply say that we don't really care about the contents of the event, just knowing that the event occured is enough for us to want to "match" and take action according to the Response component of the rule.</p>
+
+            <p>The Response component is telling LimaCharlie what to do when the Detection "matches". In our case, we want to make a request to the <code>zeek</code> service to run over the PCAP. The <code>request</code> component of the Response here is the data included to the Zeek service, in this case we want to ask zeek to run specifically over the "log" with ID equal to the value in the <code>routing/log_id</code> of the <code>ingest</code> / <code>artifact_event</code> and to retain the resulting Zeek logs for 90 days.</p>
+
+            <p>As you can now see, this recipe aims to retain the raw full PCAPs for 1 week, but the Zeek logs for 3 months since the Zeek logs will be much smaller than the full PCAP.</p>
+
+            <p>Once you create this rule, any time a PCAP comes in, Zeek will run over it. The resulting Zeek logs will be themselves re-ingested as Artifacts. This means you will be able to find them in the Artifact Collection section of the web app.</p>
+
+            <h3>Step 3: Alerting on Zeek Logs</h3>
+            
+            <p>Now that the Zeek logs are ingested as Artifacts, it means we can write rules over them.</p>
+
+            <p>When we do this, it's important to understand how the Zeek logs will be interpreted for the D&R rules. All Artifacts see the D&R rules engine evaluate them one "record" at a time. A "record" will depend on the exact Artifact type. For PCAPs, a record is a single packet, for Syslog, a record is a log line. For Zeek a record is also a log line.</p>
+
+            <p>Zeek logs are interpreted as first-class formats in LimaCharlie. This means that they're not simply treated as text (although the original text logs are always kept and available). The Zeek logs get parsed and converted to JSON automatically. This well-parsed format is what allows you to make D&R rules that are precise and don't rely on messy regular expressions.</p>
+
+            <p>To see what the D&R rules will process exactly, go to the Artifact Collection section of the web app, find a Zeek log entry at the bottom and click on the little "window expand" green icon for that log. This will open in a new tab the contents of the Zeek log, as parsed by LimaCharlie. You'll see it's a list of JSON records. This means that when we build our D&R rule, we want to describe how to match a JSON record.</p>
+
+            <p>Let's make our D&R rule:</p>
+
+            <p>Detection:</p>
+
+            <script src="https://gist.github.com/tekgrunt/ebe2406b82a684e2849f42352437cd95.js"></script>
+            
+            <p>Response:</p>
+
+            <script src="https://gist.github.com/tekgrunt/e3705e86fda9787268eaa4c72e7cd68e.js"></script>
+            
+            <p>This rule is quite simple:</p>
+
+            <p>Detect any record from a <code>zeek</code> type <code>artifact</code> that has a <code>id.orig_p</code> key with a value of <code>"23"</code>. This is a field from a Zeek log's <code>conn.log</code> file that contains the originating port of a connection.</p>
+
+            <p>The Response simply states to <code>report</code> (alert) with a name of <code>outbound connection from telnet port</code>.</p>
+
+            <h3>Conclusion</h3>
+            
+            <p>That's it, from this point on, we'll alert on automatically collect network data, retain it, process it with Zeek, retain those Zeek logs and alert on those logs as well.</p>
     </div>
     </body>
 </htmL>

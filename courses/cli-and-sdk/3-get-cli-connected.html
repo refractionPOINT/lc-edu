@@ -1,0 +1,31 @@
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <div class="container">
+            <iframe width="670" height="377" src="https://www.youtube.com/embed/LeN6LAEAL7c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <h2>Credentials</h2>
+
+            <p>Authenticating to use the SDK / CLI can be done in a few ways.</p>
+
+            <h3>Logging In</h3>
+            <p>The simplest is to login to an organization using an API key.</p>
+
+            <p>Use limacharlie login to store credentials locally. You will need an OID (Organization ID) and an API key, both of which you can get from the "REST API" section of the web interface.</p>
+
+            <p>The login interface supports named environments, or a default one used when no environment is selected.</p>
+
+            <p>To list available environments: <code>limacharlie use</code></p>
+
+            <p>Setting a given environment in the current shell session can be done like: <code>. <(limacharlie use dev-org)</code></p>
+
+            <p>You can also specify a UID (User ID) during login to use a user API key representing the total set of permissions that user has (see User Profile in the web interface).</p>
+
+            <h3>Environment Variables</h3>
+            <p>You can use the <code>LC_OID</code> and <code>LC_API_KEY</code> and <code>LC_UID</code> environment variables to replace the values used logging in. The environment variables will be used if no other credentials are specified.</p>
+        
+    </div>
+    </body>
+</htmL>

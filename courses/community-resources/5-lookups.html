@@ -6,7 +6,23 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/umTfjw4J0jI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
+            <h3>Lookups</h3>
 
-    </div>
+            <p>Creating a lookup add-on enables you to create a list that you can use as part of D&R rules. Once in place, you can refer to it using the op: lookup D&R rule with a reference to your add-on looking like resource: lcr://lookup/my-lookup-name.</p>
+
+            <p>Lookups support a few structures.</p>
+
+            <ul>
+                <li>Newline-separated values.</li>
+                <li>JSON dictionary where keys are the elements of the lookup and the values are the metadata associated.</li>
+                <li>YAML dictionary where keys are the elements of the lookup and the values are the metadata associated.</li>
+                <li>OTX JSON Pulse.</li>
+                <li>MISP JSON Feed.</li>
+            </ul>
+
+            <p>Here is an example of this complex format:</p>
+
+            <script src="https://gist.github.com/tekgrunt/70291c5c57af0edc56fc01fe07b1c7ee.js"></script>
+        </div>
     </body>
 </htmL>

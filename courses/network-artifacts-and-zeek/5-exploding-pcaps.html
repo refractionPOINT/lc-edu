@@ -4,9 +4,36 @@
     </head>
     <body>
         <div class="container">
-            <iframe width="670" height="377" src="https://www.youtube.com/embed/57z53p8Q1sg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="670" height="377" src="https://www.youtube.com/embed/8wLTY5-JM0I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         
+            <h2>Zeek Processing</h2>
 
+            <p>Now that we have PCAPs making it into LimaCharlie, we'll want to run the Zeek service over those PCAPs.</p>
+
+            <p>To do this, we'll use the D&R Rules. When an Artifact is ingested in LimaCharlie, it generates a synthetic event of type ingest that looks like this.</p>
+
+            <p>So what we want is to execute a Service in reaction to an ingested Artifact of type pcap.</p>
+
+            <p>Head over to the D&R Rules section of the web app. Create a new rule and set it (in the advanced section) to this yaml:</p>
+
+            <strong>Detection:</strong>
+
+            <script src="https://gist.github.com/tekgrunt/78353bcc8e6b441582931af430cfaee6.js"></script>
+
+            <strong>Response:</strong>
+
+            <script src="https://gist.github.com/tekgrunt/22fa5d4e03efd920e0fc980cc1f79d42.js"></script>
+            
+    
+            <p>So what's going on here?</p>
+
+            <p>First the Detection component. It says to target the artifact_event system (as opposed to the default edr system). Then it specifies to look for events of type ingest, meaning that a new Artifact has been ingested. Finally, we specify to only use events where the log type is pcap since Artifacts could be anything from PCAPs to Windows Event Logs or syslogs. The last components simply say that we don't really care about the contents of the event, just knowing that the event occured is enough for us to want to "match" and take action according to the Response component of the rule.</p>
+
+            <p>The Response component is telling LimaCharlie what to do when the Detection "matches". In our case, we want to make a request to the zeek service to run over the PCAP. The request component of the Response here is the data included to the Zeek service, in this case we want to ask zeek to run specifically over the "log" with ID equal to the value in the routing/log_id of the ingest / artifact_event and to retain the resulting Zeek logs for 90 days.</p>
+
+            <p>As you can now see, this recipe aims to retain the raw full PCAPs for 1 week, but the Zeek logs for 3 months since the Zeek logs will be much smaller than the full PCAP.</p>
+
+            <p>Once you create this rule, any time a PCAP comes in, Zeek will run over it. The resulting Zeek logs will be themselves re-ingested as Artifacts. This means you will be able to find them in the Artifact Collection section of the web app.</p>
     </div>
     </body>
 </htmL>

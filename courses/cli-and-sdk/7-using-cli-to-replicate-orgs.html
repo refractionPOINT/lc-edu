@@ -1,0 +1,29 @@
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <div class="container">
+            <iframe width="670" height="377" src="https://www.youtube.com/embed/L-hprlcZMLs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <h3>Configs</h3>
+            <p>The Configs is used to retrieve an organization's configuration as a config file, or apply an existing config file to an organization. This is the concept of Infrastructure As Code.</p>
+        
+            <code>limacharlie configs fetch --oid c82e5c17-d519-4ef5-a4ac-c454a95d31ca</code>
+
+            <code>limacharlie configs push --dry-run --oid c82e5c17-d519-4ef5-a4ac-c454a95d31ca</code>
+
+            <p>The <code>fetch</code> command will get a list of the Detection & Response rules in your organization and will write them to the config file specified or the default config file <code>lc_conf.yaml</code> in YAML format.</p>
+
+            <p>Then <code>push</code> can upload the rules specified in the config file (or the default one) to your organization. The optional <code>--force</code> argument will remove active rules not found in the config file. The <code>--dry-run</code> simulates the sync and displayes the changes that would occur.</p>
+
+            <p>The <code>--config</code> allows you to specify an alternate config file and the <code>--api-key</code> allows you to specify a file on disk where the API should be read from (otherwise, of if <code>-</code> is specified as a file, the API Key is read from STDIN).</p>
+
+            <p>All these capabilities are also supported directly by the limacharlie.Configs object.</p>
+
+            <p>The Sync functionality currently supports all common useful configurations. The <code>--no-rules</code> and <code>--no-outputs</code> flags can be used to ignore one or the other in config files and sync. Additional flags are also supported, see limacharlie configs <code>--help</code>.</p>
+
+            <p>To understand better the config format, do a fetch from your organization or have a look at the samples. Notice the use of the include statement. Using this statement you can combine multiple config files together, making it ideal for the management of complex rule sets and their versioning.</p>
+        </div>
+    </body>
+</htmL>
