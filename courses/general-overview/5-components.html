@@ -7,19 +7,39 @@
 
 			<h2>Endpoint Detection & Response (EDR)</h2>
 
-			<p dir="ltr">LimaCharlie delivers tools and infrastructure using a services model. One of the main pillars of the LimaCharlie platform is the EDR component on which the majority of services are built.</p> A powerfufl XDR capability emerges with LimaCharlie Net enabled but more on that later.
+			<p>The first core technology available in LimaCharlie was the EDR.</p>
 
-			<p dir="ltr">There are two main modes of operation. The simplest is running the LimaCharlie Agent as middleware and piping the data into an existing pipeline. When running as middleware LimaCharlie never writes any telemetry to disk.</p>
+			<p>The EDR provides a whole suite of powerful capabilities and is built off of a lightweight, cross-platform agent.</p>
+			
+			<p>The LimaCharlie endpoint agent has the best cross-platform support in the industry and can be used to bring the most diverse fleets into a single detection stream. The agent runs on 32-bit Windows all way Back to Windows XP SP II through to the most modern version of 64-bit Windows. It can run on all flavours of Linux both 32-bit and 64-bit. Builds for MacOS (Intel & M1) are also available. Builds for Solaris and BSD that can be produced on request. The lightweight footprint of LimaCharlie’s agent makes it well suited for IoT and builds across x86, ARM and MIPS architectures are available for all platforms.</p>
+			
+			<p>The agent is written in C and then compiled for each different platform and architecture it runs on which means that it has true feature parity across all operating systems. The only exceptions are platform specific functions, such as monitoring Windows registry operations, etc.</p>
+			
+			<p>When the agent is installed and running it is referred to as a sensor in agent is approximately 500kb in size but that varies a little depending on which platform it is compiled for. While running it consumes less that 1% CPU but does spike very briefly when certain events take place like an application starting up. LimaCharlie is able to pack so much power into such a small program because it treats the agent as an extension of the cloud by utilizing a true real-time persistent TLS connection. The round trip time from an event being detected to the time a response is actioned on the endpoint is generally less than 100 milliseconds.</p>
+			
+			<p>LimaCharlie also offers the industry's only Chrome OS agent. The agent can be used as a standalone on machines running Chrome OS or as a sidecar agent in the browser where it can do HTTP inspection removing the need for SSL interception.</p>
+			
+			<p>Telemetry is produced for evaluation by the Detection & Response Engine via the sensor that monitors Events taking place on the endpoint. The LimaCharlie sensor monitors over 75 Events taking place on the endpoint. A full list of Events can be found here.</p>
+			
+			<p>Complete endpoint telemetry is stored in a one year rolling window. All telemetry is indexed and searchable across common indicators of compromise.</p>
 
-			<p dir="ltr">The second class of functionality is a superset of the first class and becomes available when Storage is enabled. Storage is optional telemetry storage with a one year rolling window of history. In this mode all telemetry is captured and indexed across common indicators of compromise.</p> Many of the more advanced capabilities in LimaCharlie require storage to be enabled.
+			<p>Detection rules are written against telemetry and when a positive match occurs a Response action is initiated.</p>
+			
+			<p>Response actions can take many forms and are often used for automating between different parts of the LimaCharlie platform.</p>
 
-			Running as middleware the LimaCharlie agent enables:
 			<ul>
-				<li dir="ltr">Detection &amp; Response</li>
-				<li dir="ltr">Live View</li>
-				<li dir="ltr">Payloads &amp; File Retrieval</li>
-				<li dir="ltr">Data Forwarding</li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
 			</ul>
+
+			<p>The Detection & Response Engine behind the EDR capability plays a central role in coordinating between the different core technologies and lays the foundation for automating operations at scale.</p>
+			
+			<h2>Artifact Collection</h2>
+
 
 			<h2>Secure Access Service Edge (SASE)</h2>
 
@@ -31,31 +51,17 @@
 
             <p>Simple and powerful policy controls allow you to control where and when users can access given resources or even what they can access online. Provide your sales team access to your on-premises file server when they're on the road without having to poke holes in your firewall or use DNS sink-holing to block access to sites like Facebook during business hours.</p>
 
-			<h2>Artifact Collection</h2>
+
+
+			
 
 			<h2>Comms</h2>
 
-			<p dir="ltr">The superset of functionality - with Storage enabled - provided to LimaCharlie users:</p>
 
-			<ul>
-				<li dir="ltr">Telemetry Storage</li>
-				<li dir="ltr">Artifact Collection</li>
-				<li dir="ltr">Search &amp; Historical Threat Hunting</li>
-				<li dir="ltr">Integrations</li>
-				<li dir="ltr">Community Resources</li>
-				<li dir="ltr">Public &amp; Private Extensions</li>
-				<li dir="ltr">Product Development</li>
-			</ul>
 
 			<p dir="ltr">Details on each of these capabilities and functionality can be found below.</p>
 
-			<h3 dir="ltr">Detection &amp; Response</h3>
 
-			<p dir="ltr">The LimaCharlie Agent monitors over 70 different event types as they take place on the endpoint. JSON Telemetry describing these events is sent over a semi-persistent, real-time connection to the LimaCharlie Cloud where it is processed.</p>
-
-			<p dir="ltr">Detection &amp; Response (D&amp;R) describes the process by which telemetry generated by a given endpoint agent triggers a detection inside of the LimaCharlie Cloud and a response action takes place. Round-trip time from when an event takes place that triggers a detection to a response being actioned on the endpoint is generally around 100ms.</p>
-
-			<p dir="ltr">D&amp;R Rules are simple expressions that describe conditions that will trigger a detection when matched. Once a D&amp;R Rule is written it can be pushed to the LimaCharlie Cloud where it will instantly be applied to every endpoint in the fleet. It can help with conceptualization to think of D&amp;R Rules as akin to AWS Lambda or Google Cloud Functions.</p>
 
 			<h3 dir="ltr">Live View</h3>
 
