@@ -7,11 +7,11 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/0Mklij8aRxI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-            <p>Generally the D&R rules operate in a stateless fashion, meaning a rule operates on one event at a time and either matches or doesn't.</p>
+            <p>Generally the D&R rules operate in a stateless fashion, meaning a rule operates on one event at a time and either matches or does not.</p>
 
             <p>To be able to perform D&R rules across events to detect more complex behaviors, you can use the <code>with child</code> and <code>with descendant</code> parameters. Note that those parameters can ONLY be specified on a rule operator specifying the <code>event: NEW_PROCESS</code> since they only apply to the relationship between an event and a process.</p>
 
-            <p>Both the <code>with child</code> and <code>with descendant</code> parameters are effectively the same except for the "depth" of the relationship they cover. The <code>child</code> specifies that the target state (described below) must apply to the direct children of the matching process. The <code>descendant</code> specifies that the target state must apply globally to any descendands (children of children) of the matching process.</p>
+            <p>Both the <code>with child</code> and <code>with descendant</code> parameters are effectively the same except for the "depth" of the relationship they cover. The <code>child</code> specifies that the target state (described below) must apply to the direct children of the matching process. The <code>descendant</code> specifies that the target state must apply globally to any descendants (children of children) of the matching process.</p>
 
             <p>The value of a <code>with child</code> (or descendant) is simply another (stateless) rule operator. The logic defined in this rule operator describes the set of conditions that must match, not a single event, but the collection of events that are children (or descendants) of the matching process.</p>
 
@@ -43,7 +43,7 @@
 
             <p>Another parameter comes into play if you want to define a set of operators underneath a <code>with child</code> to be "stateless", meaning where you want all the operators to apply and match with single events (like the classic stateless D&R rules). This parameter is <code>is stateless: true</code>. Simply add it to the operators at the root of the logic you want to be applied statelessly.</p>
 
-            <p>Finally, a node in stateful mode under a <code>with child</code> or <code>with descendand</code> can specify a <code>count: N</code> parameter. When specified, you specify that the given node must be matched N times before it is considered successful. So setting <code>count: 3</code> in a node looking for a <code>event/FILE_PATH</code> ending in <code>cmd.exe</code> will mean that we want to match only if we see 3 instances of a <code>cmd.exe</code> in that context to match. An example usage of this is to set <code>count:</code> in a <code>matches</code> operator looking for a set of processes which would result in detecting a "burst" of matching processes from a parent (like: if a process starts more than 3 <code>cmd.exe</code>, alert). Adding a <code>within: Z</code> parameter to the <code>count: N</code> limits the count to where the first and last event in the count is within a <code>Z</code> seconds time window.</p>
+            <p>Finally, a node in stateful mode under a <code>with child</code> or <code>with descendant</code> can specify a <code>count: N</code> parameter. When specified, you specify that the given node must be matched N times before it is considered successful. So setting <code>count: 3</code> in a node looking for a <code>event/FILE_PATH</code> ending in <code>cmd.exe</code> will mean that we want to match only if we see 3 instances of a <code>cmd.exe</code> in that context to match. An example usage of this is to set <code>count:</code> in a <code>matches</code> operator looking for a set of processes which would result in detecting a "burst" of matching processes from a parent (like: if a process starts more than 3 <code>cmd.exe</code>, alert). Adding a <code>within: Z</code> parameter to the <code>count: N</code> limits the count to where the first and last event in the count is within a <code>Z</code> seconds time window.</p>
 
         </div>
     </body>

@@ -31,13 +31,13 @@
 
             <h3>Expiration</h3>
 
-            <p>It is possible to set an experation time for DR rules as well as False Positive (FP) rules. The expiration is set by providing a <code>expire_on</code>  paramater when creating/setting the DR or FP rule. The value of the parameter should be a second-based unix epoch timestamp, like <code>expire_on: 1588876878</code>.</p>
+            <p>It is possible to set an expiration time for DR rules as well as False Positive (FP) rules. The expiration is set by providing a <code>expire_on</code>  parameter when creating/setting the DR or FP rule. The value of the parameter should be a second-based unix epoch timestamp, like <code>expire_on: 1588876878</code>.</p>
 
             <p>Once that timestamp has been reached, the rule will be automatically deleted. Note that the exact precision of the expiration can vary, the rule could effectively remain in operation for as long as 10 minutes past the expiration.</p>
 
             <h3>Detection Component</h3>
 
-            <p>The Detection component describes what event(s) should produce a match, which the Response section will then action.</p>
+            <p>The Detection component describes what event(s) should produce a match, which the Response section will then act on.</p>
 
             <h3>Targets</h3>
             
