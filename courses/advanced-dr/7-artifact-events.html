@@ -9,7 +9,7 @@
 
             <h2>Zeek Recipe</h2>
 
-            <p>In order to demonstrate the power of Artifact Collection this section is going to walk through an example of automating netowrk capture and processing of PCAP files using the the <a href="https://zeek.org/" target="">Zeek Network Monitoring Tool</a>.</p>
+            <p>In order to demonstrate the power of Artifact Collection this section is going to walk through an example of automating network capture and processing of PCAP files using the the <a href="https://zeek.org/" target="">Zeek Network Monitoring Tool</a>.</p>
 
             <p>At a high level, these will be the steps we'll take:</p>
 
@@ -43,7 +43,7 @@
 
             <li>Retention: the number of days that the raw network captures should be retained by LimaCharlie.</li>
 
-            <li>Patterns: this is the list of capture expressions describing which parts of the network to capture.?li>
+            <li>Patterns: this is the list of capture expressions describing which parts of the network to capture.</li>
 
                 <ul>
                     <li>Interface: specifies which network interface should be captured.</li>
@@ -87,7 +87,7 @@
     
             <p>So what's going on here?</p>
 
-            <p>First the Detection component. It says to target the artifact_event system (as opposed to the default edr system). Then it specifies to look for events of type ingest, meaning that a new Artifact has been ingested. Finally, we specify to only use events where the log type is pcap since Artifacts could be anything from PCAPs to Windows Event Logs or syslogs. The last components simply say that we don't really care about the contents of the event, just knowing that the event occured is enough for us to want to "match" and take action according to the Response component of the rule.</p>
+            <p>First the Detection component. It says to target the artifact_event system (as opposed to the default edr system). Then it specifies to look for events of type ingested, meaning that a new Artifact has been ingested. Finally, we specify to only use events where the log type is pcap since Artifacts could be anything from PCAPs to Windows Event Logs or syslogs. The last components simply say that we don't really care about the contents of the event, just knowing that the event occured is enough for us to want to "match" and take action according to the Response component of the rule.</p>
 
             <p>The Response component is telling LimaCharlie what to do when the Detection "matches". In our case, we want to make a request to the zeek service to run over the PCAP. The request component of the Response here is the data included to the Zeek service, in this case we want to ask zeek to run specifically over the "log" with ID equal to the value in the routing/log_id of the ingest / artifact_event and to retain the resulting Zeek logs for 90 days.</p>
 
@@ -123,7 +123,7 @@
 
             <strong>Conclusion</stong>
 
-            <p>That's it, from this point on, we'll alert on automatically collect network data, retain it, process it with Zeek, retain those Zeek logs and alert on those logs as well.</p>
+            <p>That's it, from this point on, we'll alert on automatically collected network data, retain it, process it with Zeek, retain those Zeek logs and alert on those logs as well.</p>
         </div>
     </body>
 </htmL>
