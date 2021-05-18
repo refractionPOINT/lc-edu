@@ -1,9 +1,216 @@
 <htmL>
     <head>
         <link rel="stylesheet" href="../style.css">
+
+
+	
     </head>
     <body>
 		<div class="container">
+
+			<h2>Installing the Agent</h2>
+
+			<p>Before we can start leveraging the capabilities available in LimaCharlie we have to get up and running first. This section takes the user through getting set up with an agent running on an endpoint.</p>
+
+			If you have not already, creat an account and your first Organization.
+			
+			<div class="wrap-collabsible">
+				<input id="collapsible" class="toggle" type="checkbox">
+				<label for="collapsible" class="lbl-toggle">Create an account and your first Organization</label>
+				<div class="collapsible-content">
+				  <div class="content-inner">
+					<p>
+						<h2>Creating an Account</h2>
+						
+						<p>To gain access to LimaCharlie you will first need to create an account. This account can be attached to a specific email address (which will require you to verify the email), or through a Google, Github or Microsoft account.</p>
+						
+						<p>Head over to <a href="https://app.limacharlie.io/signup" target="_blank">app.limacharlie.io/signup</a> and follow the login instructions. If an email verification is required you will be prompted to do so.</p>
+						
+						<h2>Create an Organization</h2>
+						 
+						<p>The first time you login you will be presented with the <a href="https://www.limacharlie.io/terms" target="">Terms of Service</a>. Read through them and click accept.</p>
+
+						<p>You will be presented with a welcome screen. At the bottom of this screen click "Create Organization". Clicking "Create Organization" opens a dialog to name the <em>Organization</em> and choose the location of the datacenter.</p>
+						
+						<h3>Select a Datacenter</h3>
+						
+						<p>Choose where you want your data to reside. Data does not transit outside of the geographical area in which the data center is located.</p>
+						
+						<p>The LimaCharlie global infrastructure is built on the Google Cloud Platform (GCP) and currently has computing resources available in the USA, Canada, Europe, India and the United Kingdom. Choosing a geographical location ensures data will always be processed in this location and never moved outside. New data centres can be spun up <a href="https://cloud.google.com/about/locations" target="_blank">anywhere GCP is available</a> upon customer request.</p>
+
+						<h3>Give your organization a name.</h3>
+						
+						<p>The first thing to do is create an Organization. LimaCharlie is multi-tenant and the tenants are structured as Organizations. Sensors belong to Organizations and billing is performed per Organization.</p>
+
+						<p>On the right side of the Member Organizations section of the dashboard, click on "Create".</p>
+
+						<p>Select a datacenter. This will decide where your sensors will connect to in the world. Many countries are available. Enter an organization name. This name must be unique. The "Name Available" indicator should indicate a green checkbox a few seconds after you've entered a valid name.</p>
+
+						<p>LimaCharlie comes with a free tier of two sensors. You do not need a credit card to get this free tier, but if you decide to upgrade your quota, you will have to enter your credit card information.</p>
+						
+						<p>Click "Create". Within a few seconds you should see an indication that your organization is ready.</p>
+					</p>
+				  </div>
+				</div>
+			  </div>
+
+			<h3>Organization View</h3>
+
+			<p>From the <em>Organizational View</em> navigate to the <em>Install Sensors</em> menu item in the lower portion of the main menu.</p>
+
+			<div class="wrap-collabsible">
+				<input id="collapsible1" class="toggle" type="checkbox">
+				<label for="collapsible1" class="lbl-toggle">Short description of each menu item + doc links</label>
+				<div class="collapsible-content">
+				  <div class="content-inner">
+					<h2>Respond</h2>
+					
+					<p>The Respond section contains elements and features that are used for ongoing operations. Here you will find tools that are useful once you have everything set up and running.</p>
+					
+					<ul>
+						<li>
+							<h3>Sensors</h3>
+							
+							<p>A top-level listing of all endpoint agents installed. This view allows you to search and drill down into specific endpoints using features that take advantage of LimaCharlie’s real-time connection to the agents.</p>
+						</li>
+						<li>						
+							<h3>Dashboard</h3>
+							
+							<p>The Dashboard provides access and insight into several areas of the LimaCharlie platform. Initially there will be nothing to display but once your deployment is up and running this is where you can do the following.</p>
+
+							<ul>
+								<li>Search the entire fleet for all time across common IoC’s (filename, IP, file hash/path, etc).</li>
+								<li>Get top-level information at a glance regarding sensors online over time, as well as events and detections over time.</li>
+								<li>A list of jobs that are currently queued or that have recently run on your deployment.</li>
+							</ul>
+						</li>
+						<li>
+							<h3>Detections</h3>
+							
+							<p>The Detections tab is where detections are recorded in list format. From a given Detection the user can go live on the given endpoint or view historical data at the time of detection in the historical data viewer.</p>
+						</li>
+						<li>
+							<h3>Artifacts</h3>
+							
+							<p>The Artifacts tab provides a filterable view of all external artifacts (log files, syslog, PCAPS, Zeek files, ect) that have been ingested by the Organization into LimaCharlie.</p>
+						</li>
+						<li>
+							<h3>Search</h3>
+
+							<p>The Search tab provides a global search function that allows the user to search across the entire fleet over the past year using common indicators of compromise.</p>
+						</li>
+						<li>
+							<h3>Replay</h3>
+
+							<p>The Replay tab is where users can run Detection & Response rules against historical telemetry.</P>
+						</li>
+					</ul>
+
+					<h2>Develop</h2>
+					
+					In the Develop section you will find tools and features that get closer to the action.
+					
+					<ul>
+						<li>
+							<h3>D&R Rules</h3>
+							
+							<p>The D&R Rules tab is where the current D&R rules as applied to the organization’s feelt reside. False Positive exceptions against these rules are also listed here.</p>
+						</li>
+						<li>	
+							<h3>Outputs</h3>
+							
+							<p>The Output tab lists external locations where data is being directed.</p>
+						</li>
+						<li>
+							<h3>Exfil Control</h3>
+
+							<p>Exfil Control allows users to exercise fine-grained control on the type of data being sent back from the various endpoints.</p>
+						</li>
+						<li>
+							<h3>Payloads</h3>
+							
+							<p>Payloads allows users to upload any executable file to the LImaCharlie cloud from where it can be deployed and run on any set of endpoints.</p>
+						</li>
+						<li>
+							<h3>File/Reg Integrity</h3>
+							
+							<p>The File/Reg Integrity Monitoring tab allows the user to manage all aspects of file and registry integrity monitoring.</p>
+						</li>
+						<li>
+							<h3>Yara</h3>
+							
+							<p>The Yara tab enables the user to manage all aspects of Yara scanning. Add sources,  add rules or initiate scans.</p>
+						</li>
+						<li>
+							<h3>Artifact Collection</h3>
+
+							<p>The Artifact Collection tab enables the user to manage all aspects of external file ingestion for processing by the Detection & Response engine.</p>
+						</li>
+						<li>	
+							<h3>Net Policies</h3>
+
+							<p>The Net Policies tab enables users to create and manage policies for LimaCharlie’s Secure Access Service Edge (SASE).</p>
+						</li>
+						<li>
+							<h3>Service Request</h3>
+							
+							<p>The Service Request tab enables the user to issue requests to specific services manually.</p>
+						</li>
+						<li>
+							<h3>Rest API</h3>
+							
+							<p>The REST API tab is where users can create and manage fine-grained permissions across API keys.</p>
+							Swagger Doc
+							Doc
+						</li>
+					</ul>
+
+					<h2>Setup</h2>
+
+					<p>The Setup section contains the nuts and bolts of your LimaCharlie configuration management.</p>
+					
+					<ul>
+						<li>
+							<h3>Install Sensors</h3>
+
+							<p>The Install Sensors tab is where users can download platform specific installers for the agent and create Installation Keys.</p>
+						</li>
+						<li>
+							<h3>Net Clients</h3>
+
+							<p>The Net Clients tab is where users can provision Secure Access Service Edge (SASE) devices.</p>
+						</li>
+						<li>
+							<h3>Users & Roles</h3>
+							
+							<p>The Users & Roles tab allows the user to create users and administer fine grained permissions per user.</p>
+						</li>
+						<li>
+							<h3>Billing</h3>
+							
+							<p>The Billing tab is where users can manage their sensor quota, view active subscriptions and usage overview.</p>
+						</li>
+						<li>
+							<h3>Add-ons</h3>
+
+							<p>The Add-ons tab is where users can subscribe to APIs, Services, Lookups and Detections.</p>
+						</li>
+						<li>
+							<h3>Integrations</h3>
+							
+							<p>The Integrations tab is where various integrations can be configured.</p>
+						</li>
+						<li>
+							<h3>Platform Logs</h3>
+							
+							<p>The Platform Logs tab is where all of the platform logs can be accessed. Management, Error and Audit logs can be found here.</p>
+						</li>
+					</ul>
+				  </div>
+				</div>
+			</div>
+
+			<h3>Getting an Installation Key</h3>
 
 			<p>To get started you will need to create an installation key. Installation keys can be created by visiting the <em>Installation Keys</em> section of the web application and clicking on the plus icon in the upper right corner.&nbsp;</p>
 
@@ -17,17 +224,17 @@
 
 		</br>
 
-			<img style="float:left; max-width: 20px;" src="https://storage.googleapis.com/lc-edu/content/images/graphs/quickstart-installing-2.png"/>
+			<img style="float:left; max-width: 20px; padding-top: 15px; padding-right: 10px;" src="https://storage.googleapis.com/lc-edu/content/images/graphs/quickstart-installing-2.png"/>
 			<p><strong>Windows:</strong> installer.exe -i YOUR_INSTALLATION_KEY</p>
 
 		</br>
 
-			<img style="float:left; max-width: 20px;" src="https://storage.googleapis.com/lc-edu/content/images/graphs/quickstart-installing-3.png"/>
+			<img style="float:left; max-width: 20px; padding-top: 15px; padding-right: 10px;" src="https://storage.googleapis.com/lc-edu/content/images/graphs/quickstart-installing-3.png"/>
 			<p><strong>MacOS:</strong> chmod +x installer ; installer -i YOUR_INSTALLATION_KEY</p>
 
 		</br>
 
-			<img style="float:left; max-width: 20px;" src="https://storage.googleapis.com/lc-edu/content/images/graphs/quickstart-installing-4.png"/>
+			<img style="float:left; max-width: 20px;  padding-top: 15px; padding-right: 10px;" src="https://storage.googleapis.com/lc-edu/content/images/graphs/quickstart-installing-4.png"/>
 			<p><strong>Linux:</strong> chmod +x installer ; installer -d YOUR_INSTALLATION_KEY</p>
 
 		</br>
@@ -42,14 +249,19 @@
 
 			<p>Once the sensor is installed it should show up in the Sensors section of the web application.</p>
 
-	<!-- We need a screen shot of the sensor list here -->
-			<p>LimaCharlie is Security Infrastructure as a Service (SIaaS). You can think of LimaCharlie as the Amazon Web Services (AWS) or Google Cloud Platform (GCP) of information security. Our EDR capability can be thought of as the equivalent of EC2.</p>
+			<div class="wrap-collabsible">
+				<input id="collapsible2" class="toggle" type="checkbox">
+				<label for="collapsible2" class="lbl-toggle">Interacting with the endpoint sensor and its telemetry</label>
+				<div class="collapsible-content">
+				  <div class="content-inner">
 
-			<p><img src="https://storage.googleapis.com/lc-edu/content/images/graphs/quickstart-installing-6.png"/></p>
+					Sensor Details
+					
+					
 
-			<p>To enjoy the full capabilities of LimaCharlie you will need to enable the long term storage feature called Insight (the S3 to our EC2). With this feature enabled the LimaCharlie platform will store all telemetry data produced by the agents for one year. With the telemetry storage feature enabled you will be able to search for IOCs across your whole organization and utilize all of the tools available. LimaCharlie offers External Log Storage which is also indexed across IOCs and allows users to execute these same capabilities across log files</p>
-
-			<p>You can enable Insight be visiting the Add Ons section and clicking the toggle.</p>
+				  </div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
