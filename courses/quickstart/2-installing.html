@@ -247,18 +247,81 @@
 
 			<p>A sample script for setting up persistence on Linux systems that utilize systemd can be found here:<a href="https://github.com/refractionPOINT/lce_doc/blob/master/scripts/lc_systemd_installer.sh" target="_blank">systemd</a></p>
 
-			<p>Once the sensor is installed it should show up in the Sensors section of the web application.</p>
+			<p>Once the sensor is installed it should show up in the Sensors section of the web application. To see the Sensor View for a specific <a href="https://doc.limacharlie.io/docs/documentation/docs/events.md" target="_blank">Device</a> click the hostname from this list.</p>
 
 			<div class="wrap-collabsible">
 				<input id="collapsible2" class="toggle" type="checkbox">
-				<label for="collapsible2" class="lbl-toggle">Interacting with the endpoint sensor and its telemetry</label>
+				<label for="collapsible2" class="lbl-toggle">Details on the Sensor View</label>
 				<div class="collapsible-content">
 				  <div class="content-inner">
 
-					Sensor Details
+					<h2>Sensor Details</h2>
 					
-					
+					<p>To view the endpoint details click on the hostname in the sensor list on the Sensor page.</p>
 
+					<p>This view provides us with a window into the endpoint where we can take a host of actions or perform investigations. A listing of the various menu items, along with a brief description of each is as follows.</p>
+
+					<h3>Overview</h3>
+
+					<p>This provides quick access to basic information about the Sensor running on the endpoint. Here you can find the following.</p>
+
+					<ul>
+						<li>Hostname</li>
+						<li>Internal ID</li>
+						<li>Sensor ID</li>
+						<li>Installer ID</li>
+						<li>Enrollment Data</li>
+						<li>Network COnnection Status</li>
+						<li>Platform</li>
+						<li>External IP</li>
+						<li>Organization ID</li>
+						<li>Device ID</li>
+						<li>Last Time Alive</li>
+					</ul>
+
+					<p>Users can also take the following actions on the endpoint from this view.</p>
+
+					<ul>
+						<li>Isolate the host from the network while leaving a line of control via LimaCharlie.</li>
+						<li>Run a Sweep of the Sensor that searches for common indicators of compromise and returns a host of useful information for beginning an investigation.</li>
+						<li>Delete the Sensor.</li>
+					</ul>
+
+					<h3>Artifacts</h3>
+
+					<p>This view displays a list of recent artifacts that have been ingested from the given endpoint.</p>
+
+					<h3>Timeline</h3>
+
+					<p>The Timeline is a visual data explorer that enables the user to examine up to a year of full telemetry for a given endpoint.</p>
+
+					<h3>Console</h3>
+
+					<p>The Console enables users to send any of <a href="https://doc.limacharlie.io/docs/documentation/docs/sensor_commands.md" target="_blank">Sensor Commands</a> to the endpoint and get the results in real-time.</p>
+
+					<h3>Processes</h3>
+
+					<p>The Processes view shows a list of all processes as they are running on the endpoint. From this view users can see which processes are signed, listening or talking on the network. Users can also perform the following for any given process.</p>
+
+					<ul>
+						<li>View Modules</li>
+						<li>Kill Process</li>
+						<li>Resume Process</li>
+						<li>Download Memory Strings</li>
+						<li>View Memory Strings</li>
+					</ul>
+
+					<h3>Network</h3>
+
+					<p>The Network tab shows basic information about network connections in and out of the box. Local IP, local port, foreign IP, state and process hash for every process talking over the network.</p>
+
+					<h3>File System</h3>
+
+					<p>The File System tab provides the user with a navigable view of the file system on the endpoint. Users can get a copy of a file hash or download any file.</p>
+
+					<h3>Live Feed</h3>
+
+					<p>The Live Feed provides a stream of <a href="" target="">Events<link> as they are taking place in the endpoint in real-time.</p>
 				  </div>
 				</div>
 			</div>
