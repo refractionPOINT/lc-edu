@@ -9,11 +9,11 @@
 
 			<p>The first core technology available in LimaCharlie was the EDR.</p>
 
-			<p>The EDR provides a whole suite of powerful capabilities and is built off of a lightweight, cross-platform agent.</p>
+			<p>The EDR provides a whole suite of powerful capabilities and is built off a lightweight, cross-platform agent.</p>
 			
-			<p><img id="general-overview-map" class="img-float-right" style="width: 60%;" src="https://storage.googleapis.com/lc-edu/content/images/content/the-agent.png" alt="LimaCharlie Agent"/>The LimaCharlie endpoint agent has the best cross-platform support in the industry and can be used to bring the most diverse fleets into a single detection stream. The agent runs on 32-bit Windows all way Back to Windows XP SP II through to the most modern version of 64-bit Windows. It can run on all flavours of Linux both 32-bit and 64-bit. Builds for MacOS (Intel & M1) are also available. Builds for Solaris and BSD that can be produced on request. The lightweight footprint of LimaCharlie’s agent makes it well suited for IoT and builds across x86, ARM and MIPS architectures are available for all platforms.</p>
+			<p><img id="general-overview-map" class="img-float-right" style="width: 60%;" src="https://storage.googleapis.com/lc-edu/content/images/content/the-agent.png" alt="LimaCharlie Agent"/>The LimaCharlie endpoint agent has the best cross-platform support in the industry and can be used to bring the most diverse fleets into a single detection stream. The agent runs on 32-bit Windows all way back to Windows XP SP II through to the most modern version of 64-bit Windows. It can run on all flavors of Linux both 32-bit and 64-bit. Builds for MacOS (Intel & M1) are also available. Builds for Solaris and BSD that can be produced on request. The lightweight footprint of LimaCharlie’s agent makes it well suited for IoT and builds across x86, ARM and MIPS architectures are available for all platforms.</p>
 			
-			<p>The agent is written in C and then compiled for each different platform and architecture it runs on which means that it has true feature parity across all operating systems. The only exceptions are platform specific functions, such as monitoring Windows registry operations, etc.</p>
+			<p>The agent is written in C and then compiled for each platform and architecture it runs on, which means that it has true feature parity across all operating systems. The only exceptions are platform specific functions, such as monitoring Windows registry operations, etc.</p>
 			
 			<p>When the agent is installed and running it is referred to as a sensor. On disk the agent is approximately 500kb in size but that varies a little depending on which platform it is compiled for. While running it consumes less that 1% CPU but does spike very briefly when certain events take place like an application starting up. LimaCharlie is able to pack so much power into such a small program because it treats the agent as an extension of the cloud by utilizing a true real-time persistent TLS connection. The round trip time from an event being detected to the time a response is actioned on the endpoint is generally less than 100 milliseconds.</p>
 			
@@ -27,23 +27,23 @@
 
 			<p>Detection rules are written against telemetry and when a positive match occurs a Response action is initiated.</p>
 			
-			<p>Response actions can take many forms and are often used for automating between different parts of the LimaCharlie platform. Documentation on Detection & Response (DR) rules can be found <a href="https://doc.limacharlie.io/docs/documentation/docs/dr.md" target="_blank">here</a>. A list of exxample response actions is as follows.</p>
+			<p>Response actions can take many forms and are often used for automating between different parts of the LimaCharlie platform. Documentation on Detection & Response (DR) rules can be found <a href="https://doc.limacharlie.io/docs/documentation/docs/dr.md" target="_blank">here</a>. A list of example response actions is as follows.</p>
 
 			<ul>
 				<li>Isolating the host from the network.</li>
 				<li>Killing the process tree that triggered the alert.</li>
 				<li>Notifying the response team via a pager duty mechanism.</li>
-				<li>Initiatie full PCAP capture from the network.</li>
+				<li>Initiate full PCAP capture from the network.</li>
 				<li>Tag the offending machine as suspicious.</li>
-				<li>Run forensics and trigger a memeory dump.</li>
-				<li>And much much more./li>
+				<li>Run forensics and trigger a memory dump.</li>
+				<li>And much much more.</li>
 			</ul>
 			
 			<h2>Artifact Collection</h2>
 
 			<p>Artifact Ingestion allows externally generated artifacts to be ingested and processed by the LimaCharlie Detection & Response Engine.</p>
 
-			<p>The list of artifacts that are supported is constantly growing and includes the following. If you are interested in processing a different kind of artifact please get in touch and let us know. Adding new file formats is generally an easy process and can usually be turned around in a matter of days.</p>
+			<p>The list of artifacts that are supported is constantly growing and includes the following. If there is interest in processing a different kind of artifact please get in touch. Adding new file formats is generally an easy process and can usually be turned around in a matter of days.</p>
 
 			<ul>
 				<li>Windows Event Logs</li>
@@ -59,7 +59,7 @@
 				<li>Apple Binary/XML plists</li>
 			</ul>
 
-			<p>Artifacts can be ingested by LimaCharlie through several ways. Full documentation on Artifact Ingestion can be found here.</p>
+			<p>Artifacts can be ingested by LimaCharlie in several ways. Full documentation on Artifact Ingestion can be found here.</p>
 
 			<ul>
 				<li>Directly from the agent</li>
@@ -67,7 +67,7 @@
 				<li>Through the Python CLI or SDK</li>
 			</ul>
 
-			<p>Upon ingestion, artifacts are converted into a common JSON format that is common to all telemetry in the LimaCharlie platform. This JSON, along with the original artifact, are stored for a custom retention period defined by the user. This means that you can search all of your artifacts over the custom retention period for indicators of compromise such as:</p>
+			<p>Upon ingestion, artifacts are converted into a common JSON format that is common to all telemetry in the LimaCharlie platform. This JSON, along with the original artifact, are stored for a custom retention period defined by the user. This means all the user's artifacts can be searched over the custom retention period for indicators of compromise such as:</p>
 
 			<ul>
 				<li>Domain</li>
@@ -84,22 +84,22 @@
 
 			<p>LimaCharlie's micro-segmentable VPN solution is more than just a zero-config VPN. LimaCharlie Net installs on any device in minutes and works from anywhere. There is no configuration required. It is a solution that just works.</p>
 
-            <p>LimaCharlie Net is a Zero Trust solution that can create secure connections to internal resources based on the identity of the device regardless of the client location. Let your team work from anywhere with compromising security.</p>
+            <p>LimaCharlie Net is a Zero Trust solution that can create secure connections to internal resources based on the identity of the device regardless of the client location. A team can work from anywhere without compromising security.</p>
 
             <img src="https://storage.googleapis.com/lc-edu/marketing-assets/lc-net.png" alt="LimaCharlie Net"/>
 
-            <p>Simple and powerful policy controls allow you to control where and when users can access given resources or even what they can access online. Provide your sales team access to your on-premises file server when they're on the road without having to poke holes in your firewall or use DNS sink-holing to block access to sites like Facebook during business hours.</p>
+            <p>Simple and powerful policy controls allow regulation of where and when users can access given resources or even what they can access online. Provide the sales team access to on-premises file server when in transit without having to poke holes in the firewall or use DNS sink-holing to block access to social media sites during business hours.</p>
 
 			<h2>Comms</h2>
 
 			<p>LimaCharlie Comms represents the newest product offering from LimaCharlie. Comms is a place to respond to detections as a team. We do not consider Comms to be a SIEM but do think it can replace them for the majority of use cases. It's built close to the metal to give you full visibility of the actions your team is taking to mitigate any threats.</p>
 
-			<p>It all starts when a detection happens - a Room is generated for your team to assign ownership, discuss as a team, assess indicators of compromise, and issue commands that are deeply integrated into the platform. It's more than a paper trail - it's a digital war room.</p>
+			<p>It all starts when a detection happens - a Room is generated for the team to assign ownership, discuss and assess indicators of compromise, and issue commands that are deeply integrated into the platform. It's more than a paper trail - it's a digital war room.</p>
 
 
 			<h2>Features Worth Talking About</h2>
 
-			<p>Within the product pillars there is a lot of integrations and capability that are worth calling out on their own. An extensive (but not complete) list is as follows.</p>
+			<p>Within the product pillars there are many integrations and capabilities that are worth calling out on their own. An extensive but not exhaustive list is as follows.</p>
 
 			<h3>Live View</h3>
 
@@ -120,7 +120,7 @@
 
 			<p>The agent maintains a semi-persistent, real-time connection to the LimaCharlie Cloud which allows the user to retrieve files of any size from the endpoint. Data is streamed in approximately 10MB chunks and sent to a bucket in the LimaCharlie Cloud for reassembly.</p>
 
-			<p>Conversely, and under very specific permissions, users can send an executable down to the host for execution.These payloads can be any executable. The main use case is to run something with specific functionality not available directly from LimaCharlie. For example: custom executables provided by another vendor to cleanup a machine, forensic utilities or firmware-related utilities.</p>
+			<p>Conversely, and under very specific permissions, users can send an executable down to the host for execution. These payloads can be any executable. The main use case is to run something with specific functionality not available directly from LimaCharlie. For example: custom executables provided by another vendor to cleanup a machine, forensic or firmware-related utilities.</p>
 
 			<p>The payloads feature is powerful and should be treated as such. Users are encouraged to look at LimaCharlie's native functionality first as it has several advantages:</p>
 
@@ -139,13 +139,13 @@
 			<p><img src="https://storage.googleapis.com/lc-edu/content/images/content/outputs.png" alt="Output Data" style="width: 646px;" class="fr-fic fr-dib"/></p>
 
 			<p>Forwarding is done in real-time or near real-time depending on forwarding methodology.
-				<br>If storage is not enabled then the telelemtry being forwarded is done so on the wire and never written to disk as it transits through the LimaCharlie infrastructure.</p>
+				<br>If storage is not enabled then the telemetry being forwarded is done so on the wire and never written to disk as it transits through the LimaCharlie infrastructure.</p>
 
 			<h3>Artifact Collection</h3>
 
 			<p>LimaCharlie can ingest any files from the endpoint as well as files pushed through the API/CLI/SDK.
 				<br>
-				<br>Log files can be uploaded on an ongoing basis and have detection logic applied to them as they are being processed. Detection logic can also be applied to historical logs across the entire fleet.LimaCharlie can consume logs from any OS. Logs can be unstructured (no parsers necessary), pcap or Windows logs. Another typical use case sees users downloadportable executables and pre-fetch files which can also have detection logic applied to them.</p>
+				<br>Log files can be uploaded on an ongoing basis and have detection logic applied to them as they are being processed. Detection logic can also be applied to historical logs across the entire fleet. LimaCharlie can consume logs from any OS. Logs can be unstructured (no parsers necessary), pcap or Windows. Another typical use case sees users download portable executables and pre-fetch files which can also have detection logic applied to them.</p>
 
 			<p>Information on log ingestion can be found in the documentation <a href="http://doc.limacharlie.io/en/master/external_logs/">here</a>, and information on log specific DR rules can be <a href="https://doc.limacharlie.io/en/master/dr/#targets">found here.</a></p>
 
@@ -203,7 +203,7 @@
 
 			<h4>MISP &amp; OTX Pulse Formats</h4>
 
-			<p>LimaCharlie supports the MISP JSON format. If you create a Lookup pointing to MISP JSON, the format will be parsed and the lookup will associate the MISP IDs as the Attribute metadata. LimaCharlie similarly supports the JSON OTX Pulse format from AlienVault.</p>
+			<p>LimaCharlie supports the MISP JSON format. If a Lookup pointing to MISP JSON is created, the format will be parsed and the lookup will associate the MISP IDs as the Attribute metadata. LimaCharlie similarly supports the JSON OTX Pulse format from AlienVault.</p>
 
 			<h3>Public &amp; Private Extensions</h3>
 
@@ -213,9 +213,9 @@
 
 			<h4>Live Sweep</h4>
 
-			<p>A Live Sweep is an in-depth look through the state of a host. The sweep will highlight parts of the activity that are suspicious. This provides you with a good starting position when beginning an investigation. It allows you to focus on the important things right away.
+			<p>A Live Sweep is an in-depth look through the state of a host. The sweep will highlight parts of the activity that are suspicious. This provides a good starting position when beginning an investigation. It allows for focus on the important things right away.
 
-				<p>The types of information returned by the sweep is constantly evolving but you can expect it to return the following information:</p>
+				<p>The types of information returned by the sweep is constantly evolving but one can expect it to return the following information:</p>
 				
 				<ul>
 					<li>A full list of processes and modules</li>
