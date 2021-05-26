@@ -1,0 +1,157 @@
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+		<div class="container">
+
+            <h2>The Sigma Rule Set</h2>
+
+            <p>Endpoint Detection & Response (EDR) uses rules to discover and take action against malicious behaviour. LimaCharlie uses its own YAML-based language to express Detection & Response (DR) rules and can also leverage existing community-based formats such as YARA and Sigma.</p>
+
+            <p>The focus of this lesson is to get the user setup with <a href="https://github.com/refractionPOINT/rules/tree/master/Sigma" target="_blank">basic Sigma rule</a> coverage across all endpoints. To do so we are going to deploy a mirror of the official Sigma rule. Later in the lesson we will show you how to create False Positive rules.</p>
+
+            <div class="wrap-collabsible">
+				<input id="collapsible1" class="toggle" type="checkbox">
+				<label for="collapsible1" class="lbl-toggle">Details on LimaCharlie's own DR rules language.</label>
+				<div class="collapsible-content">
+				  <div class="content-inner">
+
+                    <h3>Detection & Response Rules</h3>
+
+                    <p>Detection & Response rules are designed to allow you to push out a detection rule and with a custom action in record time. Think of them like AWS Lambda or Google Cloud Functions. They can be added and removed with single operations and they become immediately available/running as they are set.</p>
+
+                    <p>A D&R rule has two components:</p>
+
+                    <ol>
+                        <li>The detection part of the rule is a simple expression that describes what the rule should match on.</li>
+                        <li>The response part of the rule describes the list of actions that should be taken when the rule matches.</li>
+                    </ol>
+
+                    <p>The REST interface expects those rules in their native JSON format (as described below), but UIs to generate this format are available if you are uncomfortable with the JSON.</p>
+
+                    <p>For more sample rules and guidelines around rule writing, see our public repository dedicated to this purpose.</p>
+
+                    <p>The website version of this (on limacharlie.io) takes the rules as YAML to make them easier to visualize.</p>
+
+                    <p>Full documentation can be <a href="https://doc.limacharlie.io/docs/documentation/docs/dr.md" target="_blank">found here</a>.</p>
+                  </div>
+                </div>
+            </div>
+            
+            <p>The Sigma rule set is an open source signature format that can describe relevant log events in a straightforward manner. The rule format itself is very flexible and applicable to any type of log file. The main purpose of Sigma is to provide a structured form with which researchers and analysts can describe and share detection methods with the wider community.</p>
+            
+            <p>More information on Sigma: <a href="https://github.com/Neo23x0/sigma" target="_blank">Generic Signature Format for SIEM Systems</a>.</p>
+
+            <h2>Endpoint Detection & Response</h2>
+
+            <p>Endpoint Detection & Response (EDR) uses rules to discover and take action against malicious behaviour. LimaCharlie uses a YAML-based language to express Detection & Response (DR) rules and can leverage existing community-based formats such as YARA and Sigma.</p>
+
+            <p>In this lesson we are going to deploy a mirror of the official Sigma rule set which will enable solid coverage across the entire fleet. Later in the lesson we will show you how to create False Positive rules.</p> 
+            
+            <p>The Sigma rule set is an open source signature format that can describe relevant log events in a straightforward manner. The rule format itself is very flexible and applicable to any type of log file. The main purpose of Sigma is to provide a structured form with which researchers and analysts can describe and share detection methods with the wider community.</p>
+            
+            <p>More information on Sigma: Generic Signature Format for SIEM Systems.</p>
+            
+            <h3>Getting Started</h3>
+            
+            <p>Getting started with Sigma detection coverage is easy. In the web application, navigate to the Setup section of the main navigation and click on Add-ons.</p>
+            
+            <image tabs/>
+            
+            <p>From the Services tab scroll down until you find the Sigma add-on and turn it on.</p>
+            
+            <images sigma/>
+            
+            <p>The Sigma rules are immediately applied to telemetry coming in from the sensors. Some Sigma rules on Windows rely on Windows Event Logs which are not collected by LimaCharlie by default. In order to leverage these you will need to configure <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md#windows-event-logs" target="_blank">automated collection of relevant Windows Event Logs</a> through the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md#artifact-collection" target="_blank">Artifact Collection</a> service.</p>
+            
+
+            <div class="wrap-collabsible">
+				<input id="collapsible2" class="toggle" type="checkbox">
+				<label for="collapsible2" class="lbl-toggle">About the LimaCharlie Add-ons Marketplace</label>
+				<div class="collapsible-content">
+				  <div class="content-inner">
+
+                    <p>LimaCharlie offers additional free and paid services through its Add-ons Marketplace.</p>
+
+                    <h3>Add-ons & Subscriptions</h3>
+
+                    <p>LimaCharlie has a well developed Add-ons Marketplace where users can enable a wide plethora of detections, lookups and services</p>
+
+                    <p>Add-ons fall into one of several categories, each of which is linked below.</p>
+
+                    <ul>
+                        <li><a href="https://doc.limacharlie.io/docs/documentation/docs/addon-detections.md" target="_blank">Detections</a></li>
+                        <li><a href="https://doc.limacharlie.io/docs/documentation/docs/addon-api.md" target="_blank">API</a></li>
+                        <li><a href="https://doc.limacharlie.io/docs/documentation/docs/addon-lookup.md" target="_blank">Lookup</a></li>
+                        <li><a href="https://doc.limacharlie.io/docs/documentation/docs/addon-services.md" target="_blank">Services</a></li>
+                        <li><a href="https://doc.limacharlie.io/docs/documentation/docs/addon-community.md" target="_blank">Community</a></li>
+                    </ul>
+
+                    <h3>Developing Products</h3>
+                    
+                    <p>Users interested in creating their own products or services that can be integrated with LimaCharlie through the Add-On Marketplace should start <a href="https://doc.limacharlie.io/docs/documentation/docs/user_addons.md" target="_blank">here</a>.</p>
+
+                    <h3>Monetizing Products with LimaCharlie</h3>
+
+                    <p>LimaCharlie is partnering with develoeprs on a case-by-case basis to enable them to sell their products or services in the LimaCharlie Marketplace using a revenu share model. We have had several success using this model and are eager to develop the program further. Some of the succesful products thus far are as follows.</p>
+
+                    <h3>cuttingEdge</h3>
+                    
+                    <blockquote><code><p>The Cutting Edge threat feeds are aggregated, filtered and augmented from a multitude of sources.</p>
+
+                    <p>Emphasis is put on timely Indicators of Compromise (IoC) for new and upcoming threats.</p>
+
+                    <p>Produced detections are made more powerful for operations by including a lot of metadata around the origin of the IoC as well as the nature of the threat which provides pre-emptive investigation data.</p>
+
+                    <p>A "sentiment" metric is also included to help you dial in the level of certainty you want to receive alerts for.</p></code></blockquote>
+
+                    <p>More details <a href="https://doc.limacharlie.io/docs/documentation/docs/addon-community.md#soteria-rules" target="_blank">here</a></p>.
+
+                    <h3>soteria-rules</h3>
+                    
+                    <blockquote><p><code>A managed set of Detection & Response rules developed by Soteria.</code></p>
+
+                    <p><code>The rules cover most common attacks on Windows, MacOS and Linux. When subscribing to this service, LimaCharlie will automate the installation and updating of the rules in an opaque way. You simply get the Detections containing information about the detected behavior</code></p></blockquote>
+
+                    <p>More details <a href="https://doc.limacharlie.io/docs/documentation/docs/addon-community.md#soteria-rules" target="_blank">here</a></p>.
+
+                    <h3>Developer Grant Program</h3>
+
+                    <p>LimaCharlie is offering a $1000 in computation credits that can be applied towards using LimaCharlie to develop any kind of project you want. If you are looking to commercialize an idea we can help you get it into our marketplace and if there is traction there we can further support you in growing.</p>
+
+                    <p>Interested parties can apply for the grant program <a href="https://limacharlie.io/grant-program" target="_blank">here</a>.</p>
+                  </div>
+                </div>
+            </div>
+
+            <h2>False Positives</h2>
+
+            <P>A false positive error, or false positive, is a result that indicates a given condition exists when it does not.  When applied to DR rules this means an event (as generated by the report action), or series of events, taking place on the endpoint triggered a detection from expected behaviour. Depending on the conditions around which the detection was fired the operator may choose to create a false positive rule which will mark the offending conditions as an exception.</P>
+
+            <h3>Use Cases</h3>
+            
+            <p>The typical use case for FP rules is to add exceptions from some detections that are cross-cutting (for example ignore all detections from a specific host), organization-specific exceptions (like ignoring alerts relating to a custom piece of software used in an organization), or suppressing errors from managed D&R rules you don't have direct access to.</p>
+
+            <h3>Structure</h3>
+            
+            <p>An FP rule is structured with the same format at the detection component of a D&R rule. The main difference is that the rule applies to the content of a detection, as can be seen in the Detections section of the web app.</p>
+
+            <p>Most stateless operators from the D&R rules are available in FP rules.</p>
+
+            <p><strong>Examples</strong></p>
+            
+            Prevent a specific detection:
+
+            <script src="https://gist.github.com/tekgrunt/0b905a3b68a3e8892a7fa6d1885aac51.js"></script>
+
+            <p>Ignore any detection that relates to a file name in any path.</p>
+            
+            <script src="https://gist.github.com/tekgrunt/e38f79aa4573c2fcef79275b416cbfa9.js"></script>
+
+            <p>Any detection originating from a specific host will be ignored.</p>
+
+            <script src="https://gist.github.com/tekgrunt/2789c1599e9d8d9b5d383fd7068d3ea7.js"></script>
+        </div>
+    </body>
+</html>
