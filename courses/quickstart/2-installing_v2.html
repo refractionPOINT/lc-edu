@@ -9,9 +9,9 @@
 
 			<h2>Installing the Agent</h2>
 
-			<p>Before we can start leveraging the capabilities available in LimaCharlie we have to get up and running first. This section takes the user through getting set up with an agent running on an endpoint.</p>
+			<p>Before we can start leveraging the capabilities available in LimaCharlie we have to get up and running first. This section guides the user through getting set up with an agent running on an endpoint.</p>
 
-			If you have not already, creat an account and your first Organization.
+			The first step is to create an account and your first Organization.
 			
 			<div class="wrap-collabsible">
 				<input id="collapsible" class="toggle" type="checkbox">
@@ -21,33 +21,32 @@
 					<p>
 						<h2>Creating an Account</h2>
 						
-						<p>To gain access to LimaCharlie you will first need to create an account. This account can be attached to a specific email address (which will require you to verify the email), or through a Google, Github or Microsoft account.</p>
+						<p>To gain access to LimaCharlie you will first need to create an account. This account can be attached to a specific email address (which will require verification), or through a Google, Github or Microsoft account.</p>
 						
 						<p>Head over to <a href="https://app.limacharlie.io/signup" target="_blank">app.limacharlie.io/signup</a> and follow the login instructions. If an email verification is required you will be prompted to do so.</p>
 						
 						<h2>Create an Organization</h2>
 						 
-						<p>The first time you login you will be presented with the <a href="https://www.limacharlie.io/terms" target="">Terms of Service</a>. Read through them and click accept.</p>
+						<p>The first step is the creation of an Organization. LimaCharlie is multi-tenant and the tenants are structured as Organizations. Sensors belong to Organizations and billing is performed per Organization. The first time you login you will be presented with the <a href="https://www.limacharlie.io/terms" target="">Terms of Service</a>. Read through and click accept.</p>
 
-						<p>You will be presented with a welcome screen. At the bottom of this screen click "Create Organization". Clicking "Create Organization" opens a dialog to name the <em>Organization</em> and choose the location of the datacenter.</p>
+						<p>You will be presented with a welcome screen. At the bottom of this screen click "Create Organization". This opens a dialog box with options to name the <em>Organization</em> and choose the location of the datacenter.</p>
 						
 						<h3>Select a Datacenter</h3>
 						
-						<p>Choose where you want your data to reside. Data does not transit outside of the geographical area in which the data center is located.</p>
+						<p>This is where your data will reside. Data does not transit outside of the geographical area in which the data center is located. Once a datacenter has been selected, this determines where in the world your sensors will connect.</p>
 						
-						<p>The LimaCharlie global infrastructure is built on the Google Cloud Platform (GCP) and currently has computing resources available in the USA, Canada, Europe, India and the United Kingdom. Choosing a geographical location ensures data will always be processed in this location and never moved outside. New data centres can be spun up <a href="https://cloud.google.com/about/locations" target="_blank">anywhere GCP is available</a> upon customer request.</p>
+						<p>The LimaCharlie global infrastructure is built on the Google Cloud Platform (GCP). Currently, computing resources are available in the USA, Canada, Europe, India, and the United Kingdom. Choosing a geographic location ensures data will always be processed in this location and never moved outside. New data centres can be spun up <a href="https://cloud.google.com/about/locations" target="_blank">anywhere GCP is available</a> upon request. </p>
 
 						<h3>Give your organization a name.</h3>
 						
-						<p>The first thing to do is create an Organization. LimaCharlie is multi-tenant and the tenants are structured as Organizations. Sensors belong to Organizations and billing is performed per Organization.</p>
+						<p></p>
 
-						<p>On the right side of the Member Organizations section of the dashboard, click on "Create".</p>
+				
+						<p>Next, enter an organization name. This name must be unique. The "Name Available" indicator will show a green checkmark if a valid name has been entered.</p>
 
-						<p>Select a datacenter. This will decide where your sensors will connect to in the world. Many countries are available. Enter an organization name. This name must be unique. The "Name Available" indicator should indicate a green checkbox a few seconds after you've entered a valid name.</p>
-
-						<p>LimaCharlie comes with a free tier of two sensors. You do not need a credit card to get this free tier, but if you decide to upgrade your quota, you will have to enter your credit card information.</p>
+						<p>LimaCharlie comes with a free tier of two sensors. You do not need a credit card to access this tier, but if you decide to upgrade your quota, your credit card information will be required.</p>
 						
-						<p>Click "Create". Within a few seconds you should see an indication that your organization is ready.</p>
+						<p>Click "Create". Within a few seconds you will receive notification that your organization is ready.</p>
 					</p>
 				  </div>
 				</div>
@@ -64,7 +63,7 @@
 				  <div class="content-inner">
 					<h2>Respond</h2>
 					
-					<p>The Respond section contains elements and features that are used for ongoing operations. Here you will find tools that are useful once you have everything set up and running.</p>
+					<p>The Respond section contains elements and features used for ongoing operations. Here you will find tools that are useful once everything is set up and running.</p>
 					
 					<ul>
 						<li>
@@ -75,18 +74,18 @@
 						<li>						
 							<h3>Dashboard</h3>
 							
-							<p>The Dashboard provides access and insight into several areas of the LimaCharlie platform. Initially there will be nothing to display but once your deployment is up and running this is where you can do the following.</p>
+							<p>The Dashboard provides access and insight into several areas of the LimaCharlie platform. Initially there will be nothing to display but once deployment is up and running this is where to access the following.</p>
 
 							<ul>
-								<li>Search the entire fleet for all time across common IoC’s (filename, IP, file hash/path, etc).</li>
-								<li>Get top-level information at a glance regarding sensors online over time, as well as events and detections over time.</li>
+								<li>Search the full history of the entire fleet for common IoCs (filename, IP, file hash/path, etc).</li>
+								<li>Get top-level information at a glance regarding sensors online, events, and detections over time.</li>
 								<li>A list of jobs that are currently queued or that have recently run on your deployment.</li>
 							</ul>
 						</li>
 						<li>
 							<h3>Detections</h3>
 							
-							<p>The Detections tab is where detections are recorded in list format. From a given Detection the user can go live on the given endpoint or view historical data at the time of detection in the historical data viewer.</p>
+							<p>This tab is where detections are recorded in list format. From a given Detection the user can go live on the designated endpoint or view chronicled data at the time of detection in the historical data viewer.</p>
 						</li>
 						<li>
 							<h3>Artifacts</h3>
@@ -96,7 +95,7 @@
 						<li>
 							<h3>Search</h3>
 
-							<p>The Search tab provides a global search function that allows the user to search across the entire fleet over the past year using common indicators of compromise.</p>
+							<p>The Search tab allows the user to search across the entire fleet over the past year using common indicators of compromise.</p>
 						</li>
 						<li>
 							<h3>Replay</h3>
@@ -113,12 +112,12 @@
 						<li>
 							<h3>D&R Rules</h3>
 							
-							<p>The D&R Rules tab is where the current D&R rules as applied to the organization’s feelt reside. False Positive exceptions against these rules are also listed here.</p>
+							<p>The D&R Rules tab is where the current D&R rules as applied to the organization’s fleet reside. False Positive exceptions against these rules are also listed here.</p>
 						</li>
 						<li>	
 							<h3>Outputs</h3>
 							
-							<p>The Output tab lists external locations where data is being directed.</p>
+							<p>The Output tab lists  external locations where data is being directed.</p>
 						</li>
 						<li>
 							<h3>Exfil Control</h3>
@@ -128,7 +127,7 @@
 						<li>
 							<h3>Payloads</h3>
 							
-							<p>Payloads allows users to upload any executable file to the LImaCharlie cloud from where it can be deployed and run on any set of endpoints.</p>
+							<p>Payloads allows the uploading of any executable file to the LimaCharlie cloud. From there it can be deployed and run on any set of endpoints.</p>
 						</li>
 						<li>
 							<h3>File/Reg Integrity</h3>
@@ -138,7 +137,7 @@
 						<li>
 							<h3>Yara</h3>
 							
-							<p>The Yara tab enables the user to manage all aspects of Yara scanning. Add sources,  add rules or initiate scans.</p>
+							<p>The Yara tab enables the user to manage all aspects of Yara scanning. Add sources, rules or initiate scans.</p>
 						</li>
 						<li>
 							<h3>Artifact Collection</h3>
@@ -160,13 +159,13 @@
 							
 							<p>The REST API tab is where users can create and manage fine-grained permissions across API keys.</p>
 							Swagger Doc
-							Doc
+							Doc -should this be a link?
 						</li>
 					</ul>
 
 					<h2>Setup</h2>
 
-					<p>The Setup section contains the nuts and bolts of your LimaCharlie configuration management.</p>
+					<p>The Setup section contains the essentials of your LimaCharlie configuration management.</p>
 					
 					<ul>
 						<li>
@@ -182,7 +181,7 @@
 						<li>
 							<h3>Users & Roles</h3>
 							
-							<p>The Users & Roles tab allows the user to create users and administer fine grained permissions per user.</p>
+							<p>The Users & Roles tab allows the creation of users and administer fine grained permissions per user.</p>
 						</li>
 						<li>
 							<h3>Billing</h3>
@@ -211,7 +210,7 @@
 
 			<h3>Getting an Installation Key</h3>
 
-			<p>To get started you will need to create an installation key. Installation keys can be created by visiting the <em>Installation Keys</em> section of the web application and clicking on the plus icon in the upper right corner.&nbsp;</p>
+			<p>To get started you will need to create an installation key. They can be created by visiting the <em>Installation Keys</em> section of the web application and clicking on the plus icon in the upper right corner.&nbsp;</p>
 
 			<p><img src="https://storage.googleapis.com/lc-edu/content/images/graphs/quickstart-installing-1.png"></p>
 
