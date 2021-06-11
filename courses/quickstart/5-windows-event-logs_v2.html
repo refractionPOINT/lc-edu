@@ -1,0 +1,41 @@
+<htmL>
+    <head>
+        <link rel="stylesheet" href="../style.css">	
+    </head>
+    <body>
+		<div class="container">
+
+			<iframe width="670" height="377" src="https://www.youtube.com/embed/9icgkpYAoyA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+            <h2>From Real-Time Events</h2>
+            
+            <p><em>* Only supported on Windows 2008 and up</em></p>
+            
+            <p>It is possible to subscribe to receive Windows Event Logs in real-time from the sensor. By doing this, the targeted Windows Events will be sent to the cloud as normal LimaCharlie telemetry events encapsulated in an event type of <code>WEL</code>. The Windows Events in those cases will be structured as JSON similarly to other LimaCharlie telemetry. This means you can create D&R rules that operate directly on Windows Events, or even correlate between Windows Events and native LimaCharlie telemetry events.</p>
+            
+            <p>To configure this collection, you need to specify a special kind of log path as a collection pattern. The format is as follows:</p>
+            
+            <script src="https://gist.github.com/tekgrunt/4e06d886c2426df1d42d6dbaf4a0afe2.js"></script>
+            
+            
+            <p>The <code>wel://</code> prefix tells LimaCharlie this is not a file at rest, but a live API request from the sensor. The <code>EventSource</code> part of the expression refers to the <code>ChannelPath</code> described in the Windows documentation here: <a href="https://docs.microsoft.com/en-us/windows/win32/api/winevt/nf-winevt-evtsubscribe" target="_blank">docs.microsoft.com/en-us/windows/win32/api/winevt/nf-winevt-evtsubscribe</a>. The <code>FilterExpression</code> component refers to the <code>Query</code> parameter described in the same documentation. Additional documentation on the filter format can also be found here: <a href="https://docs.microsoft.com/en-us/windows/win32/wes/consuming-events" target="_blank">docs.microsoft.com/en-us/windows/win32/wes/consuming-events</a>.</p>
+            
+            <p>Examples of supported patterns:</p>
+            
+            <ul>
+                <li>wel://Security:*</li>
+                <li>wel://System:Event[System[EventID=4624]]</li>
+            </ul>
+
+            <h2>From Files at Rest</h2>
+            
+            <p>When running D&R rules against Windows Event Logs (<code>target: artifact</code> and <code>artifact type: wel</code>) that were acquired from files at rest, although the Artifact Collection Service may ingest the same Windows Event Log file that contains some records that have already been processed by the rules, the LimaCharlie platform will keep track of the processed <code>EventRecordID</code> and therefore will NOT run the same D&R rule over the same record multiple times.</p>
+            
+            <p>This means you can safely set the Artifact Collection Service to collect various Windows Event Logs from your hosts and run D&R rules over them without risking producing the same alert multiple times.</p>
+            
+            <p>For most Windows Event Logs available, see <code>c:\windows\system32\winevt\logs\</code>.</p>
+
+        </div>
+    </body>
+</html>
