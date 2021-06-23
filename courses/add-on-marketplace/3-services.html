@@ -6,6 +6,309 @@
         <div class="container">
             <iframe width="670" height="377" src="https://www.youtube.com/embed/BXOeaQpOENw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+            <p>Services are lighter integrations and cover a wide range of uses. Thay can also be created as public or private by any LimaCharlie user (for fun or profit).</p>
+
+            <div id="cuttingedge"></div>
+            <h2>cuttingedge</h2> 
+            <h3>Cost: 30¢ / sensor / month</h3>
+
+            <p>The Cutting Edge threat feeds are aggregated, filtered and augmented from a multitude of sources. Emphasis is put on timely Indicators of Compromise (IoC) for new and upcoming threats.</p>
+
+            <h3>Usage</h3>
+
+            <p>When enabled, the cuttingedge service will automatically apply a managed D&R ruleset to your organization which will then generate detections.</p>
+
+            <p>Produced detections pre-emptive investigation by including metadata about the origin of the IoC as well as the nature of the threat.</p>
+
+            <p>A sentiment metric is available to help dial in alerting thresholds.</p>
+
+            <div id="dumper"></div>
+            <h2>dumper</h2>
+            <h3>Cost: Free</h3>
+
+            <p>The Dumper service provides the ability to do dumping of several forensic artifacts on Windows hosts.</p>
+
+            <p>It supports a single action, which is to dump. It supports multiple targets, memory to dump the memory of the host and mft to dump the MFT of the file sytem to CSV.
+            The Service then automates the ingestion of the resulting dump (and dump metadata) to LimaCharlie's Artifact Ingestion system where it can be downloaded or analyzed and where you can create D&R rules to automate detections of characteristics of those dumps.</p>
+            
+            <h3>Usage</h3>
+
+            <p>When enabled, dumper will be added to the Service Request view inside your organization. It will accept the following parameters:</p>
+
+            <ul>
+                <li>sid - a sensor ID for the host to perform the memory dump</li>
+                <li>retention (optional) - the number of days to retain the stored results</li>
+            </ul>
+
+            <p>On submission of a request, the dumper service will perform a full memory dump of a host and upload the resulting dumps to LimaCharlie's External Logs system and delete the local dumps afterwards.
+            dumper requests can also be made via D&R rules; check out the example service request for more details.</p>
+            
+            <p><strong>Notes</strong></p>
+            
+            <p>The dumper service does not currently validate that the host has enough available disc space for the memory dump.</p>
+
+            <p>Although the dumper service is free, the resulting memory dumps uploaded to LimaCharlie are subject to External Logs pricing.</p>
+            
+            <div id="exfil"></div>
+            <h2>exfil</h2>
+            <h3>Cost: Free</h3>
+
+            <p>Automates the management of event selection for the events from agents that should be sent to the cloud in real-time.</p>
+
+            <p>By default, LimaCharlie sensors send events to the cloud based on a standard profile that includes events like NEW_PROCESS, DNS_REQUEST etc.</p>
+
+            <p>If you enable the Exfil Service, this default profile is replaced by a custom set of rules you define.
+            The rule customization is done in two parts:</p>
+            
+            <ol>
+                <li>The Event Rules, which simply define a list of events that should be sent to the cloud based on platform and tags.</li>
+                <li>The Watch Rules, which define additional events that should be sent to the cloud based on the content of each individual event.</li>
+            </ol>
+
+            <p>The Watch Rules allow you to specify a platform and tag to select which sensors the rule applies to, plus these elements:</p>
+
+            <ul>
+                <li><strong>Event:</strong> the specific event type that should be evaluated, like MODULE_LOAD.</li>
+                <li><strong>Path:</strong> the path within the event component whose value should be evaluated, like FILE_PATH.</li>
+                <li><strong>Operator:</strong> the type of evaluation/comparison that should be done between the value at Path in the event and the Value.</li>
+                <li><strong>Value:</strong> the value used in the comparison.</li>
+            </ul>
+
+            <h3>Usage</h3>
+
+            <p>When enabled, the Exfil Control view will be available within your organization. From there you can change the default set of events to be sent for each sensor platform or you can use tags to create more targeted configurations.</p>
+
+            <a href="https://storage.googleapis.com/limacharlie-io/addons/exfil_config.png" target="_blank">storage.googleapis.com/limacharlie-io/addons/exfil_config.png</a>
+
+            <p>With exfil it's also possible to turn off collection of all events, minimizing usage.</p>
+
+            <p>For more information, check out the Exfil documentation.</p>
+
+            <div id="generic-macos"></div>
+            <h2>generic-macos</h2>
+            <h3>Cost: Free</h3>
+            
+            <p>Ruleset for detecting generic suspicious behaviors on MacOS.</p>
+            
+            <h3>Usage</h3>
+            
+            <p>When enabled, the generic-macos service will automatically apply a managed D&R ruleset to your organization which will then generate detections.</p>
+
+            <div id="integrity"></div>
+            <h2>integrity</h2>
+            <h3>Cost: Free</h3>
+
+            <p>The integrity service allows you to manage all aspects of File Integrity Monitoring (FIM) and Registry Integrity Monitoring (RIM).</p>
+
+            <p>It automates integrity checks of files & registry values through pattern-based rules. Specify which platforms or tagged sensors to monitor and expose new integrity events for writing detection rules against.</p>
+            
+            <h3>Usage</h3>
+            
+            <p>When enabled, the File/Reg Integrity view will be available within your organization. From there you can specify patterns to watch for on particular platforms, or you can use tags to create more targeted configurations.</p>
+
+            <img src="https://storage.googleapis.com/limacharlie-io/addons/integrity_config.png" />
+
+            <p>For more information, check out the Integrity documentation.</p>
+
+            <div id="lc-net-install"></div>
+            <h2>lc-net-install</h2>
+            <h3>Cost: Free</h3>
+
+            <p>Simplify installation of net sensors on Windows hosts that already have an agent installed. lc-net-install will automate installation of the Wireguard client and provision it with the configuration that ties it back as a sensor.</p>
+
+            <h3>Usage</h3>
+            
+            <p>When enabled, an Install Net on this Sensor prompt will appear on the overview of any Windows sensor within your organization. Specify an installation key and it will provision and install the new net sensor on the device.</p>
+
+            <img src="https://storage.googleapis.com/limacharlie-io/addons/lc_net_install.png" />
+
+            For more information, view the full documentation.
+
+            <div id="logging"></div>
+            <h2>logging</h2>
+            <h3>Cost: Free</h3>
+
+            <p>Provides low-level artifact collection capability which can automate external artifact collection from endpoints or allow pushing artifacts via REST API.
+            Other services may depend on logging's base capabilities, such as dumper, zeek, and sigma.</p>
+            
+            <h3>Usage</h3>
+
+            <p>When enabled, the Artifact Collection view will be available within your organization. From there you can specify pattern-based rules for to specify which artifacts should be collected automatically per operating system. You can also use tags to create more targeted configurations.</p>
+
+            <img src="https://storage.googleapis.com/limacharlie-io/addons/artifact_config.png"/>
+
+            <p>For more information, view Artifact Collection documentation.</p>
+            
+            <div id="otx"></div>
+            <h2>otx</h2>
+            <h3>Cost: 5¢ / sensor / month</h3>
+
+            <p>Continuously import all your OTX pulses and the relevant D&R rules for most indicator types.</p>
+
+            <p>Open Threat Exchange (OTX) is the neighborhood watch of the global intelligence community. It enables private companies, independent security researchers, and government agencies to openly collaborate and share the latest information about emerging threats, attack methods, and malicious actors, promoting greater security across the entire community.</p>
+            
+            <h3>Setup</h3>
+            
+            <ol>
+                <li>Set the AlienVault OTX API Key in the Integrations view within your organization, using the key provided by your AlienVault OTX account.</li>
+                <li>Subscribe to this otx service</li>
+            </ol>
+
+            <div id="pagerduty"></div>
+            <h2>pagerduty</h2>
+            <h3>Cost: Free</h3>
+
+            <p>The PagerDuty service allows you to trigger events within PagerDuty. It requires you to setup the PagerDuty access token in the Integrations view within your Organization.</p>
+
+            <h3>Setup</h3>
+
+            <p>PagerDuty's side must first be configured to receive the API notifications.</p>
+
+            <ol>
+                <li>In PagerDuty, go to the 'Integrations' tab of your Service</li>
+                <li>Click 'Add a new integration'</li>
+                <li>Give it a name, like 'LimaCharlie'</li>
+                <li>In the 'Integration Type' section, select the radio button 'Use our API directly' and select 'Events API v2' from the dropdown</li>
+                <li>Click 'Add Integration'</li>
+                <li>Back in the 'Integrations' page, you should see your new integration in the list. Copy the 'Integration Key' to your clipboard</li>
+                <li>In LimaCharlie within the 'Integrations' view, set the PagerDuty API Key using the key you just generated</li>
+                <li>Enable this service</li>
+            </ol>
+
+            <h3>Usage</h3>
+
+            <p>When enabled, you may configure the response of a D&R rule to trigger a PagerDuty event. Consider the following example response rule:</p>
+
+            <script src="https://gist.github.com/tekgrunt/c0dc3e60a3949a313d686c3a079879b2.js"></script>
+
+            <p>For more information, view PagerDuty documentation.</p>
+
+            <div id="reliable-tasking"></div>
+            <h2>reliable-tasking</h2>
+            <h3>Cost: Free</h3>
+
+            <p>Enables reliable, asynchronous and large scale tasking of LimaCharlie sensors. This means you can send a task to a large number of sensors, including offline sensors. The service takes care of retrying to send the task to offline sensors to ensure each of the targeted sensors is tasked at least once.</p>
+            
+            <h3>Usage</h3>
+
+            <p>When enabled, reliable-tasking will be added to the Service Request view inside your organization. It will accept the following parameters:</p>
+            
+            <ul>
+                <li><strong>task</strong> - a command line task (i.e. os_version)</li>
+                <li><strong>sid</strong> - a sensor ID for the host to perform the memory dump</li>
+                <li><strong>tag</strong> - a tag representing multiple sensors</li>
+                <li><strong>ttl (optional)</strong> - the number of seconds to keep trying for; defaults to 1 week</li>
+            </ul>
+
+            <p>On submission of a request, the reliable-tasking service will automatically send the task to sensors when they come online.</p>
+            
+            <div id="replay"></div>
+            <h2>replay</h2>
+            <h3>Cost: Determined by usage</h3>
+
+            <p>Replay allows you to run Detection & Response (DR) rules against historical traffic. This can be done in a few combinations of sources:</p>
+
+            <ul>
+                <li><strong>Rule Source:</strong>
+                    <ul>
+                        <li>Existing rule in the organization, by name.</li>
+                        <li>Rule in the replay request.</li>
+                    </ul>
+                </li>
+            
+                <li><strong>Traffic:</strong>
+                    <ul>
+                        <li>Sensor historical traffic.</li>
+                        <li>Local events provided during request.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p>Full documentation here.</p>
+
+            <div id="responder"></div>
+            <h2>responder</h2>
+            <h3>Cost: Free</h3>
+
+            <p>The Responder service is able to perform various incident response tasks for you, such as a sweep.
+            A sweep is an in-depth look through the state of a host. The sweep will highlight parts of the activity that are suspicious. This provides you with a good starting position when beginning an investigation. It allows you to focus on the important things right away.</p>
+
+            <p>The types of information returned by the sweep is constantly evolving but you can expect it to return the following information:</p>
+            
+            <ul>
+                <li>A full list of processes and modules</li>
+                <li>A list of unsigned binary code running in processes</li>
+                <li>Network connections with a list of processes listening and active on the network</li>
+                <li>Hidden modules</li>
+                <li>A list of recently modified files</li>
+                <li>Unique or rare indicators of compromise</li>
+            </ul>
+
+            <div id=""></div>
+            <h2>sensor-cull</h2>
+            <h3>Cost: Free</h3>
+
+            <p>The sensor-cull service performs continuous cleaning of old sensors that have not connected to your organization in a number of days.</p>
+
+            <p>This is useful for environments with cloud deployments or VM template based deployments that enroll sensors over and over.</p>
+
+            <h3>Interacting</h3>
+
+            <p>The sensor-cull service does not implement a web UI, but because of its simplicity all interactions, like managing rules can be done via the generic Service Request section of the web interface.</p>
+
+            <p>The service works by creating rules that describe when various sensors should be cleaned up.</p>
+
+            <p>Each rule specifies a single sensor tag used as a selector for the sensors the rule applies to. A rule also has a name (simply used for your bookkeeping), and a ttl which is the number of days a sensor can not connect to the cloud before it becomes eligible for cleanup.</p>
+            
+            <p>Cleanup is automatically applied once a day.</p>
+
+            <p>Full documentation found here.</p>
+
+            <h2>sigma</h2>
+            <h3>Cost: Free</h3>
+
+            <p>This service provides a core set of the open source Sigma rules in a managed fashion. It provides hundreds of rules and is a great boiler-plate rule pack to apply to your LimaCharlie deployment.
+            Sigma is an open source format for describing signatures in a generic way so that they can be applied through multiple technologies (like LimaCharlie).</p>
+
+            <p>The Sigma project is available here: <a href="https://github.com/Neo23x0/sigma" target="_blank">https://github.com/Neo23x0/sigma</a></p>
+
+            <p>The specific rules, converted and applied through this service are available here: <a href="https://github.com/refractionPOINT/sigma/tree/lc-rules/lc-rules" target="_blank">https://github.com/refractionPOINT/sigma/tree/lc-rules/lc-rules</a></p>
+
+            <p>Some Sigma rules on Windows rely on Windows Event Logs which are not collected by LimaCharlie by default. In order to leverage these you will need to configure automated collection of the relevant Windows Event Logs through the Artifact Collection service.</p>
+
+            <h2>soteria-rules</h2>
+            <h3>Cost: 50¢ / sensor / month</h3>
+
+            <p>Install a managed set of Detection & Response rules developed by Soteria.</p>
+
+            <p>The rules cover most common attacks on Windows, MacOS and Linux. When subscribing to this service, LimaCharlie will automate the installation and updating of the rules in an opaque way. You simply get the Detections containing information about the detected behavior.</p>
+        
+
+            <h2>twilio</h2>
+            <h3>Cost: Free</h3>
+
+            <p>LimaCharlie offers a Twilio integration that can trigger alerts based on Detection & Response rules.
+            Twillio is a cloud-based Communication Platform as a Service (CPaaS)company. Twillio allows software developers to programmatically make and receive phone calls, send and receive text messages, and perform communication functions using its web service APIs. LimaCharlie users use it to implement 'pager duty'.</p>
+            
+            <p>Twilio documentation can be found here.</p>
+
+            <h2>yara</h2>
+            <h3>Cost: Free</h3>
+
+            <p>Automates management of YARA signature sets and their use in scanning.</p>
+
+            <p>YARA is a tool aimed at (but not limited to) helping malware researchers to identify and classify malware samples. With YARA you can create descriptions of malware families (or whatever you want to describe) based on textual or binary patterns. Each description, a.k.a rule, consists of a set of strings and a boolean expression which determine its logic.</p>
+
+            <p>YARA documentation can be found here.</p>
+            
+            <h2>zeek</h2>
+            <h3>Cost: Determined by usage</h3>
+
+            <p>Zeek (formerly Bro) provides a comprehensive platform for network traffic analysis, with a particular focus on semantic security monitoring at scale.</p>
+
+            <p>Once enabled, the Zeek service will watch for PCAP files being ingested through the Artifact Ingestion system. For each PCAP, the Zeek service will run the Zeek tool on the PCAP. All the resulting Zeek log files will then be re-ingested into Artifact Ingestion where they can be viewed or Detection & Response rules can be created to generated detections or automate responses. The Zeek service pricing is based on the size of PCAPs processed: $0.02 per 1GB.</p>
+
+            <p>The Zeek documentation can be found here.</p>
         </div>
     </body>
 </html>
