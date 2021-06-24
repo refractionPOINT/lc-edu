@@ -9,16 +9,22 @@
             <p>Services are lighter integrations and cover a wide range of uses. Thay can also be created as public or private by any LimaCharlie user (for fun or profit).</p>
 
             <h3>Quick Links</h3>
-            
+            <hr/>
                 <table>
                     <tr>
                         <td style="vertical-align: text-top; width: 20%">
-                            <a href="#cuttingedge">cuttingedge</a>
+                            <a href="#comms">comms</a>
                         </td>
                         <td style="padding-left: 20px;">
-                            The Cutting Edge threat feed is a managed D&R ruleset built from aggregated, filtered and augmented data from a multitude of sources.
+                            BETA - LimaCharlie Comms is an operational console bringing together many of the features of LimaCharlie under one roof for operational teams.
                         </td>
                     </tr>
+                    <td style="vertical-align: text-top; width: 20%">
+                        <a href="#cuttingedge">cuttingedge</a>
+                    </td>
+                    <td style="padding-left: 20px;">
+                        The Cutting Edge threat feed is a managed D&R ruleset built from aggregated, filtered and augmented data from a multitude of sources.
+                    </td>                
                     <tr>
                         <td style="vertical-align: text-top; width: 20%">
                             <a href="#dumper">dumper</a>
@@ -158,15 +164,26 @@
                             Once enabled, the Zeek service will watch for PCAP files being ingested through Artifact Ingestion system. For each PCAP, the Zeek service will run the Zeek tool (aka Bro) on the PCAP. 
                         </td>
                     </tr>
-                    <tr>
-                        <td style="vertical-align: text-top; width: 20%">
-                            comms
-                        </td>
-                        <td style="padding-left: 20px;">
-                            BETA - LimaCharlie Comms is an operational console bringing together many of the features of LimaCharlie under one roof for operational teams.
-                        </td>
-                    </tr>
                 </table>
+
+            <hr/>
+            <div id="comms"></div>
+            <h2>comms</h2>
+            <hr/>
+            <h3>Cost: 50¢ / sensor / month</h3>
+
+            <p>Comms is the place to respond to detections as a team. It's built close to the metal to give you full visibility of the actions your team is taking to mitigate any threats.</p>
+
+            <p>It all starts when a detection happens - a Room is generated for your team to assign ownership, discuss as a team, assess indicators of compromise, and issue commands. It's more than a paper trail - it's a digital war room.</p>
+            
+            <p>Don't waste breath or keystrokes trying to tell your team what action you're taking: just do it. Want to isolate a suspicious endpoint? Just do it and your team will see it in real-time. Newer members can learn the ropes in no time when they see what a real-time investigation looks like.</p>
+            
+            <p>Rich linking of entities allows your team to observe trends across detections: like an endpoint with several detected threats, or a common detection popping up on several boxes. Navigate between them easily or merge rooms together to create a shared context for complex emerging issues.</p>
+            
+            <p>Whether it be for auditing, shift changeover, or onboarding, a quick search through Comms will get you up to speed. Pick up where the last guys left off no problem.</p>
+
+            <img src="https://storage.googleapis.com/limacharlie-io/addons/comms1.png"/>
+            <img src="https://storage.googleapis.com/limacharlie-io/addons/comms2.png"/>
 
             <hr/>
             <div id="cuttingedge"></div>
@@ -509,29 +526,7 @@
             <p>Once enabled, the Zeek service will watch for PCAP files being ingested through the Artifact Ingestion system. For each PCAP, the Zeek service will run the Zeek tool on the PCAP. All the resulting Zeek log files will then be re-ingested into Artifact Ingestion where they can be viewed or Detection & Response rules can be created to generated detections or automate responses. The Zeek service pricing is based on the size of PCAPs processed: $0.02 per 1GB.</p>
 
             <p>The Zeek documentation can be found <a href="https://docs.zeek.org/en/master/" target="_blank">here</a>.</p>
-            
-            <hr/>
-            <div id="comms"></div>
-            <h2>comms</h2>
-            <hr/>
-            <h3>Cost: 50¢ / sensor / month</h3>
-
-            <p>Comms is the place to respond to detections as a team. It's built close to the metal to give you full visibility of the actions your team is taking to mitigate any threats.</p>
-
-            <p>It all starts when a detection happens - a Room is generated for your team to assign ownership, discuss as a team, assess indicators of compromise, and issue commands. It's more than a paper trail - it's a digital war room.</p>
-            
-            <p>Don't waste breath or keystrokes trying to tell your team what action you're taking: just do it. Want to isolate a suspicious endpoint? Just do it and your team will see it in real-time. Newer members can learn the ropes in no time when they see what a real-time investigation looks like.</p>
-            
-            <p>Rich linking of entities allows your team to observe trends across detections: like an endpoint with several detected threats, or a common detection popping up on several boxes. Navigate between them easily or merge rooms together to create a shared context for complex emerging issues.</p>
-            
-            <p>Whether it be for auditing, shift changeover, or onboarding, a quick search through Comms will get you up to speed. Pick up where the last guys left off no problem.</p>
-
-            <img src="https://storage.googleapis.com/limacharlie-io/addons/comms1.png"/>
-            <img src="https://storage.googleapis.com/limacharlie-io/addons/comms2.png"/>
-
-
-
-        
+                    
         </div>
     </body>
 </html>
