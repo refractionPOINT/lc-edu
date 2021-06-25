@@ -61,6 +61,29 @@ img {
     margin: auto;
 }
 
+.table-style {
+    border-collapse: collapse;
+    width: 100%;
+}
+  
+.table-style td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+.table-style tr:nth-child(even){background-color: #f2f2f2;}
+  
+.table-style tr:hover {background-color: #ddd;}
+  
+.table-style th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 10px;
+    text-align: left;
+    background-color: #3b8452;
+    color: white;
+}
+
 /************* Embedded ***********/
 
 .gist {

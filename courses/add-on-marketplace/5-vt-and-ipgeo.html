@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <div class="container">
+            <iframe width="670" height="377" src="https://www.youtube.com/embed/4FqgX3jWa80" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <h2>virustotal</h2>
+           
+            <p>VirusTotal is an online platform used to share potential malware samples and the related scan results from a multitude of Anti-Virus engines.</p>
+
+            <h3>Setup</h3>
+
+            <p>Set the VirusTotal API Key in the Integrations view within your organization, using the key provided by your VirusTotal account.
+            Subscribe to this vt API add-on.</p>
+            
+            <h3>Usage</h3>
+
+            <p>When enabled, you can use the VirusTotal API in the detection part of a D&R rule to match based on the number of Anti-Virus engines that have flagged a file hash as malicious.</p>
+            
+            <p>For example:</p>
+
+            <script src="https://gist.github.com/tekgrunt/a95a5634cfc38d18c67de32eb89677e1.js"></script> 
+
+            <hr/>
+
+            <h2>ip-geo</h2>
+ 
+            <p>The ip-geo functions as a lookup, using MaxMind to perform IP Geolocation data for matched events.</p>
+
+            <h3>Usage</h3>
+            
+            <p>When enabled, you can use ip-geo as a lookup in the detection part of D&R rules.</p>
+
+            <p>For example:</p>
+
+            <script src="https://gist.github.com/tekgrunt/9d4b51596a31f21c6a5aa57774d412e4.js"></script>
+
+            <p>This rule runs any incoming CONNECTED event against the api/ip-geo lookup resource. The metadata_rules are further detection rules that will apply to the metadata returned by a lookup match.</p>
+
+            <p>The format of the metadata returned is documented here and looks like this:</p>
+
+            <script src="https://gist.github.com/tekgrunt/90df4559021ae3b1cbfc790dd9e19cfc.js"></script>
+
+        </div>
+    </body>
+</html>
