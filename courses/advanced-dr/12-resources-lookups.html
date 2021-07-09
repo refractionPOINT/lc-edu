@@ -40,7 +40,7 @@
 
             <p>To accomplish this, you will need to split up your metadata from your lookup values like:</p>
 
-            <script src="https://gist.github.com/tekgrunt/f3267d1c38ec833ee076cf7931151b12.js"></script>
+            <script src="https://gist.github.com/tekgrunt/188911c2a2bd9bb962aa0cdbc61494d0.js"></script>
             
             <p>The <code>_LC_METADATA</code> key has as a value a list of all the pieces of metadata you want to include.</p>
 
@@ -48,7 +48,7 @@
 
             <p>The above example is equivalent to the non-optimized:</p>
 
-            <script src="https://gist.github.com/tekgrunt/bb09d10bd387dc232ba07e494ad6c566.js"></script>
+            <script src="https://gist.github.com/tekgrunt/7182b4269f566fea559fbeb4b3338df7.js"></script>
 
             <p>As you can see, this optimization is useful to reduce the repeated metadata. This is particularly useful if, for example, you have large numbers of IoCs for a given actor. In that case every IoC in the lookup would be associated with the same metadata (information about the actor).</p>
 
@@ -56,11 +56,11 @@
 
             <p>When creating an add-on from MISP content, LimaCharlie expects the data to be a JSON document to have the following structure:</p>
 
-            <script src="https://gist.github.com/tekgrunt/200a13bbae572c1a4af192237f07b08d.js"></script>
+            <script src="https://gist.github.com/tekgrunt/9bd0a86074f8c7eee37e2a080b95665e.js"></script>
             
             <p>The MISP event above once ingested in LC will be transformed to a Lookup like:</p>
 
-            <script src="https://gist.github.com/tekgrunt/feb780386988b8eaa90b3852490eebe7.js"></script>
+            <script src="https://gist.github.com/tekgrunt/1ce267a182147d03f72685bf16afd0a1.js"></script>
 
             <p>LimaCharlie understand the MISP format regardless of how it is ingested. That said, the classic way of ingesting it would be to ingest the MSIP Events use an ARL on a MISP REST API with one of the supported ARL authentication types like basic.</p>
 
@@ -74,7 +74,15 @@
 
             <p><strong>Hashes</strong></p>
 
-            <script src="https://gist.github.com/tekgrunt/634dfa0d35173d390a5b1448a599f51e.js"></script>
+            <script src="https://gist.github.com/tekgrunt/4cb93baecf4ff74c8dc2369e58472511.js"></script>
+
+            <p><strong>Domain Names</strong></p>
+
+            <script src="https://gist.github.com/tekgrunt/39f8195018d2866bf32261a6f5d47bf6.js"></script>
+
+            <p><strong>IP Addresses</strong></p>
+
+            <script src="https://gist.github.com/tekgrunt/812ee30fd17efbbff4a2946a137460e7.js"></script>
         </div>
     </body>
 </htmL>
