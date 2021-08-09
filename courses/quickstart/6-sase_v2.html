@@ -11,15 +11,19 @@
             <h2>Step 2: Installing the SASE Client</h2>
             <iframe width="670" height="377" src="https://www.youtube.com/embed/_DW7AMOiuPc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-            <p>LimaCharlie Net (lc-net) allows you to secure and monitor network access to your endpoints by providing advanced instrumented VPN access.</p>
+            <p>LimaCharlie Net (<code>lc-net</code>) allows you to secure and monitor network access to your endpoints by providing advanced instrumented VPN access.</p>
 
-            <p>lc-net endpoints appear like other endpoints in your LimaCharlie deployment, but they're quite different in nature. These lc-net endpoints need to be provisioned to be accessed.</p>
+            <p><strong><em>To prevent abuse this feature requires a minimum sensor quota of 3 (credit card required). Sensor quota can be set on the Billing page inside of the web application.</em></strong></p>
 
-            <p>By provisioning an lc-net endpoint, you create a set of VPN credentials that can be used by a single device. One set of credentials should be used by only a single device, they should not be shared among devices.</p>
+            <img alt="Billing Quota" src="https://storage.googleapis.com/lc-edu/content/images/content/qs-billing-quota.png"/>
 
-            <p>Once connected, these devices will be able to connect to the internet by default. Connectivity and additional features that can be enabled by lc-net are defined using "policies".</p>
+            <p><code>lc-net</code> endpoints appear like other endpoints in your LimaCharlie deployment, but they're quite different in nature. These <code>lc-net</code> endpoints need to be provisioned to be accessed.</p>
 
-            <p>Clients connected can access the internet, but they can also access each other based on the policies you define. This makes lc-net great to secure internal network services for access from specific devices, on premises, on the road, or from home.</p>
+            <p>By provisioning an <code>lc-net</code> endpoint, you create a set of VPN credentials that can be used by a single device. One set of credentials should be used by only a single device, they should not be shared among devices.</p>
+
+            <p>Once connected, these devices will be able to connect to the internet by default. Connectivity and additional features that can be enabled by <code>lc-net</code> are defined using "policies".</p>
+
+            <p>Clients connected can access the internet, but they can also access each other based on the policies you define. This makes <code>lc-net</code> great to secure internal network services for access from specific devices, on premises, on the road, or from home.</p>
 
             <p>The underlying technology used for VPN is called <a href="https://www.wireguard.com/" target="_blank">WireGuard</a>. WireGuard is a next-generation VPN technology that is promoted for its simplicity, speed, and security.</p>
 
@@ -27,49 +31,94 @@
             
             <h2>Provisioning</h2>
 
+            <p>LimaCharlie Net requires the WireGuard client. Clients are available for Windows, Android, macOS, Linux, iOS and ChromeOS. Client configuration is done either through a QR code or a simple configuration file.</p>
+
+            <p>There are multiple methods for installing the client. Windows users can side-load and configure the client using the LimaCharlie agent by leveraging the <code>lc-net-install</code> service; otherwise, users can manually install Net or use the CLI. Details for all of these methods are outlined below.</p>
+            
+            <h3>Manually Install the WireGuard Client</h3>
+            
+            <p>To use LimaCharlie Net you will need to download and configure the WireGuard client. Download and installation instructions for the WireGuard client can be found <a href="https://www.wireguard.com/install/" target="_blank">here</a>.</p>
+            
+            <p>Once you have installed the client you will need to connect it to LimaCharlie.</p> 
+            
+            <ol>
+                <li>Go to the Add-ons tab, visit the API section and subscribe to <code>net</code>.</li>
+                <li>Go to the Install Sensors page and create an Installation Key.</li>
+                <li>Go the Net Clients page and provision a new client:</li>
+                <ol>
+                    <li>Enter your email Host Name field and select the 'Send installation instructions' checkbox.</li>
+                    <li>Select the Installation Key you just created from the frop down of the same name.</li>
+                </ol>
+                <li>Follow the instructions that are emailed to the address used for provisioning the client.</li>
+            </ol>
+            
+            <h3>Installing the WireGuard client using the CLI</h3>
+            
+            <p>Using the <a href="https://github.com/refractionPOINT/python-limacharlie/" target="_blank">LimaCharlie CLI</a> (<code>pip install limacharlie</code>), you can provising new clients one at a time or in batches.</p>
+            
+            <p>Provisioning is done in the context of an installation key, just like an host based endpoint.</p>
+            
+            <p>The command line to use is:</p>
+            
+            <script src="https://gist.github.com/tekgrunt/f18d8eceef148e07195251608ebaed22.js"></script>
+         
+            <p>The name is the <code>name</code> that will be associated with the <code>lc-net</code> device. We recommend using a user identifier like an email address. If you use an email address, you can specify the <code>--email-user</code> flag and the QR code + configuration file will be emailed directly to the <code>name</code> (email address).</p>
+            
+            <p>The <code>--name-file</code> option allows you to specify a file containing all the names to provision.</p>
+            
+            <p>The <code>--output</code> can be used to send the configuration files directly to a directory.</p>
+            
+            <p>An example provisioning a basic new client:</p>
+            
+            <script src="https://gist.github.com/tekgrunt/e5f4647a1d93b1d7de0172d9449f87bd.js"></script>
+            
+            <p>An example provisioning a client in the <code>10.42.0.0/16</code> range and excluding the local IP range <code>100.115.92.200/28</code> from the VPN:</p>
+            
+            <script src="https://gist.github.com/tekgrunt/9914ae71149903fc7de7dff625e6151a.js"></script>
+
             <h3>lc-net-install Service</h3>
 
-            <p>This LimaCharlie Service called lc-net-install currently only supports Windows. It allows you to easily provision and upgrade an lc-agent to lc-net.</p>
+            <p>This LimaCharlie Service called <code>lc-net-install</code> currently only supports Windows. It allows you to easily provision and upgrade an <code>lc-agent</code> to <code>lc-net</code>.</p>
 
             <p>Since it is a LimaCharlie Service it means you can either directly interact with the service or you can issue service requests via the API and even D&R rules.</p>
 
             <p>To use the service, you will need:</p>
 
             <ol>
-                <li>The Net version of the Installation Key you want your new lc-net sensors to use: go to the Installation Key section, if you don't have a key create one, and then click the copy-to-clipboard button for the Net key.</li>
+                <li>The Net version of the Installation Key you want your new <code>lc-net</code> sensors to use: go to the Installation Key section, if you don't have a key create one, and then click the copy-to-clipboard button for the Net key.</li>
 
-                <li>The Sensor ID (sid) of the sensor you wish to upgrade. If you are using the Service interactively through the web interface, you may use the Hostname of the sensor and the web interface will auto-complete the Sensor ID.</li>
+                <li>The Sensor ID (<code>sid</code>) of the sensor you wish to upgrade. If you are using the Service interactively through the web interface, you may use the Hostname of the sensor and the web interface will auto-complete the Sensor ID.</li>
             </ol>
 
             <p>These steps assume you are using the web interface, but the same basic steps and parameters apply to other methods.</p>
 
             <ol>
-                <li>Go in the main page of the Organization where you want to upgrade sensors to lc-net.</li>
-                <li>From the left menu, go to the Add-ons section, Services tab, lc-net-install service and set to "on".</li>
+                <li>Go in the main page of the Organization where you want to upgrade sensors to <code>lc-net</code>.</li>
+                <li>From the left menu, go to the Add-ons section, Services tab, <code>lc-net-install</code> service and set to "on".</li>
                 <li>From the left menu, go to the Service Request section.</li>
-                <li>Select the lc-net-install service from the "Service" drop down.</li>
-                <li>In the "iid" section, enter the Net Installation Key (obtained earlier).</li>
-                <li>In the "sid" section, select the Sensor ID by hostname or just enter the Sensor ID itself.</li>
-                <li>Click "Request". The service will create a new Job that will be visible from the Organization's main page where you can track the progress of the upgrade. The whole process should take less than a minute.</li>
+                <li>Select the <code>lc-net-install</code> service from the Service drop down.</li>
+                <li>In the <code>iid</code> section, enter the Net Installation Key (obtained earlier).</li>
+                <li>In the <code>sid</code> section, select the Sensor ID by hostname or just enter the Sensor ID itself.</li>
+                <li>Click Request. The service will create a new Job that will be visible from the Organization's main page where you can track the progress of the upgrade. The whole process should take less than a minute.</li>
             </ol>
 
             <h2>Policies</h2>
 
-            <p>Policies govern the access as well as the configuration of various other tools used by lc-net. Generally policies will apply either to all lc-net endpoints or lc-net endpoints with a given tag applied to them.</p>
+            <p>Policies govern the access as well as the configuration of various other tools used by <code>lc-net</code> . Generally policies will apply either to all <code>lc-net</code> endpoints or <code>lc-net</code> endpoints with a given tag applied to them.</p>
 
             <p>Operations on policies are generic and the specific configuration is dependant on the policy type itself.</p>
 
             <p>Policies can be set using the CLI like this:</p>
 
-            <script src="https://gist.github.com/tekgrunt/ce18ae762b8acfd632abe962d4d7ccb2.js"></script>
+            <script src="https://gist.github.com/tekgrunt/7d6afe0fc7ab3ff7e088aa7fb2bb314e.js"></script>
 
             <p>Policies often contain some generic components:</p>
 
-            <p><code>bpf_filter:</code> this is a tcpdump-like BPF filter syntax describing matching packets. An empty bpf_filter will match all traffic.</p>
+            <p><code>bpf_filter</code> - this is a tcpdump-like BPF filter syntax describing matching packets. An empty bpf_filter will match all traffic.</p>
 
-            <p><code>times:</code> this is a list of Time Descriptors that describe when this policy is valid and applied. If any of the Time Descriptor is valid, the policy will be applied. More details in the Time Descriptor section below.</p>
+            <p><code>times</code> - this is a list of Time Descriptors that describe when this policy is valid and applied. If any of the Time Descriptor is valid, the policy will be applied. More details in the Time Descriptor section below.</p>
 
-            <p><code>sources:</code> this is a list of networks in CIDR notations where the clients must be connecting from for the policy to apply.</p>
+            <p><code>sources</code> - this is a list of networks in CIDR notations where the clients must be connecting from for the policy to apply.</p>
 
             <h2>Time Descriptor</h2>
 
@@ -143,15 +192,15 @@
 
             <p>Service policies define a service available through the network on a specific host, and which other endpoints have access to it.</p>
 
-            <p>The <code>server_sid</code> specifies the Sensor ID of the lc-net endpoint running the service. The <code>service_port</code> defines a specific port (or<code> 0</code> for any) where the service is running.<p>
+            <p>The <code>server_sid</code> specifies the Sensor ID of the <code>lc-net</code> endpoint running the service. The <code>service_port</code> defines a specific port (or<code> 0</code> for any) where the service is running.<p>
 
-            <p>The <code>tag_clients</code> specifies a tag that defines which lc-net endpoints have access to this service.</p>
+            <p>The <code>tag_clients</code> specifies a tag that defines which <code>lc-net</code> endpoints have access to this service.</p>
 
             <p>The <code>protocol</code> defines the network protocol ID that the service is allowed on. TCP is <code>6</code> and UDP is <code>17</code>.</p>
 
-            <p>The following example describes that all lc-net endpoints with the <code>finance</code> tag should be allowed to connect to the service running on TCP port 8000 for the Sensor ID <code>9ccd5a2c-e83c-4ffb-8f52-9f48626a6fc6</code>.</p>
+            <p>The following example describes that all <code>lc-net</code> endpoints with the <code>finance</code> tag should be allowed to connect to the service running on TCP port 8000 for the Sensor ID <code>9ccd5a2c-e83c-4ffb-8f52-9f48626a6fc6</code>.</p>
 
-            <p>Once in place, accessing this service can be done using the server's Internal IP that is available through the detailed information view of a given sensor. In the case of lc-net endpoints, this Internal IP is always in the <code>10.x.x.x</code> range and is static, meaning a sensor is given an Internal IP that it will keep for its whole lifetime, making it easier to bookmark services or even create your own DNS entries for services.</p>
+            <p>Once in place, accessing this service can be done using the server's Internal IP that is available through the detailed information view of a given sensor. In the case of <code>lc-net</code> endpoints, this Internal IP is always in the <code>10.x.x.x</code> range and is static, meaning a sensor is given an Internal IP that it will keep for its whole lifetime, making it easier to bookmark services or even create your own DNS entries for services.</p>
 
             <p>Sample policy:</p>
 
@@ -159,11 +208,11 @@
 
             <h2>DNS</h2>
             
-            <p>A DNS policy defines custom DNS entries that are available to some of your lc-net endpoints. This can be used either for traditional DNS purposes (providing simplified names to access resources), but it can also be used for security purposes to sinkhole malicious domains.</p>
+            <p>A DNS policy defines custom DNS entries that are available to some of your <code>lc-net</code> endpoints. This can be used either for traditional DNS purposes (providing simplified names to access resources), but it can also be used for security purposes to sinkhole malicious domains.</p>
 
-            <p>These domains are private to your lc-net.</p>
+            <p>These domains are private to your <code>lc-net</code>.</p>
 
-            <p>Sample sinkhole for evil.com and all its subdomains on all lc-net devices:</p>
+            <p>Sample sinkhole for evil.com and all its subdomains on all <code>lc-net</code> devices:</p>
 
             <script src="https://gist.github.com/tekgrunt/e3881092ebf5024a7e6c71668e55547e.js"></script>
 
@@ -191,15 +240,15 @@
 
             <p>Service policies define a service available through the network on a specific host, and which other endpoints have access to it.</p>
 
-            <p>The <code>server_sid</code> specifies the Sensor ID of the lc-net endpoint running the service. The <code>service_port</code> defines a specific port (or 0 for any) where the service is running.</p>
+            <p>The <code>server_sid</code> specifies the Sensor ID of the <code>lc-net</code> endpoint running the service. The <code>service_port</code> defines a specific port (or 0 for any) where the service is running.</p>
 
-            <p>The <code>tag_clients</code> specifies a tag that defines which lc-net endpoints have access to this service.</p>
+            <p>The <code>tag_clients</code> specifies a tag that defines which <code>lc-net</code> endpoints have access to this service.</p>
 
             <p>The <code>protocol</code> defines the network protocol ID that the service is allowed on. TCP is <code>6</code> and UDP is <code>17</code>.</p>
 
-            <p>The following example describes that all lc-net endpoints with the <code>finance</code> tag should be allowed to connect to the service running on TCP port 8000 for the Sensor ID 9ccd5a2c-e83c-4ffb-8f52-9f48626a6fc6.</p>
+            <p>The following example describes that all <code>lc-net</code> endpoints with the <code>finance</code> tag should be allowed to connect to the service running on TCP port 8000 for the Sensor ID 9ccd5a2c-e83c-4ffb-8f52-9f48626a6fc6.</p>
 
-            <p>Once in place, accessing this service can be done using the server's Internal IP that is available through the detailed information view of a given sensor. In the case of lc-net endpoints, this Internal IP is always in the 10.x.x.x range and is static, meaning a sensor is given an Internal IP that it will keep for its whole lifetime, making it easier to bookmark services or even create your own DNS entries for services.</p>
+            <p>Once in place, accessing this service can be done using the server's Internal IP that is available through the detailed information view of a given sensor. In the case of <code>lc-net</code> endpoints, this Internal IP is always in the 10.x.x.x range and is static, meaning a sensor is given an Internal IP that it will keep for its whole lifetime, making it easier to bookmark services or even create your own DNS entries for services.</p>
  
             <h2>Prevent Use of a Service</h2>
 

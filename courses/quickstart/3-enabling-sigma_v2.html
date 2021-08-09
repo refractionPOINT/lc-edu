@@ -42,27 +42,13 @@
             <p>The Sigma rule set is an open source signature format that can describe relevant log events in a straightforward manner. The rule format itself is very flexible and applicable to any type of log file. The main purpose of Sigma is to provide a structured form with which researchers and analysts can describe and share detection methods with the wider community.</p>
             
             <p>More information on Sigma: <a href="https://github.com/Neo23x0/sigma" target="_blank">Generic Signature Format for SIEM Systems</a>.</p>
-
-            <h2>Endpoint Detection & Response</h2>
-
-            <p>Endpoint Detection & Response (EDR) uses rules to discover and take action against malicious behaviour. LimaCharlie uses a YAML-based language to express Detection & Response (DR) rules and can leverage existing community-based formats such as YARA and Sigma.</p>
-
-            <p>In this lesson we are going to deploy a mirror of the official Sigma rule set which will enable solid coverage across the entire fleet. Later in the lesson we will show you how to create False Positive rules.</p> 
-            
-            <p>The Sigma rule set is an open source signature format that can describe relevant log events in a straightforward manner. The rule format itself is very flexible and applicable to any type of log file. The main purpose of Sigma is to provide a structured form with which researchers and analysts can describe and share detection methods with the wider community.</p>
-            
-            <p>More information on Sigma: Generic Signature Format for SIEM Systems.</p>
             
             <h3>Getting Started</h3>
             
             <p>Getting started with Sigma detection coverage is easy. In the web application, navigate to the Setup section of the main navigation and click on Add-ons.</p>
-            
-            <image tabs/>
-            
+                        
             <p>From the Services tab scroll down until you find the Sigma add-on and turn it on.</p>
-            
-            <images sigma/>
-            
+                        
             <p>The Sigma rules are immediately applied to telemetry coming in from the sensors. Some Sigma rules on Windows rely on Windows Event Logs which are not collected by LimaCharlie by default. In order to leverage these you will need to configure <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md#windows-event-logs" target="_blank">automated collection of relevant Windows Event Logs</a> through the <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md#artifact-collection" target="_blank">Artifact Collection</a> service.</p>
             
 
