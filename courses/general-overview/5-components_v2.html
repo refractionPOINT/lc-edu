@@ -10,23 +10,23 @@
 			<p>The first core technology available in LimaCharlie was the EDR.</p>
 
 			<p>The EDR provides a whole suite of powerful capabilities and is built off a lightweight, cross-platform agent.</p>
-			
-			<p><img id="general-overview-map" class="img-float-right" style="width: 60%;" src="https://storage.googleapis.com/lc-edu/content/images/content/the-agent.png" alt="LimaCharlie Agent"/>The LimaCharlie endpoint agent has the best cross-platform support in the industry and can be used to bring the most diverse fleets into a single detection stream. The agent runs on 32-bit Windows all way back to Windows XP SP II through to the most modern version of 64-bit Windows. It can run on all flavors of Linux both 32-bit and 64-bit. Builds for MacOS (Intel & M1) are also available. Builds for Solaris and BSD that can be produced on request. The lightweight footprint of LimaCharlie’s agent makes it well suited for IoT and builds across x86, ARM and MIPS architectures are available for all platforms.</p>
-			
+
+			<p><img id="general-overview-map" class="img-float-right" style="width: 60%;" src="https://storage.googleapis.com/lc-edu/content/images/content/the-agent.png" alt="LimaCharlie Agent"/>The LimaCharlie endpoint agent has the best cross-platform support in the industry and can be used to bring the most diverse fleets into a single detection stream. The agent runs on 32-bit Windows all way back to Windows XP SP II through to the most modern version of 64-bit Windows. It can run on all flavors of Linux both 32-bit and 64-bit. Builds for MacOS (Intel & M1) are also available. Builds for Solaris and BSD that can be produced on request. The lightweight footprint of LimaCharlie's agent makes it well suited for IoT and builds across x86, ARM and MIPS architectures are available for all platforms.</p>
+
 			<p>The agent is written in C and then compiled for each platform and architecture it runs on, which means that it has true feature parity across all operating systems. The only exceptions are platform specific functions, such as monitoring Windows registry operations, etc.</p>
-			
+
 			<p>When the agent is installed and running it is referred to as a sensor. On disk the agent is approximately 500kb in size but that varies a little depending on which platform it is compiled for. While running it consumes less that 1% CPU but does spike very briefly when certain events take place like an application starting up. LimaCharlie is able to pack so much power into such a small program because it treats the agent as an extension of the cloud by utilizing a true real-time persistent TLS connection. The round trip time from an event being detected to the time a response is actioned on the endpoint is generally less than 100 milliseconds.</p>
-			
+
 			<p>LimaCharlie also offers the industry's only Chrome OS agent. The agent can be used as a standalone on machines running Chrome OS or as a sidecar agent in the browser where it can do HTTP inspection removing the need for SSL interception.</p>
-			
+
 			<p><img id="general-overview-map" class="img-float-right" style="width: 60%;" src="https://storage.googleapis.com/lc-edu/content/images/content/detection-response-engine.png" alt="LimaCharlie Detection & Response Engine"/>The Detection & Response Engine behind the EDR capability plays a central role in coordinating between the different core technologies and lays the foundation for automating operations at scale.</p>
 
 			<p>Telemetry is produced for evaluation by the Detection & Response Engine via the sensor that monitors Events taking place on the endpoint. The LimaCharlie sensor monitors over 75 Events taking place on the endpoint. A full list of Events can be <a href="https://doc.limacharlie.io/docs/documentation/docs/events.md" target="_blank">found here</a>.</p>
-			
+
 			<p>Complete endpoint telemetry is stored in a one year rolling window. All telemetry is indexed and searchable across common indicators of compromise.</p>
 
 			<p>Detection rules are written against telemetry and when a positive match occurs a Response action is initiated.</p>
-			
+
 			<p>Response actions can take many forms and are often used for automating between different parts of the LimaCharlie platform. Documentation on Detection & Response (DR) rules can be found <a href="https://doc.limacharlie.io/docs/documentation/docs/dr.md" target="_blank">here</a>. A list of example response actions is as follows.</p>
 
 			<ul>
@@ -38,7 +38,7 @@
 				<li>Run forensics and trigger a memory dump.</li>
 				<li>And much much more.</li>
 			</ul>
-			
+
 			<h2>Artifact Collection</h2>
 
 			<p>Artifact Ingestion allows externally generated artifacts to be ingested and processed by the LimaCharlie Detection & Response Engine.</p>
@@ -216,18 +216,18 @@
 			<p>A Live Sweep is an in-depth look through the state of a host. The sweep will highlight parts of the activity that are suspicious. This provides a good starting position when beginning an investigation. It allows for focus on the important things right away.
 
 				<p>The types of information returned by the sweep is constantly evolving but one can expect it to return the following information:</p>
-				
+
 				<ul>
 					<li>A full list of processes and modules</li>
-					
+
 					<li>A list of unsigned binary code running in processes</li>
-					
+
 					<li>Network connections with a list of processes listening and active on the network</li>
-					
+
 					<li>Hidden modules</li>
-					
+
 					<li>A list of recently modified files</li>
-					
+
 					<li>Unique or rare indicators of compromise</li>
 				</ul>
 		</div>
