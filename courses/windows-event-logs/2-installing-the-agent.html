@@ -138,7 +138,7 @@
               <li>Run a de-duplication process with a Detection & Response rule <a href="https://doc.limacharlie.io/docs/documentation/docs/dr.md#de-duplicate-cloned-sensors" target="_blank">like this</a>.</li>
             </ol>
 
-            <p>Preparing sensors zto run properly from templates can be done in one of two ways:</p>
+            <p>Preparing sensors to run properly from templates can be done in one of two ways:</p>
             
             <ol>
               <li>Run the installer on the template, shut down the service and delete the "identity files".</li>
@@ -164,7 +164,7 @@
             <p>This is accomplished by a combination of a few techniques:</p>
             
             <ol>
-              <li>A privilged container running LC.</li>
+              <li>A privileged container running LC.</li>
               <li>LC runs with <code>HOST_FS</code> environment variable pointing to the host's root filesystem mounted within the container.</li>
               <li>LC runs with the <code>NET_NS</code> environment variable pointing to the host's directory listing network namespaces.</li>
               <li>Running the container with the required flags to make sure it can have proper access.</li>
