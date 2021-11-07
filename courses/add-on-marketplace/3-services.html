@@ -27,7 +27,7 @@
                 </td>
                 <td style="padding-left: 20px;">
                     The Cutting Edge threat feed is a managed D&R ruleset built from aggregated, filtered, and augmented data from a multitude of sources.
-                </td>                
+                </td>
                 <tr>
                     <td style="vertical-align: text-top; width: 20%">
                         <a href="#dumper">dumper</a>
@@ -49,7 +49,7 @@
                         <a href="integrity">generic-macos</a>
                     </td>
                     <td style="padding-left: 20px;">
-                        Ruleset for detecting generic suspicious behaviors on MacOS. 
+                        Ruleset for detecting generic suspicious behaviors on MacOS.
                     </td>
                 </tr>
                 <tr>
@@ -57,7 +57,7 @@
                         <a href="integrity">integrity</a>
                     </td>
                     <td style="padding-left: 20px;">
-                        Automates integrity checks of files & registry values through pattern-based rules. Specify which platforms or tagged sensors to monitor and expose new integrity events for writing detection rules against. 
+                        Automates integrity checks of files & registry values through pattern-based rules. Specify which platforms or tagged sensors to monitor and expose new integrity events for writing detection rules against.
                     </td>
                 </tr>
                 <tr>
@@ -163,7 +163,7 @@
                         <a href="zeek">zeek</a>
                     </td>
                     <td style="padding-left: 20px;">
-                        Once enabled, the Zeek service will watch for PCAP files being ingested through Artifact Ingestion system. For each PCAP, the Zeek service will run the Zeek tool (aka Bro) on the PCAP. 
+                        Once enabled, the Zeek service will watch for PCAP files being ingested through Artifact Ingestion system. For each PCAP, the Zeek service will run the Zeek tool (aka Bro) on the PCAP.
                     </td>
                 </tr>
             </table>
@@ -172,16 +172,16 @@
             <div id="comms"></div>
             <h2>comms</h2>
 
-            <h3>Cost: $0.50 / sensor / month</h3>
+            <h3>Cost: $0.5 / sensor / month</h3>
 
             <p>Comms is the place to respond to detections as a team. It's built close to the metal to give full visibility of the actions your team is taking to mitigate threats.</p>
 
             <p>When a detection happens, a Room is generated for your team to assign ownership, discuss, assess indicators of compromise, and issue commands. It's more than a paper trail - it's a digital war room.</p>
-            
+
             <p>If decisive action is required without time to explain what needs doing, take the initiative and your team will see the process in real-time. An additional benefit of this is newer members more easily learning proper protocol by witnessing what a real-time investigation and response looks like.</p>
-            
+
             <p>Rich linking of entities allows your team to observe trends across detections: like an endpoint with several detected threats, or a common detection popping up on several boxes. Navigate between them easily or merge rooms together to create a shared context for complex emerging issues.</p>
-            
+
             <p>Whether it be for auditing, shift changeover, or onboarding, a quick search through Comms will let you pick up where the last user left off with ease.</p>
 
             <img src="https://storage.googleapis.com/limacharlie-io/addons/comms1.png"/>
@@ -189,9 +189,10 @@
 
             <hr/>
             <div id="cuttingedge"></div>
-            <h2>cuttingedge</h2> 
-            
-            <h3>Cost: $0.30 / sensor / month</h3>
+
+            <h2>cuttingedge</h2>
+
+            <h3>Cost: $0.3 / sensor / month</h3>
 
             <p>The Cutting Edge threat feeds are aggregated, filtered and augmented from a multitude of sources. Emphasis is put on timely Indicators of Compromise (IoC) for new and upcoming threats.</p>
 
@@ -206,14 +207,14 @@
             <hr/>
             <div id="dumper"></div>
             <h2>dumper</h2>
-            
+
             <h3>Cost: Free</h3>
 
             <p>The Dumper service allows the dumping of several forensic artifacts on Windows hosts.</p>
 
             <p>It supports a single action, which is to dump. It supports multiple targets, memory to dump the memory of the host and mft to dump the MFT of the file sytem to CSV.
             The Service then automates the ingestion of the resulting dump (and dump metadata) to LimaCharlie's Artifact Ingestion system where it can be downloaded or analyzed, and where you can create D&R rules to automate detections of characteristics of those dumps.</p>
-            
+
             <h3>Usage</h3>
 
             <p>When enabled, dumper will be added to the Service Request view inside your organization. It will accept the following parameters:</p>
@@ -225,17 +226,17 @@
 
             <p>On submission of a request, the dumper service performs a full memory dump of a host, uploads the resulting dumps to LimaCharlie's External Logs system, and deletes the local dumps afterwards.
             Dumper requests can also be made via D&R rules; check out the example service request for more details.</p>
-            
+
             <p><strong>Notes</strong></p>
-            
+
             <p>The dumper service does not currently validate that the host has enough available disc space for the memory dump.</p>
 
             <p>Although the dumper service is free, the resulting memory dumps uploaded to LimaCharlie are subject to External Logs pricing.</p>
-            
+
             <hr/>
             <div id="exfil"></div>
             <h2>exfil</h2>
-            
+
             <h3>Cost: Free</h3>
 
             <p>Automates management of event selection for events from agents that should be sent to the cloud in real-time.</p>
@@ -244,7 +245,7 @@
 
             <p>If you enable the Exfil Service, this default profile is replaced by a custom set of rules you define.
             The rule customization is done in two parts:</p>
-            
+
             <ol>
                 <li>The Event Rules, which simply define a list of events that should be sent to the cloud based on platform and tags.</li>
                 <li>The Watch Rules, which define additional events that should be sent to the cloud based on the content of each individual event.</li>
@@ -272,27 +273,27 @@
             <hr/>
             <div id="generic-macos"></div>
             <h2>generic-macos</h2>
-            
+
             <h3>Cost: Free</h3>
-            
+
             <p>Ruleset for detecting generic suspicious behaviors on MacOS.</p>
-            
+
             <h3>Usage</h3>
-            
+
             <p>When enabled, the generic-macos service will automatically apply a managed D&R ruleset to your organization which will then generate detections.</p>
 
             <hr/>
             <div id="integrity"></div>
             <h2>integrity</h2>
-            
+
             <h3>Cost: Free</h3>
 
             <p>The integrity service allows you to manage all aspects of File Integrity Monitoring (FIM) and Registry Integrity Monitoring (RIM).</p>
 
             <p>It automates integrity checks of files & registry values through pattern-based rules. Specify which platforms or tagged sensors to monitor and expose new integrity events for writing detection rules against.</p>
-            
+
             <h3>Usage</h3>
-            
+
             <p>When enabled, the File/Reg Integrity view will be available within your organization. From there you can specify patterns to watch for on particular platforms, or you can use tags to create more targeted configurations.</p>
 
             <img src="https://storage.googleapis.com/limacharlie-io/addons/integrity_config.png" />
@@ -302,13 +303,13 @@
             <hr/>
             <div id="lc-net-install"></div>
             <h2>lc-net-install</h2>
-            
+
             <h3>Cost: Free</h3>
 
             <p>Simplify installation of net sensors on Windows hosts that already have an agent installed. lc-net-install will automate installation of the Wireguard client and provision it with the configuration that ties it back as a sensor.</p>
 
             <h3>Usage</h3>
-            
+
             <p>When enabled, an Install Net on this Sensor prompt will appear on the overview of any Windows sensor within your organization. Specify an installation key and it will provision and install the new net sensor on the device.</p>
 
             <img src="https://storage.googleapis.com/limacharlie-io/addons/lc_net_install.png" />
@@ -318,12 +319,12 @@
             <hr/>
             <div id="logging"></div>
             <h2>logging</h2>
-            
+
             <h3>Cost: Free</h3>
 
             <p>Provides low-level artifact collection capability which can automate external artifact collection from endpoints or allow pushing artifacts via REST API.
             Other services may depend on logging's base capabilities, such as dumper, zeek, and sigma.</p>
-            
+
             <h3>Usage</h3>
 
             <p>When enabled, the Artifact Collection view is available within your organization. From there you can specify pattern-based rules to determine which artifacts should be collected automatically per operating system. The use of tags will create more targeted configurations.</p>
@@ -331,19 +332,19 @@
             <img src="https://storage.googleapis.com/limacharlie-io/addons/artifact_config.png"/>
 
             <p>For more information, view <a href="https://doc.limacharlie.io/docs/documentation/docs/external_logs.md" target="_blank">Artifact Collection documentation</a>.</p>
-            
+
             <hr/>
             <div id="otx"></div>
             <h2>otx</h2>
-        
-            <h3>Cost: $0.05 / sensor / month</h3>
+
+            <h3>Cost: $0.5 / sensor / month</h3>
 
             <p>Continuously import all your OTX pulses and the relevant D&R rules for most indicator types.</p>
 
             <p>Open Threat Exchange (OTX) is the neighborhood watch of the global intelligence community. It enables private companies, independent security researchers, and government agencies to openly collaborate and share the latest information about emerging threats, attack methods, and malicious actors, resulting in greater security across the entire community.</p>
-            
+
             <h3>Setup</h3>
-            
+
             <ol>
                 <li>Set the AlienVault OTX API Key in the Integrations view within your organization, using the key provided by your AlienVault OTX account.</li>
                 <li>Subscribe to this otx service</li>
@@ -352,7 +353,7 @@
             <hr/>
             <div id="pagerduty"></div>
             <h2>pagerduty</h2>
-        
+
             <h3>Cost: Free</h3>
 
             <p>The PagerDuty service allows you to trigger events within PagerDuty. It requires setup of the PagerDuty access token in the Integrations view within your Organization.</p>
@@ -383,15 +384,15 @@
             <hr/>
             <div id="reliable-tasking"></div>
             <h2>reliable-tasking</h2>
-        
+
             <h3>Cost: Free</h3>
 
             <p>Enables reliable, asynchronous and large scale tasking of LimaCharlie sensors. This allows a task to be sent to a large number of sensors, even if they're offline. The service takes care of resending the task to those offline sensors, ensuring each of the targeted sensors is tasked at least once.</p>
-            
+
             <h3>Usage</h3>
 
             <p>When enabled, reliable-tasking will be added to the Service Request view inside your organization. It will accept the following parameters:</p>
-            
+
             <ul>
                 <li><strong>task</strong> - a command line task (i.e. os_version)</li>
                 <li><strong>sid</strong> - a sensor ID for the host to perform the memory dump</li>
@@ -400,11 +401,11 @@
             </ul>
 
             <p>On submission of a request, the reliable-tasking service will automatically send the task to sensors when they come online.</p>
-            
+
             <hr/>
             <div id="replay"></div>
             <h2>replay</h2>
-        
+
             <h3>Cost: Determined by usage</h3>
 
             <p>Replay allows running Detection & Response (DR) rules against historical traffic. This can be done in a few combinations of sources:</p>
@@ -416,7 +417,7 @@
                         <li>Rule in the replay request.</li>
                     </ul>
                 </li>
-            
+
                 <li><strong>Traffic:</strong>
                     <ul>
                         <li>Sensor historical traffic.</li>
@@ -430,14 +431,14 @@
             <hr/>
             <div id="responder"></div>
             <h2>responder</h2>
-            
+
             <h3>Cost: Free</h3>
 
             <p>The Responder service is able to perform various incident response tasks, such as a sweep.
             A sweep is an in-depth look through the state of a host. The sweep will highlight parts of the activity that are suspicious. This provides an informed starting position when beginning an investigation. It allows focus to be on the important things right away.</p>
 
             <p>The types of information returned by the sweep is constantly evolving but you can expect it to return the following information:</p>
-            
+
             <ul>
                 <li>A full list of processes and modules</li>
                 <li>A list of unsigned binary code running in processes</li>
@@ -463,7 +464,7 @@
             <p>The service works by creating rules that describe when various sensors should be cleaned up.</p>
 
             <p>Each rule specifies a single sensor tag used as a selector for the sensors the rule applies to. A rule also has a name which is helpful for bookkeeping, and a ttl which is the number of days a sensor can not connect to the cloud before it becomes eligible for cleanup.</p>
-            
+
             <p>Cleanup is automatically applied once a day.</p>
 
             <p>Full <a href="https://doc.limacharlie.io/docs/documentation/docs/sensor_cull.md" target="_blank">documentation here</a>.</p>
@@ -471,7 +472,7 @@
             <hr/>
             <div id="sigma"></div>
             <h2>sigma</h2>
-            
+
             <h3>Cost: Free</h3>
 
             <p>This service provides a core set of the open source Sigma rules in a managed fashion. It provides hundreds of rules and is a great boiler-plate rule pack to apply to your LimaCharlie deployment.
@@ -482,12 +483,12 @@
             <p>The specific rules, converted and applied through this service are available here: <a href="https://github.com/refractionPOINT/sigma/tree/lc-rules/lc-rules" target="_blank">https://github.com/refractionPOINT/sigma/tree/lc-rules/lc-rules</a></p>
 
             <p>Some Sigma rules on Windows rely on Windows Event Logs which are not collected by LimaCharlie by default. In order to leverage these you will need to configure automated collection of the relevant Windows Event Logs through the Artifact Collection service.</p>
-            
+
             <hr/>
             <div id="soteria-rules"></div>
             <h2>soteria-rules</h2>
-            
-            <h3>Cost: $0.50 / sensor / month</h3>
+
+            <h3>Cost: $0.5 / sensor / month</h3>
 
             <p>Install a managed set of Detection & Response rules developed by <a href="https://soteria.io/" target="_blank">Soteria</a>.</p>
 
@@ -496,18 +497,18 @@
             <hr/>
             <div id="twilio"></div>
             <h2>twilio</h2>
-            
+
             <h3>Cost: Free</h3>
 
             <p>LimaCharlie offers a Twilio integration which triggers alerts based on Detection & Response rules.
             Twillio is a cloud-based Communication Platform as a Service (CPaaS)company. Twillio allows software developers to programmatically make and receive phone calls, send and receive text messages, and perform communication functions using its web service APIs. LimaCharlie users use it to implement 'pager duty'.</p>
-            
+
             <p>Twilio documentation can be <a href="https://doc.limacharlie.io/docs/documentation/docs/twilio.md" target="_blank">found here</a>.</p>
 
             <hr/>
             <div id="yara"></div>
             <h2>yara</h2>
-            
+
             <h3>Cost: Free</h3>
 
             <p>Automates management of YARA signature sets and their use in scanning.</p>
@@ -515,11 +516,11 @@
             <p>YARA is a tool aimed at, though not limited to, helping malware researchers identify and classify malware samples. With YARA you can create descriptions of malware families, as well as anything else, based on textual or binary patterns. Each description, a.k.a rule, consists of a set of strings and a boolean expression which determine its logic.</p>
 
             <p>YARA documentation can be <a href="https://doc.limacharlie.io/docs/documentation/docs/yara.md" target="_blank">found here</a>.</p>
-            
+
             <hr/>
             <div id="zeek"></div>
             <h2>zeek</h2>
-            
+
             <h3>Cost: Determined by usage</h3>
 
             <p>Zeek (formerly Bro) provides a comprehensive platform for network traffic analysis, with a particular focus on semantic security monitoring at scale.</p>
@@ -527,7 +528,7 @@
             <p>Once enabled, the Zeek service will watch for PCAP files being ingested through the Artifact Ingestion system. For each PCAP, the Zeek service will run the Zeek tool on the PCAP. All the resulting Zeek log files will then be re-ingested into Artifact Ingestion where they can be viewed or Detection & Response rules can be created to generated detections or automate responses. The Zeek service pricing is based on the size of PCAPs processed: $0.02 per 1GB.</p>
 
             <p>The Zeek documentation can be found <a href="https://docs.zeek.org/en/master/" target="_blank">here</a>.</p>
-                    
+
         </div>
     </body>
 </html>
