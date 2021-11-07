@@ -11,7 +11,7 @@
 
             <p>Detection and Response rules support a few namespaces. Initially you do not have to worry about using them since by default operations on rules use the <code>general</code> namespace.</p>
 
-            <p>However, if you plan on having multiple groups of people accessing DR rules and want to maintain some segmentation, then namespaces are for you. An example of this is an MSSP wanting to allow their customers to create their own rules without giving them access to the MSSP-maintained sets of rules.</p>
+            <p>However, if you plan on having multiple groups of people accessing D&R rules and want to maintain some segmentation, then namespaces are for you. An example of this is an MSSP wanting to allow their customers to create their own rules without giving them access to the MSSP-maintained sets of rules.</p>
 
             <p>Beyond the <code>general</code> namespace, the main other namespace is called <code>managed</code> (as in MSSP-managed). Currently, operating on namespaces other than <code>general</code> can only be accomplished using the REST API by providing the <code>namespace</code> parameter in the relevant queries.</p>
                 
@@ -41,7 +41,7 @@
                 <li>artifact</code> target only: <code>artifact source</code>, <code>artifact type</code></li>
             </ul>
 
-            <p>In the case of the <code>log target</code>, <code>path</code> references apply to JSON parsed logs the same way as in <code>edr</code> DR rules, but rules on pure text logs requires using the path <code>/txt</code> as the value of a log line. The <code>artifact source</code> matches the log's source string, and the <code>artifact type</code> matches the log's type string.</p>
+            <p>In the case of the <code>log target</code>, <code>path</code> references apply to JSON parsed logs the same way as in <code>edr</code> D&R rules, but rules on pure text logs requires using the path <code>/txt</code> as the value of a log line. The <code>artifact source</code> matches the log's source string, and the <code>artifact type</code> matches the log's type string.</p>
 
             <p>For examples of D&R rules applying to artifacts, you can look at the <a href="https://github.com/refractionPOINT/sigma/tree/lc-rules/lc-rules/windows_builtin" taregt="_blank">Sigma rules generated for the Sigma Service</a> which uses the Windows Event Logs.</p>
 
