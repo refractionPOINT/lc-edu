@@ -29,7 +29,7 @@ pre {
     font-family: 'Roboto Mono', monospace;
     line-height: 1.4em;
     font-size: 1.2em;
-    color: #3b8452;
+    color: #6496c1;
 }
 
 code {
@@ -40,12 +40,12 @@ code {
 
 h2 {
     font-weight: 400;
-    color: #3b8452;
+    color: #6496c1;
 }
 
 h3 {
     font-weight: 400;
-    color: #3b8452;
+    color: #6496c1;
 }
 
 a {
@@ -80,7 +80,7 @@ img {
     padding-bottom: 12px;
     padding-left: 10px;
     text-align: left;
-    background-color: #3b8452;
+    background-color: #6496c1;
     color: white;
 }
 
